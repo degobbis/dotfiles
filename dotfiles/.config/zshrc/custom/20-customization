@@ -1,0 +1,123 @@
+# -----------------------------------------------------
+# CUSTOMIZATION
+# -----------------------------------------------------
+
+FUNCNEST=10000
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+# Display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Disable marking untracked files
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{160}Installing (%F{33}z-shell/zi%F{160})…%f"
+  command mkdir -p "$HOME/.zi" && command chmod go-rwX "$HOME/.zi"
+  command git clone -q --depth=1 --branch "main" https://github.com/z-shell/zi "$HOME/.zi/bin" && \
+    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+    print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+source $HOME/.zi/bin/zi.zsh
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
+# examples here -> https://wiki.zshell.dev/ecosystem/category/-annexes
+zicompinit # <- https://wiki.zshell.dev/docs/guides/commands
+
+# Globale Einstellung für den Quiet-Modus
+zstyle ':zi:*' quiet yes
+
+zi ice wait lucid blockf
+zi light zsh-users/zsh-completions
+
+zi ice wait"1" lucid blockf
+zi light zsh-users/zsh-history-substring-search
+
+zi ice wait lucid has'eza' atinit'AUTOCD=1'
+zi light z-shell/zsh-eza
+
+zi ice wait"0" lucid atinit"zpcompinit; zpcdreplay"
+zi light zdharma/fast-syntax-highlighting
+
+zi ice wait"0" lucid atload"_zsh_autosuggest_start" cache
+zi light zsh-users/zsh-autosuggestions
+
+zi wait silent lucid for \
+      if"[[ $+commands[cp] ]]" OMZ::plugins/cp \
+      if"[[ $+commands[git] ]]" OMZ::plugins/git \
+      if"[[ $+commands[nmap] ]]" OMZ::plugins/nmap \
+      if"[[ $+commands[rsync] ]]" OMZ::plugins/rsync \
+      if"[[ $+commands[npm] ]]" OMZ::plugins/npm \
+      OMZ::plugins/sudo \
+      OMZ::plugins/systemd \
+      OMZ::plugins/ssh-agent \
+      OMZ::plugins/urltools \
+      pick"zshrc" tcnksm/docker-alias
+
+# OMZ libraries
+local _ZSHRC_OMZ_LIBS=(
+  compfix.zsh
+  completion.zsh
+  directories.zsh
+  functions.zsh
+  grep.zsh
+  history.zsh
+  key-bindings.zsh
+  misc.zsh
+  spectrum.zsh
+  termsupport.zsh
+  theme-and-appearance.zsh
+)
+
+zi ice from"gh" pick"lib/git.zsh" nocompletions blockf \
+  atload'!local f; for f in ${_ZSHRC_OMZ_LIBS}; do source lib/$f; done' \
+  compile"lib/(${(j.|.)_ZSHRC_OMZ_LIBS})"
+
+# zsh history
+export HISTSIZE=1000000
+export SAVEHIST=$(( HISTSIZE -1 ))
+export HISTFILE=$HOME/.cache/.zsh_history
+
+setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY           # Share history across terminals
+setopt APPEND_HISTORY          # Append history to the history file (no overwriting)
+setopt INC_APPEND_HISTORY      # Immediately append to the history file, not just when a term is killed
+setopt HIST_EXPIRE_DUPS_FIRST  # Expire duplicates first
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS        # Do not store duplications
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_FIND_NO_DUPS       # Ignore duplicates when searching
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS      # Removes blank lines from history
+
+zi load robbyrussell/oh-my-zsh
+
+# -----------------------------------------------------
+# Set-up FZF key bindings (CTRL R for fuzzy history finder)
+# -----------------------------------------------------
+source <(fzf --zsh)
+
+if [[ -z "$DISPLAY" ]]; then
+# Theme OLD
+zi light caiogondim/bullet-train-oh-my-zsh-theme
+
+#BULLETTRAIN_CONTEXT_BG='#000' #Schwarz
+BULLETTRAIN_CONTEXT_BG=24 #dunkles blau
+BULLETTRAIN_PROMPT_ORDER=(
+  time
+  context
+  git
+  dir
+)
+else
+# -----------------------------------------------------
+# oh-my-posh promt
+# -----------------------------------------------------
+# Custom Theme
+#POSH=agnoster
+#eval "$(oh-my-posh init zsh --config /home/guido/.config/ohmyposh/EDM115-newline.omp.json)"
+eval "$(oh-my-posh init zsh --config /home/guido/.config/ohmyposh/guido.omp.json)"
+
+# Shipped Theme
+# eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/agnoster.omp.json)"
+fi

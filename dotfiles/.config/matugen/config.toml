@@ -49,3 +49,21 @@ output_path = '~/.cache/wal/sequences'
 input_path = '~/.config/matugen/templates/ohmyposh-colors.json'
 output_path = '~/.config/ohmyposh/colors.json'
 post_hook = "jq --slurpfile palette ~/.config/ohmyposh/colors.json '. + $palette[0]' ~/.config/ohmyposh/EDM115-newline.omp.json > /tmp/new_theme.json && mv /tmp/new_theme.json ~/.config/ohmyposh/EDM115-newline.omp.json"
+
+# Custom schemes
+[templates.all]
+input_path = '~/.config/matugen/templates/all.json'
+output_path = '~/.config/matugen/colors/all-colors.json'
+
+[templates.guido-waybar]
+input_path = '~/.config/matugen/templates/guido-waybar-colors.css'
+output_path = '~/.config/waybar/themes/guido/colors.css'
+
+[templates.guido-omp]
+input_path = '~/.config/matugen/templates/guido-omp-colors.json'
+output_path = '~/.config/matugen/colors/guido-omp-colors.json'
+post_hook = "jq --slurpfile palette ~/.config/matugen/colors/guido-omp-colors.json '. + $palette[0]' ~/.config/ohmyposh/guido.omp.json > /tmp/new_theme.json && mv /tmp/new_theme.json ~/.config/ohmyposh/guido.omp.json"
+
+[templates.kitty-guido-override]
+input_path = "~/.config/matugen/templates/kitty-guido-colors-override.conf"
+output_path = "~/.config/kitty/guido-colors-override.conf"

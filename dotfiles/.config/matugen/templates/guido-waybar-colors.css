@@ -1,0 +1,11 @@
+/*
+* Css Colors
+* Generated with Matugen
+*/
+@define-color blur_background {{colors.background.default.rgba | set_alpha: 0.5}};
+@define-color tray_background {{colors.on_background.default.rgba | set_alpha: 0.2}};
+<* for name, value in colors *>
+    @define-color {{name}} {{value.default.hex}};
+<* endfor *>
+
+@define-color on_primary_fixed {{colors.surface.default.hex}};

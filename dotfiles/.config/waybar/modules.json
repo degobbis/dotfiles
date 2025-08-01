@@ -20,7 +20,7 @@
       "default": ""
     },
     "persistent-workspaces": {
-      "*": 5
+      "*": 10
     }
   },
 
@@ -123,6 +123,13 @@
     "tooltip": false
   },
 
+  // ChatGPT Launcher
+  "custom/chatgpt": {
+    "format": " ",
+    "on-click": "~/.config/ml4w/settings/ai.sh",
+    "tooltip-format": "AI Support"
+  },
+
   // Calculator
   "custom/calculator": {
     "format": "",
@@ -172,7 +179,7 @@
         "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
       "none": "",
       "dnd-notification":
-        "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+        "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
       "dnd-none": "",
       "inhibited-notification":
         "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
@@ -219,9 +226,9 @@
 
   // Clock
   "clock": {
-    "format": "{:%H:%M %a}",
+    "format": "{:L%a %Od.%Om.%Y - %H:%M}",
     "on-click": "flatpak run com.ml4w.calendar",
-    "timezone": "",
+    "timezone": "Europe/Berlin",
     "tooltip": false
   },
 

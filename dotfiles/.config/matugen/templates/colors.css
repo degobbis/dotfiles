@@ -7,3 +7,5 @@
 <* for name, value in colors *>
     @define-color {{name}} {{value.default.hex}};
 <* endfor *>
+
+@define-color on_primary_fixed {{colors.surface.default.hex}};

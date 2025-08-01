@@ -6,6 +6,9 @@
 #                                 /_/
 #
 
+sleep 1
+install_platform="$(cat ~/.config/ml4w/settings/platform.sh)"
+
 # Check if command exists
 _checkCommandExists() {
     cmd="$1"

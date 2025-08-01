@@ -1,0 +1,143 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "transient_prompt": {
+    "template": "  ❯❯ {{ .AbsolutePWD }} : ",
+    "foreground": "p:prompt",
+    "background": "transparent",
+    "newline": true
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\n╭─",
+          "foreground": "p:prompt",
+          "type": "text",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "time_format": " 15:04:05"
+          },
+          "leading_diamond": "",
+          "foreground": "p:primary-fg",
+          "background": "p:primary-bg",
+          "powerline_symbol": "",
+          "style": "diamond",
+          "template": "{{ .CurrentDate | date .Format }} ",
+          "type": "time"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "powerline_symbol": "",
+          "template": " {{ .UserName }}@{{ .HostName }} ",
+          "foreground": "p:secondary-fg",
+          "background": "p:secondary-bg",
+          "type": "session",
+          "style": "powerline"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "󱐋",
+          "foreground": "p:red-fg",
+          "powerline_symbol": "",
+          "background": "p:red-bg",
+          "type": "root",
+          "style": "powerline"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "style": "full"
+          },
+          "trailing_diamond": "",
+          "template": " 󰉖 {{ path .Path .Location }}",
+          "foreground": "p:tertiary-fg",
+          "background": "p:tertiary-bg",
+          "type": "path",
+          "style": "diamond"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "properties": {
+            "branch_icon": "",
+            "cache_duration": "none",
+            "display_changing_color": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "full_branch_path": true
+          },
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": "{{ if gt .Ahead 0 }}<#ff5555> +{{ .Ahead }}</> | {{ end }}{{ if gt .Behind 0 }}<#ff5555> -{{ .Behind }}</> | {{ end }}{{ if .Working.Changed }}<#ff5555>  {{ .Working.String }}</> | {{ end }}{{ if .Staging.Changed }}<#ff5555>  {{ .Staging.String }}</> | {{ end }} ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }})",
+          "foreground": "#282a36",
+          "background": "#ACEAAC",
+          "type": "git",
+          "style": "diamond"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "always_enabled": true,
+            "cache_duration": "none"
+          },
+          "template": "╰─ ❯❯",
+          "foreground": "p:prompt",
+          "type": "text",
+          "style": "diamond"
+        }
+      ],
+      "newline": true
+    }
+  ],
+  "version": 3,
+  "patch_pwsh_bleed": true,
+  "final_space": true,
+  "palette": {
+    "prompt": "#dfe3e7",
+    "red-fg": "#ffb4ab",
+    "red-bg": "#93000a",
+    "primary-fg": "#c3e8ff",
+    "primary-bg": "#001e2c",
+    "secondary-bg": "#257ca5",
+    "secondary-fg": "#d1e5f4",
+    "tertiary-bg": "#5445a1",
+    "tertiary-fg": "#e6deff",
+    "color0": "#0a0f12",
+    "color8": "#41484d",
+    "color1": "#ffb4ab",
+    "color9": "#ffb4ab",
+    "color2": "#94D497",
+    "color10": "#94D497",
+    "color3": "#c9c1ea",
+    "color11": "#c9c1ea",
+    "color4": "#484264",
+    "color12": "#484264",
+    "color5": "#8fcff3",
+    "color13": "#8fcff3",
+    "color6": "#8a9297",
+    "color14": "#8a9297",
+    "color7": "#dfe3e7",
+    "color15": "#dfe3e7"
+  }
+}

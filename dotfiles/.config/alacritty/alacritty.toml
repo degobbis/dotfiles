@@ -1,0 +1,37 @@
+[font]
+size = 14.0
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[window]
+opacity = 0.7
+
+[window.padding]
+x = 15
+y = 15
+
+[selection]
+save_to_clipboard = true
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Paste"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Copy"
+
+[general]
+live_config_reload = true

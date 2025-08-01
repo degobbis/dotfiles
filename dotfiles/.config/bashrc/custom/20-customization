@@ -1,0 +1,17 @@
+# -----------------------------------------------------
+# CUSTOMIZATION
+# -----------------------------------------------------
+POSH=agnoster
+export HISTCONTROL=ignoreboth:erasedups
+
+
+# -----------------------------------------------------
+# Set-up FZF key bindings (CTRL R for fuzzy history finder)
+# -----------------------------------------------------
+source <(fzf --bash)
+
+
+# -----------------------------------------------------
+# Prompt
+# -----------------------------------------------------
+eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/zen.toml)"

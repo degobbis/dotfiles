@@ -1,0 +1,31 @@
+# -----------------------------------------------------
+# INIT
+# -----------------------------------------------------
+
+# -----------------------------------------------------
+# Exports
+# -----------------------------------------------------
+
+export EDITOR=nano
+#export XCURSOR_PATH=${XCURSOR_PATH}:$HOME/.local/share/icons
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Extend path with node and personal bin
+export NODE_PATH=$(npm root -g)
+export PATH=$HOME/bin:$HOME/.local/bin:$NVM_BIN:$NVM_INC:$NODE_PATH:$PATH
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:~/.local/bin/
+
+export NUMCPUS=$(nproc)
+export NUMCPUSMINUSTWO=$(( NUMCPUS - 4 ))
+export MAKEOPTS="-j$NUMCPUSMINUSTWO -l4"
+export EMERGE_DEFAULT_OPTS="--jobs=1 --load-average=4 --autounmask=n"
+
+export GTK_PATH=/usr/lib/gtk-3.0
+export GTK_PATH=$GTK_PATH:/usr/lib/gtk-4.0
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
+
+export TERM="xterm-256color"

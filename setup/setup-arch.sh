@@ -9,7 +9,7 @@ packages=(
     "rsync"
     "git"
     "figlet"
-    "xdg-user-dirs"    
+    "xdg-user-dirs"
     "hyprland"
     "hyprpaper"
     "hyprlock"
@@ -96,13 +96,9 @@ _checkCommandExists() {
 
 _isInstalled() {
     package="$1"
-    check="$(sudo pacman -Qs --color always "${package}" | grep "local" | grep "${package} ")"
-    if [ -n "${check}" ]; then
-        echo 0
-        return #true
-    fi
-    echo 1
-    return #false
+    sudo pacman -Q --color always "${package}" 2>1 > /dev/null
+    echo $?
+    return
 }
 
 _installYay() {
@@ -132,6 +128,18 @@ _installPackages() {
         fi
         yay --noconfirm -S "${pkg}"
     done
+}
+
+_installChaoticRepository(){
+    echo ":: Installing [chaotic-aur] repository for a lot of precompiled AUR Packages"
+    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+    sudo pacman-key --lsign-key 3056513887B78AEB
+    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+    cat $SCRIPT_DIR/aur/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
+    echo ":: [chaotic-aur] repository is now installed"
+    echo ":: Syncing the mirrorlist and update the system packages"
+    sudo pacman --noconfirm -Syu
 }
 
 # Header
@@ -164,19 +172,36 @@ while true; do
     esac
 done
 
+# Install chaotic-aur repository for a lot of precompiled AUR Packages
+if [[ -f "/etc/pacman.d/chaotic-mirrorlist" ]]; then
+    echo ":: [chaotic-aur] repository is already installed"
+else
+    _installChaoticRepository
+fi
+
+CHAOTIC_AUR_INSTALLED=1
+
 # Install yay if needed
 if [[ $(_checkCommandExists "yay") == 0 ]]; then
     echo ":: yay is already installed"
 else
     echo ":: The installer requires yay. yay will be installed now"
-    _installYay
+    if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
+        sudo pacman --noconfirm -S yay-git
+    else
+        _installYay
+    fi
 fi
 
 # Packages
 _installPackages "${packages[@]}"
 
 # Oh My Posh
-curl -s https://ohmyposh.dev/install.sh | bash -s
+if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
+    sudo pacman --noconfirm -S oh-my-posh-bin
+else
+    curl -s https://ohmyposh.dev/install.sh | bash -s
+fi
 
 # Prebuild Packages
 if [ ! -d $HOME/.local/bin ]; then
@@ -219,11 +244,21 @@ echo ":: Installing $ml4w_app"
 bash -c "$(curl -s https://raw.githubusercontent.com/mylinuxforwork/$ml4w_app_repo/master/setup.sh)"
 
 # Flatpaks
-flatpak install -y flathub com.github.PintaProject.Pinta
+#flatpak install -y flathub com.github.PintaProject.Pinta
 
 # Fonts
 sudo cp -rf $SCRIPT_DIR/fonts/FiraCode /usr/share/fonts
 sudo cp -rf $SCRIPT_DIR/fonts/Fira_Sans /usr/share/fonts
+
+
+echo -e "${GREEN}"
+figlet -p "Additional packages"
+echo -e "${NONE}"
+echo
+if gum confirm "Do you want to install my selection of additional packages?"; then
+    source ${SCRIPT_DIR}/arch/custom-packages.sh
+fi
+
 
 echo ":: Installation complete."
 echo ":: Ready to install the dotfiles with the Dotfiles Installer."

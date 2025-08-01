@@ -1,1 +1,1 @@
-screenshot_folder="$HOME/Pictures"
+screenshot_folder="$(xdg-user-dir SCREENSHOTS)"

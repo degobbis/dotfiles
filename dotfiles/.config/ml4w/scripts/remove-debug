@@ -1,0 +1,12 @@
+#!/bin/bash
+
+FILES=$(pacman -Q | grep -i '\-debug' | cut -d ' ' -f1 | tr '\n' ' ')
+
+if [ -z "$FILES" ]; then
+	echo "Nothing to do."
+else 
+	echo "Removing: $FILES"
+	echo "..."
+	yay -Rns $FILES
+	echo "done."
+fi

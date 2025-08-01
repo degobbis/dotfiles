@@ -1,1 +1,1 @@
-firefox
+firefox-developer-edition

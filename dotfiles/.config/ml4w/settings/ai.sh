@@ -1,1 +1,3 @@
-$(cat ~/.config/ml4w/settings/browser.sh) --new-window https://chat.openai.com
+JANAI=$(basename $(ls .local/share/applications/appimagekit_*-Jan.desktop))
+LLMS=$(basename $(ls .local/share/applications/appimagekit_*-LM_Studio.desktop))
+gtk-launch $LLMS

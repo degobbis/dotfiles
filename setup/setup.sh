@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 sleep 1
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -69,7 +69,7 @@ EOF
                 ;;
         esac
     done    
-    }
+}
 
 if [[ $(_checkCommandExists "pacman") == 0 ]]; then
     $SCRIPT_DIR/setup-arch.sh

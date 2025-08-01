@@ -1,0 +1,8 @@
+set autoindent
+set tabsize 4
+set linenumbers
+set softwrap
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/extra/*.nanorc"
+include "/usr/share/nano-syntax-highlighting/*.nanorc"
+include "/home/guido/.config/nano/custom/*.nanorc"
