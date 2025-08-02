@@ -41,7 +41,7 @@ extraFontsPackages=(
     "gnu-free-fonts"
     "powerline-console-fonts"
     "powerline-fonts"
-    "terminess-powerline-font-git"
+#    "terminess-powerline-font-git" # Parts conflicts with powerline-console-fonts
     "terminus-font"
     "ttf-hack"
     "ttf-jetbrains-mono"
@@ -131,7 +131,7 @@ applicationPackages=(
     "solaar"
     "teams-for-linux-wayland-hook"
     "teamviewer"
-    "thunar" "thunar-archive-plugin" "thunar-shares-plugin" "thunar-volman-git" "xarchiver"
+    "thunar" "thunar-archive-plugin" "thunar-shares-plugin" "thunar-volman" "xarchiver"
 #    "thunderbird" "thunderbird-i18n-de"
     "timeshift"
     "vlc" "phonon-qt6-vlc" "vlc-plugins-all"
