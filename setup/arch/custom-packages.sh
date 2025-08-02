@@ -370,7 +370,7 @@ for key in "${selectedKeys[@]}"; do
     value="${additionalPackages["${key}"]}"
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
     echo ":: Installation for ${key}:"
-    _installPackages "${packages_to_install[@]}"
+    _installPackagesGroup "${packages_to_install[@]}"
 
     if [[ "${value}" == "loginManager" ]]; then
         echo ":: Configure login manager"
@@ -382,4 +382,4 @@ for key in "${selectedKeys[@]}"; do
     fi
 done
 
-_installPackages "${systemPackages[@]}"
+_installPackagesGroup "${systemPackages[@]}"

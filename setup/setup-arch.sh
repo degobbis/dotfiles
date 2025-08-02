@@ -120,13 +120,19 @@ _installYay() {
     echo ":: yay has been installed successfully."
 }
 
+_installPackagesGroup() {
+    for pkg; do
+        yay --needed --noconfirm -S "${pkg}"
+    done
+}
+
 _installPackages() {
     for pkg; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
             echo ":: ${pkg} is already installed."
             continue
         fi
-        yay --needed --noconfirm -S "${pkg}"
+        yay --noconfirm -S "${pkg}"
     done
 }
 
