@@ -126,7 +126,7 @@ _installPackages() {
             echo ":: ${pkg} is already installed."
             continue
         fi
-        yay --noconfirm -S "${pkg}"
+        yay --needed --noconfirm -S "${pkg}"
     done
 }
 

@@ -11,6 +11,7 @@ declare -A additionalPackages=(
     ["Docker (not Desktop)"]="dockerPackages"
     ["My favorite applications"]="applicationPackages"
     ["Virt-Manager"]="vmPackages"
+    ["Printer packages"]="printerPackages"]
 )
 
 dockerPackages=(
@@ -380,3 +381,5 @@ for key in "${selectedKeys[@]}"; do
         sudo cp -f /usr/share/nwg-hello/nwg.jpg /usr/share/nwg-hello/current_wallpaper.jpg
     fi
 done
+
+_installPackages "${systemPackages[@]}"
