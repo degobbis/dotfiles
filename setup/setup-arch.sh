@@ -2,6 +2,8 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+declare -a errorPackages
+
 packages=(
     "wget"
     "unzip"
@@ -81,9 +83,7 @@ packages=(
     "vlc"
 )
 
-declare -a errorPackages
-
-
+RED='\033[0;31m'
 GREEN='\033[0;32m'
 NONE='\033[0m'
 
@@ -132,15 +132,15 @@ _installPackagesGroup() {
 _installPackages() {
     for pkg; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
-            echo ":: ${pkg} is already installed."
+            echo -e "${GREEN}:: ${pkg} is already installed.${NONE}"
             continue
         fi
 
         echo ":: Installing ${pkg} ..."
-        if [[ "$(yay --noconfirm -S "${pkg}" 2>&1 > /dev/null)" -eq 0 ]]; then
-            echo ":: ${pkg} has been installed successfully."
+        if yay --noconfirm -S "${pkg}" > /dev/null 2>&1; then
+            echo -e "${GREEN}:: ${pkg} has been installed successfully.${NONE}"
         else
-            echo ":: Error installing ${pkg}."
+            echo -e "${RED}:: Error installing ${pkg}.${NONE}"
             errorPackages+=("${pkg}")
         fi
     done
@@ -153,7 +153,7 @@ _installChaoticRepository(){
     sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
     sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
     cat $SCRIPT_DIR/aur/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
-    echo ":: [chaotic-aur] repository is now installed"
+    echo -e "${GREEN}:: [chaotic-aur] repository is now installed${NONE}"
     echo ":: Syncing the mirrorlist and update the system packages"
     sudo pacman --noconfirm -Syu
 }
@@ -190,7 +190,7 @@ done
 
 # Install chaotic-aur repository for a lot of precompiled AUR Packages
 if [[ -f "/etc/pacman.d/chaotic-mirrorlist" ]]; then
-    echo ":: [chaotic-aur] repository is already installed"
+    echo -e "${GREEN}:: [chaotic-aur] repository is already installed${NONE}"
 else
     _installChaoticRepository
 fi
@@ -199,7 +199,7 @@ CHAOTIC_AUR_INSTALLED=1
 
 # Install yay if needed
 if [[ $(_checkCommandExists "yay") == 0 ]]; then
-    echo ":: yay is already installed"
+    echo -e "${GREEN}:: yay is already installed${NONE}"
 else
     echo ":: The installer requires yay. yay will be installed now"
     if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
@@ -214,11 +214,12 @@ _installPackages "${packages[@]}"
 
 # Oh My Posh
 if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
-    sudo pacman --noconfirm -S oh-my-posh-bin
+        _installPackages "oh-my-posh-bin"
 else
     curl -s https://ohmyposh.dev/install.sh | bash -s
 fi
 
+echo
 # Prebuild Packages
 if [ ! -d $HOME/.local/bin ]; then
     mkdir -p $HOME/.local/bin
@@ -279,8 +280,6 @@ fi
 if [[ "${errorPackages}" ]]; then
     echo -e "${RED}"
     figlet -p "Errors"
-    echo -e "${NONE}"
-    echo -e "${RED}"
     echo ":: Installation finished with errors."
     echo -e "${NONE}"
     echo
@@ -291,10 +290,10 @@ if [[ "${errorPackages}" ]]; then
 else
     echo -e "${GREEN}"
     figlet -p "No errors"
-    echo -e "${NONE}"
     echo ":: Installation completed without errors."
-    echo
+    echo -e "${NONE}"
 fi
 
-
+echo
+echo
 echo ":: Ready to install the dotfiles with the Dotfiles Installer."

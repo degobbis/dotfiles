@@ -11,7 +11,7 @@ declare -A additionalPackages=(
     ["Docker (not Desktop)"]="dockerPackages"
     ["My favorite applications"]="applicationPackages"
     ["Virt-Manager"]="vmPackages"
-    ["Printer packages"]="printerPackages"]
+    ["Printer packages"]="printerPackages"
 )
 
 dockerPackages=(
@@ -369,7 +369,7 @@ IFS=$' \t\n'
 for key in "${selectedKeys[@]}"; do
     value="${additionalPackages["${key}"]}"
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
-    echo ":: Installation for ${key}:"
+    echo "Installation for ${key}:"
     _installPackages "${packages_to_install[@]}"
 
     if [[ "${value}" == "loginManager" ]] && [[ ! -f /usr/share/nwg-hello/current_wallpaper.jpg ]]; then
@@ -380,6 +380,8 @@ for key in "${selectedKeys[@]}"; do
         sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/greetd.pam.file /etc/pam.d/greetd
         sudo cp -f /usr/share/nwg-hello/nwg.jpg /usr/share/nwg-hello/current_wallpaper.jpg
     fi
+    echo
 done
 
 _installPackages "${systemPackages[@]}"
+echo
