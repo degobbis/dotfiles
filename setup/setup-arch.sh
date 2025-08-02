@@ -81,6 +81,9 @@ packages=(
     "vlc"
 )
 
+declare -a errorPackages
+
+
 GREEN='\033[0;32m'
 NONE='\033[0m'
 
@@ -96,7 +99,7 @@ _checkCommandExists() {
 
 _isInstalled() {
     package="$1"
-    sudo pacman -Q --color always "${package}" 2>1 > /dev/null
+    sudo pacman -Qe --color always "${package}" 2>&1 > /dev/null
     echo $?
     return
 }
@@ -132,7 +135,14 @@ _installPackages() {
             echo ":: ${pkg} is already installed."
             continue
         fi
-        yay --noconfirm -S "${pkg}"
+
+        echo ":: Installing ${pkg} ..."
+        if [[ "$(yay --noconfirm -S "${pkg}" 2>&1 > /dev/null)" -eq 0 ]]; then
+            echo ":: ${pkg} has been installed successfully."
+        else
+            echo ":: Error installing ${pkg}."
+            errorPackages+=("${pkg}")
+        fi
     done
 }
 
@@ -266,5 +276,25 @@ if gum confirm "Do you want to install my selection of additional packages?"; th
 fi
 
 
-echo ":: Installation complete."
+if [[ "${errorPackages}" ]]; then
+    echo -e "${RED}"
+    figlet -p "Errors"
+    echo -e "${NONE}"
+    echo -e "${RED}"
+    echo ":: Installation finished with errors."
+    echo -e "${NONE}"
+    echo
+    echo "The following packages had errors during installation, please install manually:"
+    for pkg in "${errorPackages[@]}"; do
+        echo "- ${pkg}"
+    done
+else
+    echo -e "${GREEN}"
+    figlet -p "No errors"
+    echo -e "${NONE}"
+    echo ":: Installation completed without errors."
+    echo
+fi
+
+
 echo ":: Ready to install the dotfiles with the Dotfiles Installer."

@@ -370,9 +370,9 @@ for key in "${selectedKeys[@]}"; do
     value="${additionalPackages["${key}"]}"
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
     echo ":: Installation for ${key}:"
-    _installPackagesGroup "${packages_to_install[@]}"
+    _installPackages "${packages_to_install[@]}"
 
-    if [[ "${value}" == "loginManager" ]]; then
+    if [[ "${value}" == "loginManager" ]] && [[ ! -f /usr/share/nwg-hello/current_wallpaper.jpg ]]; then
         echo ":: Configure login manager"
         sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/nwg-hello* /etc/nwg-hello/
         sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/greetd.conf /etc/greetd/
@@ -382,4 +382,4 @@ for key in "${selectedKeys[@]}"; do
     fi
 done
 
-_installPackagesGroup "${systemPackages[@]}"
+_installPackages "${systemPackages[@]}"
