@@ -16,7 +16,7 @@ aur_helper="$(cat ~/.config/ml4w/settings/aur.sh)"
 
 _isInstalledAUR() {
     package="$1"
-    $aur_helper -Q --color always "${package}" 2>1 > /dev/null
+    $aur_helper -Qe --color always "${package}" > /dev/null 2>&1
     echo $?
     return
 }

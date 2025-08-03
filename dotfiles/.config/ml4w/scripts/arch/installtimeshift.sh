@@ -13,13 +13,9 @@ aur_helper="$(cat ~/.config/ml4w/settings/aur.sh)"
 
 _isInstalledAUR() {
     package="$1"
-    check="$($aur_helper -Qs --color always "${package}" | grep "local" | grep "${package} ")"
-    if [ -n "${check}" ]; then
-        echo 0 #'0' means 'true' in Bash
-        return #true
-    fi
-    echo 1 #'1' means 'false' in Bash
-    return #false
+    $aur_helper -Qe --color always "${package}" > /dev/null 2>&1
+    echo $?
+    return
 }
 
 timeshift_installed=$(_isInstalledAUR "timeshift")
