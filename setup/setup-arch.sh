@@ -146,7 +146,7 @@ _installChaoticRepository(){
     sudo pacman-key --lsign-key 3056513887B78AEB
     sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
     sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-    cat $SCRIPT_DIR/aur/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
+    cat $SCRIPT_DIR/arch/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
     echo -e "${GREEN}:: [chaotic-aur] repository is now installed${NONE}"
     echo ":: Syncing the mirrorlist and update the system packages"
     sudo pacman --noconfirm -Syu
