@@ -123,12 +123,6 @@ _installYay() {
     echo ":: yay has been installed successfully."
 }
 
-_installPackagesGroup() {
-    for pkg; do
-        yay --needed --noconfirm -S "${pkg}"
-    done
-}
-
 _installPackages() {
     for pkg; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then

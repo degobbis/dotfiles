@@ -135,7 +135,7 @@ applicationPackages=(
 #    "thunderbird" "thunderbird-i18n-de"
     "timeshift"
     "vlc" "phonon-qt6-vlc" "vlc-plugins-all"
-
+    "x264" "x265"
 )
 
 vmPackages=(
@@ -233,6 +233,7 @@ systemPackages=(
 #    "libgsf"
 #    "libopenraw"
     "libusb"
+    "less"
     "logrotate"
     "man-pages"
 #    "matugen-bin"
@@ -359,6 +360,17 @@ systemPackages=(
     "zsh-completions"
 )
 
+_configureLoginManager() {
+    if [[ ! -f /usr/share/nwg-hello/current_wallpaper.jpg ]]; then
+       echo ":: Configure login manager (greetd)"
+       sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/nwg-hello* /etc/nwg-hello/
+       sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/greetd.conf /etc/greetd/
+       sudo cp -f /etc/pam.d/greetd /etc/pam.d/greetd.bkp
+       sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/greetd.pam.file /etc/pam.d/greetd
+       sudo cp -f /usr/share/nwg-hello/nwg.jpg /usr/share/nwg-hello/current_wallpaper.jpg
+   fi
+   echo
+}
 
 IFS=$'\n'
 
@@ -371,16 +383,7 @@ for key in "${selectedKeys[@]}"; do
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
     echo "Installation for ${key}:"
     _installPackages "${packages_to_install[@]}"
-
-    if [[ "${value}" == "loginManager" ]] && [[ ! -f /usr/share/nwg-hello/current_wallpaper.jpg ]]; then
-        echo ":: Configure login manager"
-        sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/nwg-hello* /etc/nwg-hello/
-        sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/greetd.conf /etc/greetd/
-        sudo cp -f /etc/pam.d/greetd /etc/pam.d/greetd.bkp
-        sudo cp -f ${SCRIPT_DIR}/arch/nwg-hello/greetd.pam.file /etc/pam.d/greetd
-        sudo cp -f /usr/share/nwg-hello/nwg.jpg /usr/share/nwg-hello/current_wallpaper.jpg
-    fi
-    echo
+    _configureLoginManager
 done
 
 _installPackages "${systemPackages[@]}"
