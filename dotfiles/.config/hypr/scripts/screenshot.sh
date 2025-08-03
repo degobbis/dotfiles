@@ -14,17 +14,19 @@
 # Add this to ~/.config/user-dirs.dirs to save screenshots in a custom folder:
 # XDG_SCREENSHOTS_DIR="$HOME/Screenshots"
 
-prompt='Screenshot'
-mesg="DIR: ~/Screenshots"
-
 # Screenshot Filename
 source ~/.config/ml4w/settings/screenshot-filename.sh
 
 # Screenshot Folder
 source ~/.config/ml4w/settings/screenshot-folder.sh
 
+mkdir -p "${screenshot_folder}"
+
 # Screenshot Editor
 export GRIMBLAST_EDITOR="$(cat ~/.config/ml4w/settings/screenshot-editor.sh)"
+
+prompt='Screenshot'
+mesg="DIR: ${screenshot_folder}"
 
 # Example for keybindings
 # bind = SUPER, p, exec, grimblast save active
