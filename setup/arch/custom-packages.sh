@@ -2,6 +2,7 @@
 
 declare -A additionalPackages=(
     ["AMD packages"]="amdPackages"
+    ["NVIDIA packages"]="nvidiaPackages"
 #    ["Intel packages"]="intelPackages"
     ["Packages only for 'Framework16' laptop"]="framework16Packages"
 #    ["Boot splash packages"]="bootSplash"
@@ -32,6 +33,10 @@ amdPackages=(
     "vulkan-headers-git"
     "vulkan-radeon"
     "vulkan-tools"
+)
+
+nvidiaPackages=(
+    "python-gpustat"
 )
 
 intelPackages=(
