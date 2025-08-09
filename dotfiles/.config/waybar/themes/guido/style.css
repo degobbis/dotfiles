@@ -189,6 +189,7 @@ tooltip label {
 #custom-hyprshade,
 #custom-keybindings,
 #custom-ml4w-welcome,
+#custom-notification,
 #custom-outlook,
 #custom-quicklink_chromium,
 #custom-quicklink_browser,
@@ -210,7 +211,7 @@ tooltip label {
 #custom-windowsvm,
 #custom-youtube {
     font-size: 1.25em;
-    font-weight: bold;
+    font-weight: normal;
     margin-top: 8px;
     margin-right: 16px;
     margin-bottom: 8px;
@@ -303,30 +304,6 @@ tooltip label {
     margin-left: 10px;
     opacity: 0.8;
     border: 3px solid @on_surface;
-}
-
-/* -----------------------------------------------------
- * Custom Notification
- * ----------------------------------------------------- */
-
-#custom-notification {
-    margin: 0px 13px 0px 0px;
-    padding: 0px;
-    font-size: 20px;
-    color: @on_surface;
-    opacity: 0.8;
-    border-color: @on_primary;
-}
-
-/* -----------------------------------------------------
- * Custom Exit
- * ----------------------------------------------------- */
-
-#custom-exit {
-    padding: 0px;
-    font-size: 1.5em;
-    color: @on_surface;
-    opacity: 0.8;
 }
 
 /* -----------------------------------------------------
