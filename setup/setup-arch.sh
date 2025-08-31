@@ -151,7 +151,8 @@ else
     if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
         sudo pacman --noconfirm -S yay
     else
-    _installYay
+        _installYay
+    fi
 fi
 
 # --------------------------------------------------------------
