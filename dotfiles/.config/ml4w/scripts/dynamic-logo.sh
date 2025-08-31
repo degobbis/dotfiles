@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Paths
 platform=$(cat ~/.config/ml4w/settings/platform.sh)
 logo_path="$HOME/.config/fastfetch/${platform}.png"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 FILES=$(pacman -Q | grep -i '\-debug' | cut -d ' ' -f1 | tr '\n' ' ')
 

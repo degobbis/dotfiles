@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #pgrep -x easyeffects > /dev/null || easyeffects --gapplication-service &
 #sleep 1

@@ -59,7 +59,7 @@
     "on-click": "flatpak run com.ml4w.sidebar",
     "on-click-right": "flatpak run com.ml4w.welcome",
     "format": " ",
-    "tooltip-format": "Open ML4W Sidebar App"
+    "tooltip-format": "Left-Click: Open ML4W Sidebar App\nRight-Click: Open ML4W Welcome App"
   },
 
   // Empty
@@ -84,11 +84,12 @@
 
   // Updates Count
   "custom/updates": {
-    "format": "\uF1B2  {}",
+	//"format": "\uF1B2  {}",
+    "format": "  {}",
     "escape": true,
     "return-type": "json",
     "exec": "~/.config/ml4w/scripts/updates.sh",
-    "interval": 14400,
+    "interval": 1800,
     "signal": 1,
     "hide-empty-text": false,
     "on-click": "~/.config/ml4w/settings/software.sh",
@@ -160,7 +161,7 @@
 
   // Rofi Application Launcher
   "custom/appmenuicon": {
-    "format": " ",
+    "format": " ",
     "on-click": "sleep 0.2;pkill rofi || rofi -show drun -replace",
     "on-click-right": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip-format": "Left-Click: Open the application launcher\nRight-Click: Show all keybindings"
@@ -395,7 +396,7 @@
     "format-disabled": " off",
     "format-off": "",
     "interval": 30,
-    "on-click": "blueman-manager",
+    "on-click": "sleep 0.1 && ~/.config/ml4w/settings/bluetooth.sh",
     "format-no-controller": ""
   },
 

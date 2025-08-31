@@ -2,7 +2,7 @@
   "name": "GDG Hyprland Dotfiles (DEV)",
   "id": "com.gdg.dotfiles.dev",
   "description": "Modified fork from Stephan Raabe (ML4W)",
-  "version": "2.9.9-dev",
+  "version": "2.9.9.2-dev",
   "author": "Guido De Gobbis",
   "homepage": "",
   "dependencies": "https://mylinuxforwork.github.io/dotfiles/getting-started/dependencies",
@@ -10,7 +10,7 @@
   "subfolder": "dotfiles",
   "setupscript": "setup/setup.sh",
   "dev":{
-	"ignore":"keyboard.conf,monitor.conf,waypaper"
+	"ignore":"keyboard.conf,monitor.conf,waypaper,sidepad-active"
   },
   "restore": [
 	{

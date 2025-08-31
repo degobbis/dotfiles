@@ -20,7 +20,7 @@
       "default": ""
     },
     "persistent-workspaces": {
-      "*": 10
+      "*": 5
     }
   },
 
@@ -90,8 +90,7 @@
     "interval": 1800,
     "signal": 1,
     "hide-empty-text": true,
-    "on-click": "~/.config/ml4w/settings/installupdates.sh",
-    "on-click-right": "~/.config/ml4w/settings/software.sh"
+    "on-click": "~/.config/ml4w/settings/installupdates.sh"
   },
 
   // Wallpaper
@@ -112,7 +111,7 @@
   // Settings
   "custom/settings": {
     "format": "",
-    "on-click": "sleep 0.1 && com.ml4w.dotfilessettings",
+    "on-click": "flatpak run com.ml4w.settings",
     "tooltip-format": "ML4W Dotfiles Settings"
   },
 
@@ -121,13 +120,6 @@
     "format": "",
     "on-click": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip": false
-  },
-
-  // ChatGPT Launcher
-  "custom/chatgpt": {
-    "format": " ",
-    "on-click": "~/.config/ml4w/settings/ai.sh",
-    "tooltip-format": "AI Support"
   },
 
   // Calculator
@@ -156,7 +148,7 @@
 
   // Rofi Application Launcher
   "custom/appmenuicon": {
-    "format": "",
+    "format": "",
     "on-click": "sleep 0.2;rofi -show drun -replace",
     "on-click-right": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
@@ -196,6 +188,14 @@
     "escape": true
   },
 
+  // Hyprshade
+  "custom/hyprshade": {
+    "format": "",
+    "tooltip-format": "Toggle Screen Shader",
+    "on-click": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh",
+    "on-click-right": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh rofi"
+  },
+
   // Hypridle inhibitor
   "custom/hypridle": {
     "format": "",
@@ -226,9 +226,9 @@
 
   // Clock
   "clock": {
-    "format": "{:L%a %Od.%Om.%Y - %H:%M}",
+    "format": "{:%H:%M %a}",
     "on-click": "flatpak run com.ml4w.calendar",
-    "timezone": "Europe/Berlin",
+    "timezone": "",
     "tooltip": false
   },
 
@@ -384,7 +384,7 @@
     "format-disabled": "",
     "format-off": "",
     "interval": 30,
-    "on-click": "blueman-manager",
+    "on-click": "sleep 0.1 && ~/.config/ml4w/settings/bluetooth.sh",
     "format-no-controller": ""
   },
 
