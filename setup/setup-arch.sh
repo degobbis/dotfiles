@@ -234,6 +234,19 @@ _installPackages "bibata-cursor-theme-bin"
 
 source $SCRIPT_DIR/_fonts.sh
 
+
+# --------------------------------------------------------------
+# GDG Custom Packages
+# --------------------------------------------------------------
+
+echo -e "${GREEN}"
+figlet -p "Additional packages"
+echo -e "${NONE}"
+echo
+if gum confirm "Do you want to install my selection of additional packages?"; then
+    source ${SCRIPT_DIR}/_gdg-arch/custom-packages.sh
+fi
+
 # --------------------------------------------------------------
 # Finish
 # --------------------------------------------------------------
