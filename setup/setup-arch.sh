@@ -50,6 +50,7 @@ declare -a packages=(
     "breeze"
     # Fonts
     "otf-font-awesome"
+    "ttf-material-icons"
     "ttf-fira-sans"
     "ttf-fira-code"
     "ttf-firacode-nerd"

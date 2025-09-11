@@ -116,8 +116,9 @@
   // Settings
   "custom/settings": {
     "format": "",
-    "on-click": "flatpak run com.ml4w.settings",
-    "tooltip-format": "ML4W Dotfiles Settings"
+    "on-click": "sleep 0.1 && flatpak run com.ml4w.settings",
+    "on-click-right": "sleep 0.1 && flatpak run com.ml4w.dotfilesinstaller",
+    "tooltip-format": "Left-Click: ML4W Dotfiles Settings\nRight-Click: Dotfiles-Installer"
   },
 
   // Keybindings
@@ -176,28 +177,26 @@
     "on-click-right": "hyprlock",
     "tooltip-format": "Left-Click: Power menu\nRight-Click: Lock screen"
   },
-
   // SwayNC
   "custom/notification": {
-    "tooltip-format": "Left: Notifications\nRight: Do not disturb",
-    "format": "{icon}",
-    "format-icons": {
-      "notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "none": "",
-      "dnd-notification":
-        "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "dnd-none": "",
-      "inhibited-notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "inhibited-none": "",
-      "dnd-inhibited-notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "dnd-inhibited-none": ""
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
+	"tooltip-format": "Left: Notifications\nRight: Do not disturb",
+	"format": "{icon}",
+	"format-icons": {
+	  "notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+	  "none": "",
+	  "dnd-notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+	  "dnd-none": "",
+	  "inhibited-notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+	  "inhibited-none": "",
+	  "dnd-inhibited-notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+	  "dnd-inhibited-none": ""
+	},
+	"return-type": "json",
+	"exec-if": "which swaync-client",
+	"exec": "swaync-client -swb",
+	"on-click": "swaync-client -t -sw",
+	"on-click-right": "swaync-client -d -sw",
+	"escape": true
   },
 
   // Hypridle inhibitor
