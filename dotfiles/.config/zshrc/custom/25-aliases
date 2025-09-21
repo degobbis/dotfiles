@@ -16,12 +16,12 @@ alias lt='eza -a --tree --level=1 --icons=always'
 alias shutdown='systemctl poweroff'
 alias v='$EDITOR --rcfile=$HOME/.config/nano/nanorc'
 alias vim='$EDITOR --rcfile=$HOME/.config/nano/nanorc'
-alias ts='~/.config/ml4w/scripts/snapshot.sh'
+alias ts='~/.config/ml4w/scripts/arch/snapshot.sh'
 alias wifi='nmtui'
-alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
+alias cleanup='~/.config/ml4w/scripts/arch/cleanup.sh'
 alias winclass="xprop | grep 'CLASS'"
 alias dot="cd ~/dotfiles"
-alias remove-debug='~/.config/ml4w/scripts/remove-debug'
+alias remove-debug='~/.config/ml4w/scripts/arch/remove-debug'
 
 # -----------------------------------------------------
 # ML4W Apps
