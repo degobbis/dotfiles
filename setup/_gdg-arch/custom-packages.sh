@@ -367,11 +367,11 @@ declare -a systemPackages=(
 _configureLoginManager() {
     if [[ ! -f /usr/share/nwg-hello/current_wallpaper.jpg ]]; then
        echo ":: Configure login manager (greetd)"
-       sudo cp -f ${SCRIPT_DIR}/../dotfiles/ml4w/tpl/nwg-hello/nwg-hello* /etc/nwg-hello/
+       sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/nwg-hello* /etc/nwg-hello/
        sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/greetd.conf /etc/greetd/
        sudo cp -f /etc/pam.d/greetd /etc/pam.d/greetd.bkp
        sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/greetd.pam.file /etc/pam.d/greetd
-       sudo cp -f ${SCRIPT_DIR}/../dotfiles/ml4w/tpl/background.jpg /usr/share/nwg-hello/background.jpg
+       sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/background.jpg /usr/share/nwg-hello/background.jpg
    fi
    echo
 }
