@@ -8,7 +8,7 @@
   "dependencies": "https://mylinuxforwork.github.io/dotfiles/getting-started/dependencies",
   "source": "https://github.com/degobbis/dotfiles.git",
   "tag": "2.9.9.2-2",
-  "subfolder": "share/dotfiles",
+  "subfolder": "dotfiles",
   "setupscript": "setup/setup.sh",
   "restore": [
 	{
