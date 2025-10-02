@@ -308,6 +308,8 @@ declare -a systemPackages=(
     "wl-screenrec-git"
     "xdg-utils"
 
+    # Yubikey configuration und authenticator
+    "yubico-authenticator-bin"
 #    "xf86-video-amdgpu"
 #    "xf86-video-qxl"
 #    "xf86-video-vesa"
@@ -372,8 +374,20 @@ _configureLoginManager() {
        sudo cp -f /etc/pam.d/greetd /etc/pam.d/greetd.bkp
        sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/greetd.pam.file /etc/pam.d/greetd
        sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/background.jpg /usr/share/nwg-hello/background.jpg
-   fi
-   echo
+    fi
+    echo
+    if [[ "$(systemctl is-enabled greetd.service)" == "disabled" ]]; then
+        local lm_service_name="$(systemctl status display-manager.service | head -n 1 | cut -d ' ' -f 2)"
+        sudo systemctl disable ${lm_service_name}
+        sudo systemctl enable greetd.service
+        if [[ $? -eq 0 ]]; then
+            echo -e "${GREEN}:: The DisplayManager 'greetd' with 'nwg-hello' as theme is now enabled.${NONE}"
+            echo -e "${GREEN}:: It will take effect on the next Login.${NONE}"
+        else
+            echo -e "${RED}!! Something went wrong. Please enable 'greetd' manualy by using this command:${NONE}"
+            echo -e "${GREEN}sudo systemctl enable greetd.service${NONE}"
+        fi
+    fi
 }
 
 IFS=$'\n'

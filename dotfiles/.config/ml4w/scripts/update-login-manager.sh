@@ -36,7 +36,8 @@ echo
 echo
 
 # Get the active LM name
-lm_name="$(systemctl status display-manager.service | head -n 1 | awk '{print $2}' | cut -d'.' -f1)"
+lm_service_name="$(systemctl status display-manager.service | head -n 1 | cut -d ' ' -f 2)"
+lm_name="$(echo ${lm_service_name} | cut -d '.' -f 1)"
 
 # Use nameref to create a dynamic reference to the correct array
 declare -n lm_paths="LM_${lm_name^^}_PATHS"
