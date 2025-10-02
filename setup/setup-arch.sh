@@ -36,7 +36,7 @@ declare -a packages=(
     "polkit-gnome"
     "hyprshade"
     "grimblast-git"
-    "checkupdates-with-aur"
+    "pacman-contrib"
     "loupe"
     "power-profiles-daemon"
     # Apps
@@ -226,8 +226,11 @@ source $SCRIPT_DIR/_flatpaks.sh
 # Cursors
 # --------------------------------------------------------------
 
-#source $SCRIPT_DIR/_cursors.sh
-_installPackages "bibata-cursor-theme-bin"
+if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
+        _installPackages "bibata-cursor-theme-bin"
+else
+    source $SCRIPT_DIR/_cursors.sh
+fi
 
 # --------------------------------------------------------------
 # Fonts
@@ -235,6 +238,11 @@ _installPackages "bibata-cursor-theme-bin"
 
 source $SCRIPT_DIR/_fonts.sh
 
+# --------------------------------------------------------------
+# Icons
+# --------------------------------------------------------------
+
+source $SCRIPT_DIR/_icons.sh
 
 # --------------------------------------------------------------
 # GDG Custom Packages

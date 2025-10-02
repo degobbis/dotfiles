@@ -48,12 +48,11 @@ sleep 1
 clear
 figlet -f smslant "Updates"
 echo
-
 primarycolor=$(cat ~/.config/ml4w/colors/primary)
 onsurfacecolor=$(cat ~/.config/ml4w/colors/onsurface)
 if gum confirm --selected.background=$primarycolor --prompt.foreground=$onsurfacecolor "DO YOU WANT TO START THE UPDATE NOW?"; then
     echo
-    echo ":: Update started."
+    echo ":: Update started..."
 elif [ $? -eq 130 ]; then
     exit 130
 else
@@ -91,28 +90,26 @@ if [[ $(_checkCommandExists "pacman") == 0 ]]; then
 
     $aur_helper
 
-    if [[ $(_isInstalled "flatpak") == "0" ]]; then
-        flatpak update
-    fi
 # Fedora
 elif [[ $(_checkCommandExists "dnf") == 0 ]]; then
     sudo dnf upgrade
-    if [[ $(_isInstalled "flatpak") == "0" ]]; then
-        flatpak update
-    fi
 else
     echo ":: ERROR - Platform not supported"
     echo "Press [ENTER] to close."
     read
 fi
-
-notify-send "Update complete"
-echo
-echo ":: Update complete"
-echo
 echo
 
+# Flatpak
+if [[ $(_isInstalled "flatpak") == "0" ]]; then
+	echo ":: Searching for Flatpak updates..."
+	flatpak update
+	echo
+fi
+
+# Reload Waybar
 pkill -RTMIN+1 waybar
 
-echo "Press [ENTER] to close."
+# Finishing
+echo ":: Update complete! Press [ENTER] to close."
 read

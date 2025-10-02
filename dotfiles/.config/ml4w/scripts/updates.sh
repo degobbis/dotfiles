@@ -55,7 +55,12 @@ if [[ $(_checkCommandExists "pacman") == 0 ]]; then
 
     check_lock_files
 
-    updates=$(checkupdates-with-aur | wc -l)
+    updates_aur=$($aur_helper -Qum | wc -l)
+    updates_pacman=$(checkupdates | wc -l)
+    updates=$((updates_aur+updates_pacman))
+
+#    updates=$(checkupdates-with-aur | wc -l)
+    
 # Fedora
 elif [[ $(_checkCommandExists "dnf") == 0 ]]; then
     updates=$(dnf check-update -q | grep -c ^[a-z0-9])
@@ -63,6 +68,13 @@ elif [[ $(_checkCommandExists "dnf") == 0 ]]; then
 else
     updates=0
 fi
+
+# Flatpak
+flatpak_updates=0
+if [[ $(_checkCommandExists "flatpak") == 0 ]]; then
+	flatpak_updates=$('n\n' 2>/dev/null | flatpak update | grep -Eo "^[\ ]*[0-9]+\." | wc -l)
+fi
+updates=$((updates+flatpak_updates))
 
 # ----------------------------------------------------- 
 # Output in JSON format for Waybar Module custom-updates

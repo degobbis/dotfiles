@@ -9,9 +9,6 @@
   "source": "../../srv/git/dotfiles",
   "subfolder": "dotfiles",
   "setupscript": "setup/setup.sh",
-  "dev":{
-	"ignore":"keyboard.conf,monitor.conf,waypaper,sidepad-active"
-  },
   "restore": [
 	{
 	  "title": "ML4W Settings",
@@ -148,7 +145,7 @@
 	{
 	  "type": "text",
 	  "mode": "overwritefile",
-	  "title": "Default Terminal",
+	  "title": "Default Keybindings",
 	  "file": ".config/hypr/conf/keybinding.conf",
 	  "checkpoint": "Check",
 	  "search": "source = ~/.config/hypr/conf/keybindings/",

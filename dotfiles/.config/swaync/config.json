@@ -37,36 +37,36 @@
     }
   },
   "widgets": [
-	"dnd",
-	"buttons-grid",
+    "dnd",
+    "buttons-grid",
     "backlight",
     "volume",
-	"mpris",
-	"title",
-	"notifications"
+    "mpris",
+    "title",
+    "notifications"
   ],
   "widget-config": {
     "dnd": {
       "text": "Do not Disturb"
     },
-	"title": {
-	  "text": "Notifications",
-	  "clear-all-button": true,
-	  "button-text": "Clear"
-	},
-	"mpris": {
-	  "image-size": 50,
-	  "image-radius": 0
-	},
-	"backlight": {
-	  "label": "󰃟"
-	},
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "Clear"
+    },
+    "mpris": {
+      "image-size": 20,
+      "image-radius": 0
+    },
+    "backlight": {
+      "label": "󰃟"
+    },
     "volume": {
       "label": ""
     },
-	"buttons-grid": {
-	  "actions": [
-		{
+    "buttons-grid": {
+      "actions": [
+        {
           "label": "",
           "type": "toggle",
           "active": true,
@@ -77,25 +77,25 @@
           "label": "",
           "type": "toggle",
           "active": true,
-		  "command": "blueman-manager",
+          "command": "blueman-manager",
           "update-command": ""
         },
         {
-		  "label": "󰝟",
+          "label": "󰕾",
           "type": "toggle",
           "active": true,
           "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
           "update-command": ""
         },
         {
-		  "label": "",
-		  "command": "hyprlock"
-		},
-		{
-		  "label": "",
-		  "command": "bash -c $HOME/.config/ml4w/scripts/wlogout.sh"
-		}
-	  ]
-	}
+          "label": "",
+          "command": "hyprlock"
+        },
+        {
+          "label": "",
+          "command": "bash -c $HOME/.config/ml4w/scripts/wlogout.sh"
+        }
+      ]
+    }
   }
 }
