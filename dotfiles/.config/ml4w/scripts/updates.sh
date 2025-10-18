@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-#  _   _           _       _             
-# | | | |_ __   __| | __ _| |_ ___  ___  
-# | | | | '_ \ / _` |/ _` | __/ _ \/ __| 
-# | |_| | |_) | (_| | (_| | ||  __/\__ \ 
-#  \___/| .__/ \__,_|\__,_|\__\___||___/ 
-#       |_|                              
-#  
+#  _   _           _       _
+# | | | |_ __   __| | __ _| |_ ___  ___
+# | | | | '_ \ / _` |/ _` | __/ _ \/ __|
+# | |_| | |_) | (_| | (_| | ||  __/\__ \
+#  \___/| .__/ \__,_|\__,_|\__\___||___/
+#       |_|
+#
 
 # Check if command exists
 _checkCommandExists() {
@@ -28,17 +28,17 @@ if [ $instance_count -gt 1 ]; then
 fi
 
 
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 # Define threshholds for color indicators
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 
 threshhold_green=0
 threshhold_yellow=25
 threshhold_red=100
 
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 # Check for updates
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 
 # Arch
 if [[ $(_checkCommandExists "pacman") == 0 ]]; then
@@ -55,12 +55,30 @@ if [[ $(_checkCommandExists "pacman") == 0 ]]; then
 
     check_lock_files
 
+# Insted of $aur_helper
+
+#    yay_installed="false"
+#    paru_installed="false"
+#    if [[ $(_checkCommandExists "yay") == 0 ]]; then
+#        yay_installed="true"
+#    fi
+#    if [[ $(_checkCommandExists "paru") == 0 ]]; then
+#        paru_installed="true"
+#    fi
+#    if [[ $yay_installed == "true" ]] && [[ $paru_installed == "false" ]]; then
+#        yay
+#    elif [[ $yay_installed == "false" ]] && [[ $paru_installed == "true" ]]; then
+#        paru -Syu --noconfirm
+#    else
+#        yay
+#    fi
+
     updates_aur=$($aur_helper -Qum | wc -l)
     updates_pacman=$(checkupdates | wc -l)
     updates=$((updates_aur+updates_pacman))
 
 #    updates=$(checkupdates-with-aur | wc -l)
-    
+
 # Fedora
 elif [[ $(_checkCommandExists "dnf") == 0 ]]; then
     updates=$(dnf check-update -q | grep -c ^[a-z0-9])
@@ -73,12 +91,14 @@ fi
 flatpak_updates=0
 if [[ $(_checkCommandExists "flatpak") == 0 ]]; then
 	flatpak_updates=$('n\n' 2>/dev/null | flatpak update | grep -Eo "^[\ ]*[0-9]+\." | wc -l)
+    if [ "$flatpak_updates" -gt 0 ]; then
+        updates="$updates / F $flatpak_updates"
+    fi
 fi
-updates=$((updates+flatpak_updates))
 
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 # Output in JSON format for Waybar Module custom-updates
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 
 css_class="green"
 

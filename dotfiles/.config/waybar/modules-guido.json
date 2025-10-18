@@ -157,7 +157,7 @@
     // START APPS LABEL
     "format": "Apps",
     // END APPS LABEL
-    "on-click": "sleep 0.2;pkill rofi || rofi -show drun -replace",
+    "on-click": "~/.config/hypr/scripts/launcher.sh",
     "on-click-right": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip-format": "Left-Click: Open the application launcher\nRight-Click: Show all keybindings"
   },
@@ -165,7 +165,7 @@
   // Rofi Application Launcher
   "custom/appmenuicon": {
     "format": " ",
-    "on-click": "sleep 0.2;pkill rofi || rofi -show drun -replace",
+    "on-click": "~/.config/hypr/scripts/launcher.sh",
     "on-click-right": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip-format": "Left-Click: Open the application launcher\nRight-Click: Show all keybindings"
   },

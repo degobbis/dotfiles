@@ -61,9 +61,9 @@ else
     exit
 fi
 
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 # Install update
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 
 # Arch
 if [[ $(_checkCommandExists "pacman") == 0 ]]; then
@@ -89,6 +89,25 @@ if [[ $(_checkCommandExists "pacman") == 0 ]]; then
     fi
 
     $aur_helper
+
+# Insted of $aur_helper
+
+#    yay_installed="false"
+#    paru_installed="false"
+#    if [[ $(_checkCommandExists "yay") == 0 ]]; then
+#        yay_installed="true"
+#    fi
+#    if [[ $(_checkCommandExists "paru") == 0 ]]; then
+#        paru_installed="true"
+#    fi
+#    if [[ $yay_installed == "true" ]] && [[ $paru_installed == "false" ]]; then
+#        yay
+#    elif [[ $yay_installed == "false" ]] && [[ $paru_installed == "true" ]]; then
+#        paru -Syu --noconfirm
+#    else
+#        yay
+#    fi
+
 
 # Fedora
 elif [[ $(_checkCommandExists "dnf") == 0 ]]; then
