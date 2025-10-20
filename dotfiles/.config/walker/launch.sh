@@ -8,6 +8,7 @@ then
 else
   # Send this diagnostic message to Standard Error (2>&1)
   echo ":: Elephant is NOT running. ::" >&2
+  elephant &
 fi
 
 # Send this diagnostic message to Standard Error (2>&1)
