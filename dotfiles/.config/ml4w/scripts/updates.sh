@@ -92,7 +92,7 @@ flatpak_updates=0
 if [[ $(_checkCommandExists "flatpak") == 0 ]]; then
 	flatpak_updates=$('n\n' 2>/dev/null | flatpak update | grep -Eo "^[\ ]*[0-9]+\." | wc -l)
     if [ "$flatpak_updates" -gt 0 ]; then
-        updates="$updates / F $flatpak_updates"
+        updates="$((updates+flatpak_updates))"
     fi
 fi
 
@@ -111,6 +111,9 @@ if [ "$updates" -gt $threshhold_red ]; then
 fi
 
 if [ "$updates" -gt $threshhold_green ]; then
+    if [ "$flatpak_updates" -gt 0 ]; then
+        updates="$updates (F$flatpak_updates)"
+    fi
     printf '{"text": "%s", "alt": "%s", "tooltip": "Click to update your system", "class": "%s"}' "$updates" "$updates" "$css_class"
 else
     printf '{"text": "0", "alt": "0", "tooltip": "No updates available", "class": "green"}'
