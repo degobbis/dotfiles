@@ -5,6 +5,7 @@
 # -----------------------------------------------------
 # General
 # -----------------------------------------------------
+alias fd="fd -HlL"
 alias c='clear'
 alias nf='fastfetch'
 alias pf='fastfetch'
@@ -108,7 +109,7 @@ function update-npm() {
 	echo "Installed node version: $installed_version"
 	echo "New LTS node version: $new_version"
 	echo
-		    
+
 	# Debug: Zeige die ASCII-Werte der Strings an
 	#echo "ASCII values of installed_version: $(echo -n "$installed_version" | od -An -t dC)"
 	#echo "ASCII values of new_version: $(echo -n "$new_version" | od -An -t dC)"
@@ -175,7 +176,7 @@ function update-system() {
 		shift
 		FILES="$*"
 	fi
-	
+
 	echo ""
 	echo ""
 	echo "############################"
@@ -194,7 +195,7 @@ function update-system() {
 
 ####compdef update-system=trizen
 
-####+BEGIN_SRC sh 
+####+BEGIN_SRC sh
 ###> compdef update-system=trizen
 ####+END_SRC
 

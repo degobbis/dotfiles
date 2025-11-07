@@ -119,9 +119,9 @@ declare -a applicationPackages=(
     "nextcloud-client"
     "nwg-displays"
     "obs-studio"
-    "openfortigui"
+    "openfortigui-git"
     "pacseek"
-    "phpstorm" "phpstorm-jre" "wmname"
+#    "phpstorm" "phpstorm-jre" "wmname"
     "pinta"
     "qalculate-gtk"
     "qpdfview"
@@ -146,6 +146,7 @@ declare -a applicationPackages=(
 #    "thunderbird" "thunderbird-i18n-de"
     "timeshift"
     "vlc" "phonon-qt6-vlc" "vlc-plugins-all"
+    "vscodium-insiders-bin"
     "x264" "x265"
 )
 
@@ -210,11 +211,13 @@ declare -a systemPackages=(
 #    "bun-bin"
     "cdrtools"
     "dconf-editor"
+    "dog" # A better dig
     "downgrade"
 
     # Disk Usage/Free Utility
     "duf"
 
+    "fd" # Better then find (simpler syntax)
 #    "feh"
     "ffmpegthumbnailer"
 #    "firmware-manager-git"
@@ -229,6 +232,7 @@ declare -a systemPackages=(
     "gvfs-smb"
     "htop"
     "hunspell-de"
+    "hyperfine" # Make performance test between two commands
     "i2c-tools"
 ##    "imagemagick"
     "inetutils"
@@ -251,6 +255,7 @@ declare -a systemPackages=(
     "mkinitcpio-numlock"
     "nano"
     "nano-syntax-highlighting"
+    "ncdu" # TUI to find big files by scanning dirs
     "net-tools"
     "networkmanager-openconnect"
     "networkmanager-openvpn"
