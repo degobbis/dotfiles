@@ -136,7 +136,7 @@ declare -a applicationPackages=(
     "smile"
     "solaar"
     "teams-for-linux-wayland-hook"
-    "teamviewer"
+#    "teamviewer"
     "thunar"
     "thunar-archive-plugin" "xarchiver"
     "thunar-media-tags-plugin"
