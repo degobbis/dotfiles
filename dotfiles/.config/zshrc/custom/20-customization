@@ -115,8 +115,8 @@ else
 # -----------------------------------------------------
 # Custom Theme
 #POSH=agnoster
-#eval "$(oh-my-posh init zsh --config /home/guido/.config/ohmyposh/EDM115-newline.omp.json)"
-eval "$(oh-my-posh init zsh --config /home/guido/.config/ohmyposh/guido.omp.json)"
+#eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/EDM115-newline.omp.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/guido.omp.json)"
 
 # Shipped Theme
 # eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/agnoster.omp.json)"
