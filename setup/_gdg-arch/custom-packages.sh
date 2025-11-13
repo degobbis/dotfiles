@@ -110,6 +110,7 @@ declare -a applicationPackages=(
 #    "keepass-de"
     "keepassxc" "keepassxc-wordlist-german-better"
     "libreoffice-fresh-de"
+    "localsend-bin" # Share between Mobil / PC / Laptop
     "mediainfo" "mediainfo-gui"
     "meld"
     "mission-center"
