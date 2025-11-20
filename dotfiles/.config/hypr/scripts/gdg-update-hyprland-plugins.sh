@@ -3,7 +3,7 @@
 # Update hyprland plugins after hyprland-git update
 
 VERSION_FILE="$HOME/.config/hypr/version"
-CURRENT_VERSION=$(hyprctl version | grep "Tag" | awk '{print $2}')
+CURRENT_VERSION=$(pacman -Qe "hyprland" | awk '{print $NF }')
 
 if [[ ! -f "$VERSION_FILE" ]] || [[ "$(cat "$VERSION_FILE")" != "$CURRENT_VERSION" ]]; then
     notify-send -u critical "Hyprland-Plugins werden aktualisiert..." "Bitte warten, bis das Update abgeschlossen ist."
@@ -23,4 +23,6 @@ if [[ ! -f "$VERSION_FILE" ]] || [[ "$(cat "$VERSION_FILE")" != "$CURRENT_VERSIO
     fi
 
     echo "$CURRENT_VERSION" > "$VERSION_FILE"
+else
+    notify-send -u normal "Hyprland-Plugins sind Aktuell, kein Update nötig."
 fi
