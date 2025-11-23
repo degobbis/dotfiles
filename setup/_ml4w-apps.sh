@@ -8,7 +8,7 @@ declare -A ml4w_flatpak_apps=(
     ["com.ml4w.settings"]="dotfiles-settings"
     ["com.ml4w.sidebar"]="dotfiles-sidebar"
     ["com.ml4w.calendar"]="dotfiles-calendar"
-    ["com.ml4w.hyprlandsettings"]="dotfiles-hyprlandsettings"
+    ["com.ml4w.hyprlandsettings"]="hyprland-settings"
 )
 
 _isInstalledFlatpak() {
