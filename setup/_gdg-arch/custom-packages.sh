@@ -429,3 +429,7 @@ done
 
 _installPackages "${systemPackages[@]}"
 echo
+
+if gum confirm "Do you want to install Hyprland plugins?"; then
+    source ${SCRIPT_DIR}/_gdg-arch/hyprland-plugins.sh
+fi
