@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
+declare -a hyprlandPluginsDependency=(
+    "cmake"
+    "meson"
+    "cpio"
+    "gcc"
+)
 echo "Installing Dependencies (cmake, meson, cpio, gcc)"
-yay -S --needed --noconfirm cmake meson cpio gcc
+_installPackages "${hyprlandPluginsDependency[@]}"
 
 echo
 hyprpm update
