@@ -36,10 +36,6 @@ packages=(
     # Apps
     "waypaper"
     "SwayNotificationCenter"
-    # Themes
-    "papirus-icon-theme"
-    "papirus-icon-theme-dark"
-    "breeze"
     # Fonts
     "fontawesome-fonts"
 )

@@ -33,9 +33,6 @@ packages=(
     "NetworkManager-tui"
     # Apps
     "SwayNotificationCenter"
-    # Themes
-    "papirus-icon-theme"
-    "breeze"
     # Fonts
     "fontawesome-fonts"
 )

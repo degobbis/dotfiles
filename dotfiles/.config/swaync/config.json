@@ -5,7 +5,7 @@
   "layer": "overlay",
   "cssPriority": "user",
 
-  "control-center-width": 400,
+  "control-center-width": 600,
   "control-center-height": 720,
   "control-center-margin-top": 13,
   "control-center-margin-bottom": 13,

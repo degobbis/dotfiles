@@ -3,31 +3,40 @@
 # ML4W Apps
 # --------------------------------------------------------------
 
-echo ":: Installing the ML4W Apps"
+declare -A ml4w_flatpak_apps=(
+    ["com.ml4w.welcome"]="dotfiles-welcome"
+    ["com.ml4w.settings"]="dotfiles-settings"
+    ["com.ml4w.sidebar"]="dotfiles-sidebar"
+    ["com.ml4w.calendar"]="dotfiles-calendar"
+    ["com.ml4w.hyprlandsettings"]="dotfiles-hyprlandsettings"
+)
 
+_isInstalledFlatpak() {
+    local pkg="$1"
+    flatpak list --app | grep "${pkg}" 2>&1 > /dev/null
+    echo $?
+    return
+}
+
+echo
+echo ":: Flatpak"
 flatpak update -y
 
-ml4w_app="com.ml4w.welcome"
-ml4w_app_repo="dotfiles-welcome"
-echo ":: Installing $ml4w_app"
-bash -c "$(curl -s https://raw.githubusercontent.com/mylinuxforwork/$ml4w_app_repo/master/setup.sh)"
+echo
+echo ":: Installing the ML4W Apps"
+echo
 
-ml4w_app="com.ml4w.settings"
-ml4w_app_repo="dotfiles-settings"
-echo ":: Installing $ml4w_app"
-bash -c "$(curl -s https://raw.githubusercontent.com/mylinuxforwork/$ml4w_app_repo/master/setup.sh)"
+for ml4w_app in "${!ml4w_flatpak_apps[@]}"
+do
+    if [[ $(_isInstalledFlatpak "${ml4w_app}") == 0 ]]; then
+        echo -e "${GREEN}:: ${ml4w_app} is already installed.${NONE}"
+        continue
+    fi
 
-ml4w_app="com.ml4w.sidebar"
-ml4w_app_repo="dotfiles-sidebar"
-echo ":: Installing $ml4w_app"
-bash -c "$(curl -s https://raw.githubusercontent.com/mylinuxforwork/$ml4w_app_repo/master/setup.sh)"
+    ml4w_app_repo="${ml4w_flatpak_apps[${ml4w_app}]}"
 
-ml4w_app="com.ml4w.calendar"
-ml4w_app_repo="dotfiles-calendar"
-echo ":: Installing $ml4w_app"
-bash -c "$(curl -s https://raw.githubusercontent.com/mylinuxforwork/$ml4w_app_repo/master/setup.sh)"
+    echo ":: Installing ${ml4w_app} ..."
+    bash -c "$(curl -s https://raw.githubusercontent.com/mylinuxforwork/${ml4w_app_repo}/master/setup.sh)"
+    echo
+done
 
-ml4w_app="com.ml4w.hyprlandsettings"
-ml4w_app_repo="hyprland-settings"
-echo ":: Installing $ml4w_app"
-bash -c "$(curl -s https://raw.githubusercontent.com/mylinuxforwork/$ml4w_app_repo/master/setup.sh)"
