@@ -74,6 +74,7 @@ declare -a framework16Packages=(
     "framework-sensors-git"
     "framework-system"
     "sof-firmware"
+    "qmk-hid" "qmk-udev-rules-git"
 )
 
 declare -a firmwarePackages=(
@@ -396,6 +397,14 @@ _configureLoginManager() {
     fi
 }
 
+_configureFramework16KbdBacklight() {
+    if [[ ! -f /etc/udev/rules.d/99-framework16-kbd-backlight.rules ]]; then
+        echo ":: Add udev rule for Framework KDB Backlight"
+        sudo cp -f ${SCRIPT_DIR}/_gdg-arch/framework16/99-framework16-kbd-backlight.rules /etc/udev/rules.d/99-framework16-kbd-backlight.rules
+        sudo udevadm control --reload-rules && sudo udevadm trigger
+    fi
+}
+
 IFS=$'\n'
 
 read -d '' -a selectedKeys < <(gum choose --no-limit --height 20 --cursor-prefix "( ) " --selected-prefix "(x) " --unselected-prefix "( ) " --selected="$selectedlist" "${!additionalPackages[@]}")
@@ -407,7 +416,15 @@ for key in "${selectedKeys[@]}"; do
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
     echo "Installation for ${key}:"
     _installPackages "${packages_to_install[@]}"
-    _configureLoginManager
+    case $value in
+        loginManager)
+            _configureLoginManager
+            break
+            ;;
+        framework16Packages)
+            _configureFramework16KbdBacklight
+    esac
+
 done
 
 _installPackages "${systemPackages[@]}"
