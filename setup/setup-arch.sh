@@ -61,7 +61,7 @@ declare -a packages=(
 
 _isInstalled() {
     local package="$1"
-    sudo pacman -Qe --color always "${package}" 2>&1 > /dev/null
+    sudo pacman -Q --color always "${package}" 2>&1 > /dev/null
     echo $?
     return
 }

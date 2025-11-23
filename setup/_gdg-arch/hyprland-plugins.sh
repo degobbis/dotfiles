@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Installing Dependencies (cmake, meson, cpio, gcc)"
+yay -S --needed --noconfirm cmake meson cpio gcc
+
 echo
 hyprpm update
 echo
@@ -14,9 +17,4 @@ if gum confirm "Do you want to install 'hyprbars' (https://github.com/hyprwm/hyp
     hyprpm enable hyprbars
 fi
 
-if gum confirm "Do you want to install my selection of additional packages?"; then
-    source ${SCRIPT_DIR}/_gdg-arch/custom-packages.sh
-fi
-
 echo
-hyprpm reload

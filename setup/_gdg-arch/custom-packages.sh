@@ -423,8 +423,9 @@ for key in "${selectedKeys[@]}"; do
             ;;
         framework16Packages)
             _configureFramework16KbdBacklight
+            break
+            ;;
     esac
-
 done
 
 _installPackages "${systemPackages[@]}"
