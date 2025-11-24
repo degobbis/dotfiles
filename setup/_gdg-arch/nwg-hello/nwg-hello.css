@@ -1,5 +1,5 @@
 * {
-	font-size: 30px;
+	font-size: 1.75rem;
 }
 
 window {
@@ -43,16 +43,16 @@ button:hover {
 }
 
 #welcome-label {
-	font-size: 108px;
+	font-size: 6.75rem;
 }
 
 #clock-label {
 	font-family: monospace;
-	font-size: 72px;
+	font-size: 4.5rem;
 }
 
 #date-label {
-	font-size: 48px;
+	font-size: 3rem;
 }
 
 #form-label {

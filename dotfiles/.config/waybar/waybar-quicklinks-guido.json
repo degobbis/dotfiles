@@ -3,7 +3,7 @@
         "format": "",
         "on-click": "chromium",
         "tooltip-format": "Open Chromium"
-    }, 
+    },
     "custom/quicklink_browser": {
         "format": "",
         "on-click": "~/.config/ml4w/settings/browser.sh",
@@ -13,30 +13,30 @@
         "format": "",
         "on-click": "~/.config/ml4w/settings/filemanager.sh",
         "tooltip-format": "Open Filemanager"
-    }, 
+    },
     "custom/quicklink_email": {
         "format": "",
         "on-click": "~/.config/ml4w/settings/email.sh",
         "tooltip-format": "Open Email Client"
-    }, 
+    },
     "custom/quicklink_calculator": {
         "format": "",
         "on-click": "~/.config/ml4w/settings/calculator.sh",
         "tooltip-format": "Open Calculator"
-    }, 
+    },
     "custom/quicklink_emojipicker": {
         "format": "",
         "on-click": "~/.config/ml4w/settings/emojipicker.sh",
         "tooltip-format": "Open Emoji-Picker"
-    }, 
+    },
     "custom/quicklinkempty": {
-    }, 
+    },
     "group/quicklinks": {
         "orientation": "horizontal",
         "modules": [
-            "custom/quicklink_chromium",
-            "custom/quicklink_browser",
-            "custom/quicklink_filemanager",
+//            "custom/quicklink_chromium",
+//            "custom/quicklink_browser",
+//            "custom/quicklink_filemanager",
             "custom/quicklink_email",
             "custom/quicklink_calculator",
             "custom/quicklink_emojipicker",

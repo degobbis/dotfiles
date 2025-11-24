@@ -1,12 +1,12 @@
 /*
- * __        __          _                  ____  _         _       
- * \ \      / /_ _ _   _| |__   __ _ _ __  / ___|| |_ _   _| | ___  
- *  \ \ /\ / / _` | | | | '_ \ / _` | '__| \___ \| __| | | | |/ _ \ 
- *   \ V  V / (_| | |_| | |_) | (_| | |     ___) | |_| |_| | |  __/ 
- *    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |____/ \__|\__, |_|\___| 
- *                 |___/                              |___/         
- *  
- * ----------------------------------------------------- 
+ * __        __          _                  ____  _         _
+ * \ \      / /_ _ _   _| |__   __ _ _ __  / ___|| |_ _   _| | ___
+ *  \ \ /\ / / _` | | | | '_ \ / _` | '__| \___ \| __| | | | |/ _ \
+ *   \ V  V / (_| | |_| | |_) | (_| | |     ___) | |_| |_| | |  __/
+ *    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |____/ \__|\__, |_|\___|
+ *                 |___/                              |___/
+ *
+ * -----------------------------------------------------
 */
 
 /* -----------------------------------------------------
@@ -15,7 +15,7 @@
 @import 'colors.css';
 
 /* -----------------------------------------------------
- * General 
+ * General
  * ----------------------------------------------------- */
 
 * {
@@ -51,7 +51,7 @@ window#waybar.hidden {
 }
 
 /* -----------------------------------------------------
- * Workspaces 
+ * Workspaces
  * ----------------------------------------------------- */
 
 #workspaces {
@@ -61,7 +61,7 @@ window#waybar.hidden {
     border-radius: 3px;
     border: 0px;
     font-style: normal;
-    font-size: 1.25em;
+    font-size: 1rem;
 }
 
 #workspaces button {
@@ -113,7 +113,7 @@ tooltip {
     opacity: 0.9;
     padding: 20px;
     margin: 0px;
-    font-size: 1.5em;
+    font-size: 1.25rem;
     font-weight: normal;
 }
 
@@ -211,7 +211,7 @@ tooltip label {
 #custom-waybarthemes,
 #custom-windowsvm,
 #custom-youtube {
-    font-size: 1.25em;
+    font-size: 1rem;
     font-weight: normal;
     margin-top: 8px;
     margin-right: 16px;
@@ -262,7 +262,7 @@ tooltip label {
 #custom-quicklink9,
 #custom-quicklink10,
 #custom-waybarthemes {
-    font-size: 1.5em;
+    font-size: 1.25rem;
     color: @on_surface;
 }
 
@@ -357,7 +357,7 @@ tooltip label {
 
 /* #backlight {
     background-color: @blur_background;
-    font-size: 1em;
+    font-size: 1rem;
     color: @on_surface;
     border-radius: 5px 5px 5px 5px;
     padding: 2px 10px 0px 10px;
