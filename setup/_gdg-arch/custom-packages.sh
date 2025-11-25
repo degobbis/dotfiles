@@ -161,6 +161,7 @@ declare -a vmPackages=(
     "qemu-guest-agent"
     "qemu-user-static"
     "qemu-user-static-binfmt"
+    "virt-firmware"
     "virt-manager"
     "virt-viewer"
     "vde2"
