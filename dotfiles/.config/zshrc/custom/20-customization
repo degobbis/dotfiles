@@ -121,3 +121,9 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/guido.omp.json)"
 # Shipped Theme
 # eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/agnoster.omp.json)"
 fi
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f $HOME/.config/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.config/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
