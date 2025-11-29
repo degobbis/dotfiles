@@ -5,7 +5,7 @@
 # -----------------------------------------------------
 # General
 # -----------------------------------------------------
-alias fd="fd -HlL"
+alias fd="fd -HlL -j 10"
 alias nano='$EDITOR --rcfile=$HOME/.config/nano/nanorc'
 alias c='clear'
 alias nf='fastfetch'

@@ -3,6 +3,7 @@ Version 2.9.9.4
 - Global Theme support: CTRL+ALT+T to open the thene selector
 - New global glass theme
 - New Animation Smooth: You can select it in the Settings app.
+- Dock Auto-hide can be activated by adding a file dock-autohide into .config/ml4w/settings
 
 Version 2.9.9.3
 --------------------------------------------------------
@@ -34,7 +35,7 @@ Version 2.9.9.1
 
 Version 2.9.9
 --------------------------------------------------------
-- Legacy installer removed and folders restructured 
+- Legacy installer removed and folders restructured
 - Font Awesome 7 support added
 - Optimized setup script to reduce the installation time of dependencies
 - Waybar with blurred background as default (powered by Hyprland). Can be switched off in the Dotfiles Settings app/Appearance/Decoration Variations -> no blur
@@ -54,7 +55,7 @@ Version 2.9.8.7
 - Configuration prepared for Dotfiles Installer https://mylinuxforwork.github.io/dotfiles-installer/ with setup scripts for Arch Linux, Fedora and openSuse Tumbleweed
 - All ML4W apps are following now the GTK4 Theme. Please make sure that the ml4w-repo is added to your system and all ml4w flatpaks are installed system wide, not user
 - Improved waybar modern theme
-- Installation of Sequoia Theme removed from the installation script 
+- Installation of Sequoia Theme removed from the installation script
 - You can restore the standard SDDM Theme and install your custom display manager individually.
 - How to install Sequoia Theme guide on ML4W Dotfiles Wiki https://github.com/mylinuxforwork/dotfiles/wiki/Customize-sddm
 - Wallust for terminal color generation
