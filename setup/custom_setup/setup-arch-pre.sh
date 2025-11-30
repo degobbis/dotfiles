@@ -133,6 +133,7 @@ _installAllPackages() {
 
     for pkg in "${pkgsToInstall[@]}"; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
+            echo -e "${GREEN}:: ${pkg} is already installed.${NONE}"
             continue
         fi
 
@@ -145,6 +146,7 @@ _installAllPackages() {
 _installPackages() {
     for pkg; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
+            echo -e "${GREEN}:: ${pkg} is already installed.${NONE}"
             continue
         fi
 
