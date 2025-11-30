@@ -431,7 +431,7 @@ echo
 echo -e "${GREEN}:: Prepare additional packages list to install ...${NONE}"
 
 for key in "${selectedKeys[@]}"; do
-    value="${additionalPackages["${key}"]}"
+    value="${additionalPackages[$key]}"
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
     echo "Installation for ${key}:"
     _installPackages "${packages_to_install[@]}"
@@ -439,11 +439,11 @@ for key in "${selectedKeys[@]}"; do
     case $value in
         loginManager)
             POST_configureLoginManager=1
-            break
+#            break
             ;;
         framework16Packages)
             POST_configureFramework16KbdBacklight=1
-            break
+#            break
             ;;
     esac
 done

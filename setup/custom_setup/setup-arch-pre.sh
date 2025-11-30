@@ -149,7 +149,7 @@ _installPackages() {
             echo -e "${GREEN}:: ${pkg} is already installed.${NONE}"
             continue
         fi
-
+        echo ":: Add ${pkg} to install-list"
         pkgsToInstall+=("${pkg}")
     done
 }
