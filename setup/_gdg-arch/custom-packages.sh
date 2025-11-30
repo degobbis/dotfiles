@@ -13,6 +13,11 @@ declare -A additionalPackages=(
     ["My favorite applications"]="applicationPackages"
     ["Virt-Manager"]="vmPackages"
     ["Printer packages"]="printerPackages"
+    ["Timeshift"]="timeshift"
+)
+
+declare -a timeshift=(
+    "timeshift"
 )
 
 declare -a dockerPackages=(
@@ -311,7 +316,7 @@ declare -a systemPackages=(
     "thunar-shares-plugin"
     "thunar-vcs-plugin"
     "thunar-volman"
-    "timeshift"
+#    "timeshift"
     "tmux"
 #    "trizen"
 #    "ufw"
