@@ -178,7 +178,7 @@ declare -a printerPackages=(
     "cups-pdf"
     "cups-filters"
     "foomatic-db"
-    "footmatic-db-engine"
+    "foomatic-db-engine"
     "foomatic-db-gutenprint-ppds"
     "foomatic-db-nonfree"
     "foomatic-db-nonfree-ppds"
