@@ -12,13 +12,13 @@ echo -e "${NONE}"
 echo
 if gum confirm "Do you want to install my selection of additional packages?"; then
     source ${SCRIPT_DIR}/_gdg-arch/custom-packages.sh
+    _installPackages "${systemPackages[@]}"
 fi
-
-_installPackages "${systemPackages[@]}"
 
 echo
 _installAllPackages
 echo
+
 
 if [[ ${POST_configureFramework16KbdBacklight} -eq 1 ]]; then
     _configureFramework16KbdBacklight

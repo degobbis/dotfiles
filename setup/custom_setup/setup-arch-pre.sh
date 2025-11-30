@@ -31,20 +31,20 @@ _finishMessage() {
         echo -e "${RED}"
         figlet -p "Errors"
         echo ":: Installation finished with errors."
-        echo -e "${NONE}"
         echo
         echo "The following packages had errors during installation, please install manually:"
-        printf "- %s\n" "${errorPackages[@]}"
+        echo -e "${NONE}"
+        echo "${errorPackages[@]}"
     else
         echo -e "${GREEN}"
         figlet -p "No errors"
         echo ":: Installation completed without errors."
         echo -e "${NONE}"
-    fi
 
-    echo
-    echo
-    echo ":: Ready to install the dotfiles with the Dotfiles Installer."
+        echo
+        echo
+        echo ":: Ready to install the dotfiles with the Dotfiles Installer."
+    fi
 }
 
 # --------------------------------------------------------------
@@ -129,7 +129,7 @@ _installParu() {
 }
 
 _installAllPackages() {
-    $aur_helper --needed --noconfirm -S "${pkgsToInstall[@]}" > /dev/null 2>&1; then
+    $aur_helper --noconfirm -S "${pkgsToInstall[@]}"
 
     for pkg in "${pkgsToInstall[@]}"; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
@@ -138,6 +138,8 @@ _installAllPackages() {
 
         errorPackages+=("${pkg}")
     done
+
+    pkgsToInstall=()
 }
 
 _installPackages() {
@@ -162,6 +164,23 @@ _installChaoticRepository(){
     sudo pacman --noconfirm -Syu
 }
 
+_selectAURHelper() {
+    echo ":: Please select your preferred AUR Helper"
+    echo
+    aur_helper=$(gum choose "yay" "paru")
+    if [ -z ${aur_helper} ]; then
+        _selectAURHelper
+    fi
+    if [[ ! $(_isInstalled "${aur_helper}") == 0 ]]; then
+        if [[ ${aur_helper} == "yay" ]]; then
+            _installYay
+        else
+            _installParu
+        fi
+    fi
+    echo ":: Using $aur_helper as AUR Helper"
+}
+
 # Install chaotic-aur repository for a lot of precompiled AUR Packages
 if [[ -f "/etc/pacman.d/chaotic-mirrorlist" ]]; then
     echo -e "${GREEN}:: [chaotic-aur] repository is already installed${NONE}"
@@ -169,6 +188,9 @@ else
     _installChaoticRepository
 fi
 CHAOTIC_AUR_INSTALLED=1
+
+_selectAURHelper
+_installPackages "figlet"
 
 echo
 echo -e "${GREEN}:: Prepare packages list to install ...${NONE}"

@@ -284,7 +284,7 @@ declare -a systemPackages=(
     "perl-image-exiftool"
     "pipewire" "gst-plugin-pipewire"
     "pipewire-alsa"
-    "pipewire-jack"
+#    "pipewire-jack"
     "pipewire-libcamera"
     "pipewire-pulse"
     "pipewire-v4l2"

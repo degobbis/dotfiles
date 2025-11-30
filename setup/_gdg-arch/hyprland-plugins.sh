@@ -8,6 +8,7 @@ declare -a hyprlandPluginsDependency=(
 )
 echo "Installing Dependencies (cmake, meson, cpio, gcc)"
 _installPackages "${hyprlandPluginsDependency[@]}"
+_installAllPackages
 
 echo
 hyprpm update
