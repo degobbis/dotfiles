@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+yay_installed="false"
+paru_installed="false"
+aur_helper=""
 
 # --------------------------------------------------------------
 # Library
@@ -48,22 +51,18 @@ declare -a packages=(
     "breeze"
     # Fonts
     "otf-font-awesome"
-    "ttf-material-icons"
-    "ttf-fira-sans"
-    "ttf-fira-code"
     "ttf-firacode-nerd"
-    "ttf-dejavu"
-    "noto-fonts"
-    "noto-fonts-emoji"
-    "noto-fonts-cjk"
-    "noto-fonts-extra"
 )
 
 _isInstalled() {
-    local package="$1"
-    sudo pacman -Q --color always "${package}" 2>&1 > /dev/null
-    echo $?
-    return
+    package="$1"
+    check="$(sudo pacman -Qs --color always "${package}" | grep "local" | grep "${package} ")"
+    if [ -n "${check}" ]; then
+        echo 0
+        return #true
+    fi
+    echo 1
+    return #false
 }
 
 _installYay() {
@@ -76,8 +75,8 @@ _installYay() {
     if [ -d $HOME/Downloads/yay ]; then
         rm -rf $HOME/Downloads/yay
     fi
-    local SCRIPT=$(realpath "$0")
-    local temp_path=$(dirname "$SCRIPT")
+    SCRIPT=$(realpath "$0")
+    temp_path=$(dirname "$SCRIPT")
     git clone https://aur.archlinux.org/yay-bin.git $HOME/Downloads/yay
     cd $HOME/Downloads/yay
     makepkg -si
@@ -85,33 +84,71 @@ _installYay() {
     echo ":: yay has been installed successfully."
 }
 
+_installParu() {
+    if [[ ! $(_isInstalled "base-devel") == 0 ]]; then
+        sudo pacman --noconfirm -S "base-devel"
+    fi
+    if [[ ! $(_isInstalled "git") == 0 ]]; then
+        sudo pacman --noconfirm -S "git"
+    fi
+    if [ -d $HOME/Downloads/paru-bin ]; then
+        rm -rf $HOME/Downloads/paru-bin
+    fi
+    SCRIPT=$(realpath "$0")
+    temp_path=$(dirname "$SCRIPT")
+    git clone https://aur.archlinux.org/paru-bin.git $HOME/Downloads/paru-bin
+    cd $HOME/Downloads/paru-bin
+    makepkg -si
+    cd $temp_path
+    echo ":: paru has been installed successfully."
+}
+
+_selectAURHelper() {
+    echo ":: Please select your preferred AUR Helper"
+    echo
+    aur_helper=$(gum choose "yay" "paru")
+    if [ -z $aur_helper ]; then
+        _selectAURHelper
+    fi
+    echo ":: Using $aur_helper as AUR Helper"
+}
+
+_checkAURHelper() {
+    if [[ $(_checkCommandExists "yay") == 0 ]]; then
+        echo ":: yay is installed"
+        yay_installed="true"
+    fi
+    if [[ $(_checkCommandExists "paru") == 0 ]]; then
+        echo ":: paru is installed"
+        paru_installed="true"
+    fi
+    if [[ $yay_installed == "true" ]] && [[ $paru_installed == "false" ]]; then
+        echo ":: Using AUR Helper yay"
+        aur_helper="yay"
+    elif [[ $yay_installed == "false" ]] && [[ $paru_installed == "true" ]]; then
+        echo ":: Using AUR Helper paru"
+        aur_helper="paru"
+    elif [[ $yay_installed == "false" ]] && [[ $paru_installed == "false" ]]; then
+        echo ":: No AUR Helper installed"
+        _selectAURHelper
+        if [[ $aur_helper == "yay" ]]; then
+            _installYay
+        else
+            _installParu
+        fi
+    else
+        _selectAURHelper
+    fi
+}
+
 _installPackages() {
     for pkg; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
-            echo -e "${GREEN}:: ${pkg} is already installed.${NONE}"
+            echo ":: ${pkg} is already installed."
             continue
         fi
-
-        echo ":: Installing ${pkg} ..."
-        if yay --noconfirm -S "${pkg}" > /dev/null 2>&1; then
-            echo -e "${GREEN}:: ${pkg} has been installed successfully.${NONE}"
-        else
-            echo -e "${RED}:: Error installing ${pkg}.${NONE}"
-            errorPackages+=("${pkg}")
-        fi
+        $aur_helper --noconfirm -S "${pkg}"
     done
-}
-
-_installChaoticRepository(){
-    echo ":: Installing [chaotic-aur] repository for a lot of precompiled AUR Packages"
-    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-    sudo pacman-key --lsign-key 3056513887B78AEB
-    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
-    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-    cat $SCRIPT_DIR/_gdg-arch/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
-    echo -e "${GREEN}:: [chaotic-aur] repository is now installed${NONE}"
-    echo ":: Syncing the mirrorlist and update the system packages"
-    sudo pacman --noconfirm -Syu
 }
 
 # --------------------------------------------------------------
@@ -131,28 +168,17 @@ fi
 
 _writeHeader "Arch"
 
-# Install chaotic-aur repository for a lot of precompiled AUR Packages
-if [[ -f "/etc/pacman.d/chaotic-mirrorlist" ]]; then
-    echo -e "${GREEN}:: [chaotic-aur] repository is already installed${NONE}"
-else
-    _installChaoticRepository
-fi
-CHAOTIC_AUR_INSTALLED=1
+# --------------------------------------------------------------
+# Load custom pre installation script
+# --------------------------------------------------------------
+
+source $SCRIPT_DIR/custom_setup/setup-arch-pre.sh
 
 # --------------------------------------------------------------
 # Install yay if needed
 # --------------------------------------------------------------
 
-if [[ $(_checkCommandExists "yay") == 0 ]]; then
-    echo -e "${GREEN}:: yay is already installed${NONE}"
-else
-    echo ":: The installer requires yay. yay will be installed now"
-    if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
-        sudo pacman --noconfirm -S yay
-    else
-        _installYay
-    fi
-fi
+_checkAURHelper
 
 # --------------------------------------------------------------
 # General
@@ -225,7 +251,7 @@ source $SCRIPT_DIR/_flatpaks.sh
 # --------------------------------------------------------------
 
 if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
-        _installPackages "bibata-cursor-theme-bin"
+        _installPackages "bibata-cursor-theme"
 else
     source $SCRIPT_DIR/_cursors.sh
 fi
@@ -240,19 +266,17 @@ source $SCRIPT_DIR/_fonts.sh
 # Icons
 # --------------------------------------------------------------
 
-source $SCRIPT_DIR/_icons.sh
-
-# --------------------------------------------------------------
-# GDG Custom Packages
-# --------------------------------------------------------------
-
-echo -e "${GREEN}"
-figlet -p "Additional packages"
-echo -e "${NONE}"
-echo
-if gum confirm "Do you want to install my selection of additional packages?"; then
-    source ${SCRIPT_DIR}/_gdg-arch/custom-packages.sh
+if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
+        _installPackages "colloid-icon-theme-git"
+else
+    source $SCRIPT_DIR/_icons.sh
 fi
+
+# --------------------------------------------------------------
+# Load custom post installation script
+# --------------------------------------------------------------
+
+source $SCRIPT_DIR/custom_setup/setup-arch-post.sh
 
 # --------------------------------------------------------------
 # Finish

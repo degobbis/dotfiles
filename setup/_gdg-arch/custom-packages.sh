@@ -42,13 +42,21 @@ declare -a intelPackages=()
 
 declare -a extraFontsPackages=(
     "gnu-free-fonts"
+    "noto-fonts"
+    "noto-fonts-cjk"
+    "noto-fonts-emoji"
+    "noto-fonts-extra"
     "powerline-console-fonts"
     "powerline-fonts"
 #    "terminess-powerline-font-git" # Parts conflicts with powerline-console-fonts
     "terminus-font"
+    "ttf-dejavu"
+    "ttf-fira-sans"
+    "ttf-fira-code"
     "ttf-hack"
     "ttf-jetbrains-mono"
     "ttf-jetbrains-mono-nerd"
+    "ttf-material-icons"
     "ttf-roboto"
     "ttf-ubuntu-font-family"
     "woff2-font-awesome"
@@ -374,6 +382,7 @@ declare -a systemPackages=(
     "zsh-completions"
 )
 
+POST_configureLoginManager=0
 _configureLoginManager() {
     if [[ ! -f /usr/share/nwg-hello/current_wallpaper.jpg ]]; then
        echo ":: Configure login manager (greetd)"
@@ -398,6 +407,7 @@ _configureLoginManager() {
     fi
 }
 
+POST_configureFramework16KbdBacklight=0
 _configureFramework16KbdBacklight() {
     if [[ ! -f /etc/udev/rules.d/99-framework16-kbd-backlight.rules ]]; then
         echo ":: Add udev rule for Framework KDB Backlight"
@@ -412,26 +422,22 @@ read -d '' -a selectedKeys < <(gum choose --no-limit --height 20 --cursor-prefix
 
 IFS=$' \t\n'
 
+echo
+echo -e "${GREEN}:: Prepare additional packages list to install ...${NONE}"
+
 for key in "${selectedKeys[@]}"; do
     value="${additionalPackages["${key}"]}"
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
-    echo "Installation for ${key}:"
+    #echo "Installation for ${key}:"
     _installPackages "${packages_to_install[@]}"
     case $value in
         loginManager)
-            _configureLoginManager
+            POST_configureLoginManager=1
             break
             ;;
         framework16Packages)
-            _configureFramework16KbdBacklight
+            POST_configureFramework16KbdBacklight=1
             break
             ;;
     esac
 done
-
-_installPackages "${systemPackages[@]}"
-echo
-
-if gum confirm "Do you want to install Hyprland plugins?"; then
-    source ${SCRIPT_DIR}/_gdg-arch/hyprland-plugins.sh
-fi
