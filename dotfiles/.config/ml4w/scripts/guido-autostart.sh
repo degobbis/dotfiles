@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# The basic wayland copy/paste mechanisms will now persist even when the source window is closed.
+exec-once = wl-clip-persist --clipboard regular
+
 #pgrep -x easyeffects > /dev/null || easyeffects --gapplication-service &
 #sleep 1
 
