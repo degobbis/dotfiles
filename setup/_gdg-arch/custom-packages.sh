@@ -30,6 +30,7 @@ declare -a dockerPackages=(
 )
 
 declare -a amdPackages=(
+    "amd-debug-tools"
     "amdguid-wayland-bin"
     "amf-amdgpu-pro"
     "ffmpeg-amd-full"
