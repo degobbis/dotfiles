@@ -1,9 +1,25 @@
+Version 2.9.9.5
+--------------------------------------------------------
+- Replace copr for Hyprland on Fedora. Please run the setup script again with the Dotfiles Installer
+- New Glass Center Waybar Theme witn the Workspace Selector in the center.
+
 Version 2.9.9.4
 --------------------------------------------------------
-- Global Theme support: CTRL+ALT+T to open the thene selector
+- Global Theme support: CTRL+ALT+T to open the theme selector
 - New global glass theme
 - New Animation Smooth: You can select it in the Settings app.
-- Dock Auto-hide can be activated by adding a file dock-autohide into .config/ml4w/settings
+- Dock Auto-hide can be activated by adding a file dock-autohide into .config/ml4w/settings (BETA)
+- New Default Cursor Theme ArcAurora with two additional variants
+- Terminal CLI: Enter 'apps' to launch the launcher script
+- Terminal CLI: Enter 'screenshot' to launch the screenshot script
+- Terminal CLI: Enter 'finder' to launch a fuzzy finder script
+- Terminal CLI: Enter 'updates' to launch the update script
+- Terminal CLI: Enter 'filemanager' to launch yazi (to be installed separately)
+- Terminal CLI: Enter 'system' to launch btop
+- Terminal CLI: Enter 'lock' to lock the screen with hyprlock
+- Terminal CLI: Enter 'quick' to start the quicklinks script
+- Terminal CLI: Enter 'wallpaper' to start the wallpaper selector CLI
+- New screenshot configuration file names (without .sh) in ~/.config/ml4w/settings
 
 Version 2.9.9.3
 --------------------------------------------------------
@@ -35,7 +51,7 @@ Version 2.9.9.1
 
 Version 2.9.9
 --------------------------------------------------------
-- Legacy installer removed and folders restructured
+- Legacy installer removed and folders restructured 
 - Font Awesome 7 support added
 - Optimized setup script to reduce the installation time of dependencies
 - Waybar with blurred background as default (powered by Hyprland). Can be switched off in the Dotfiles Settings app/Appearance/Decoration Variations -> no blur
@@ -55,7 +71,7 @@ Version 2.9.8.7
 - Configuration prepared for Dotfiles Installer https://mylinuxforwork.github.io/dotfiles-installer/ with setup scripts for Arch Linux, Fedora and openSuse Tumbleweed
 - All ML4W apps are following now the GTK4 Theme. Please make sure that the ml4w-repo is added to your system and all ml4w flatpaks are installed system wide, not user
 - Improved waybar modern theme
-- Installation of Sequoia Theme removed from the installation script
+- Installation of Sequoia Theme removed from the installation script 
 - You can restore the standard SDDM Theme and install your custom display manager individually.
 - How to install Sequoia Theme guide on ML4W Dotfiles Wiki https://github.com/mylinuxforwork/dotfiles/wiki/Customize-sddm
 - Wallust for terminal color generation

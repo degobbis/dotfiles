@@ -39,11 +39,11 @@ _writeHeader() {
     clear
     echo -e "${GREEN}"
 cat <<"EOF"
-   ____    __
-  / __/__ / /___ _____
+   ____    __          
+  / __/__ / /___ _____ 
  _\ \/ -_) __/ // / _ \
 /___/\__/__/\_,_/ .__/
-                /_/
+                /_/    
 EOF
     echo "ML4W Dotfiles for Hyprland for $distro"
     echo -e "${NONE}"

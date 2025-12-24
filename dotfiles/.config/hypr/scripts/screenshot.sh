@@ -14,16 +14,18 @@
 # Add this to ~/.config/user-dirs.dirs to save screenshots in a custom folder:
 # XDG_SCREENSHOTS_DIR="$HOME/Screenshots"
 
-# Screenshot Filename
-source ~/.config/ml4w/settings/screenshot-filename.sh
-
 # Screenshot Folder
-source ~/.config/ml4w/settings/screenshot-folder.sh
+SAVE_DIR=$(cat ~/.config/ml4w/settings/screenshot-folder)
+eval screenshot_folder="$SAVE_DIR"
+
+# Screenshot Filename
+SAVE_FILENAME=$(cat ~/.config/ml4w/settings/screenshot-filename)
+eval NAME="$SAVE_FILENAME"
 
 mkdir -p "${screenshot_folder}"
 
 # Screenshot Editor
-export GRIMBLAST_EDITOR="$(cat ~/.config/ml4w/settings/screenshot-editor.sh)"
+export GRIMBLAST_EDITOR="$(cat ~/.config/ml4w/settings/screenshot-editor)"
 
 prompt='Screenshot'
 mesg="DIR: ${screenshot_folder}"

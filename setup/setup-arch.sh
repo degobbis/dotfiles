@@ -46,12 +46,10 @@ declare -a packages=(
     # Tools
     "eza"
     "python-pywalfox"
-    # Themes
-    "papirus-icon-theme"
-    "breeze"
     # Fonts
     "otf-font-awesome"
     "ttf-firacode-nerd"
+    "tty-clock"
 )
 
 _isInstalled() {
@@ -250,11 +248,7 @@ source $SCRIPT_DIR/_flatpaks.sh
 # Cursors
 # --------------------------------------------------------------
 
-if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
-        _installPackages "bibata-cursor-theme"
-else
-    source $SCRIPT_DIR/_cursors.sh
-fi
+source $SCRIPT_DIR/_cursors.sh
 
 # --------------------------------------------------------------
 # Fonts
@@ -266,11 +260,7 @@ source $SCRIPT_DIR/_fonts.sh
 # Icons
 # --------------------------------------------------------------
 
-if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
-        _installPackages "colloid-icon-theme-git"
-else
-    source $SCRIPT_DIR/_icons.sh
-fi
+source $SCRIPT_DIR/_icons.sh
 
 # --------------------------------------------------------------
 # Load custom post installation script

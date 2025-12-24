@@ -135,7 +135,7 @@ declare -a applicationPackages=(
     "obs-studio"
     "openfortigui-git"
 #    "phpstorm" "phpstorm-jre" "wmname"
-    "pinta"
+#    "pinta"
     "qalculate-gtk"
     "qpdfview"
     "qt5ct"
@@ -386,6 +386,10 @@ declare -a systemPackages=(
 #    "xsel"
     "zram-generator"
     "zsh-completions"
+
+    # Themes
+    "papirus-icon-theme"
+    "breeze"
 )
 
 POST_configureLoginManager=0
