@@ -193,8 +193,8 @@ _installChaoticRepository(){
     echo ":: Installing [chaotic-aur] repository for a lot of precompiled AUR Packages"
     sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
     sudo pacman-key --lsign-key 3056513887B78AEB
-    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
-    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+    sudo pacman -U --disable-download-timeout 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+    sudo pacman -U --disable-download-timeout 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
     cat $SCRIPT_DIR/_gdg-arch/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
     echo -e "${GREEN}:: [chaotic-aur] repository is now installed${NONE}"
     echo ":: Syncing the mirrorlist and update the system packages"
