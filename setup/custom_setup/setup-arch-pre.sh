@@ -32,9 +32,22 @@ _finishMessage() {
         figlet -p "Errors"
         echo ":: Installation finished with errors."
         echo
-        echo "The following packages had errors during installation, please install manually:"
+        echo "The following packages had errors during installation:"
         echo -e "${NONE}"
         echo "${errorPackages[@]}"
+        echo
+
+        if gum confirm "DO YOU WANT TO TRY AGAIN THE INSTALLATION OF THIS PACKEGES WITHOUT AUTOCONFIRMATION?: "; then
+            pkgsToInstall=("${errorPackages[@]}")
+            errorPackages=()
+            echo
+            echo ":: Installation started."
+            echo
+            _installErrorPackagesAgain
+            _finishMessage
+        else
+            echo ":: Then please install manually."
+        fi
     else
         echo -e "${GREEN}"
         figlet -p "No errors"
@@ -137,6 +150,21 @@ _installParu() {
 
 _installAllPackages() {
     $aur_helper --noconfirm -S "${pkgsToInstall[@]}"
+
+    for pkg in "${pkgsToInstall[@]}"; do
+        if [[ $(_isInstalled "${pkg}") == 0 ]]; then
+            echo -e "${GREEN}:: ${pkg} is already installed.${NONE}"
+            continue
+        fi
+
+        errorPackages+=("${pkg}")
+    done
+
+    pkgsToInstall=()
+}
+
+_installErrorPackagesAgain() {
+    $aur_helper -S "${pkgsToInstall[@]}"
 
     for pkg in "${pkgsToInstall[@]}"; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then

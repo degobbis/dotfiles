@@ -438,6 +438,7 @@ echo -e "${GREEN}:: Prepare additional packages list to install ...${NONE}"
 for key in "${selectedKeys[@]}"; do
     value="${additionalPackages[$key]}"
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
+    echo
     echo "Installation for ${key}:"
     _installPackages "${packages_to_install[@]}"
     _installAllPackages

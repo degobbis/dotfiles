@@ -134,8 +134,8 @@ _checkAURHelper() {
         else
             _installParu
         fi
-    else
-        _selectAURHelper
+    #else
+        #_selectAURHelper
     fi
 }
 
