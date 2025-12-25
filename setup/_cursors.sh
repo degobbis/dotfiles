@@ -8,7 +8,7 @@
 # --------------------------------------------------------------
 
 download_folder="$HOME/Downloads/bibata-cursors"
-bibata_url="https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/"
+bibata_url="https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7"
 
 if [ -d $download_folder ]; then
     rm -rf $download_folder
