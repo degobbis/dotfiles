@@ -9,15 +9,18 @@
 export EDITOR=nano
 #export XCURSOR_PATH=${XCURSOR_PATH}:$HOME/.local/share/icons
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Extend path with node and personal bin
-export NODE_PATH=$(npm root -g)
-export PATH=$HOME/bin:$HOME/.local/bin:$NVM_BIN:$NVM_INC:$NODE_PATH:$PATH
+    # Extend path with node and personal bin
+    export NODE_PATH=$(npm root -g)
+    export PATH=$NVM_BIN:$NVM_INC:$NODE_PATH:$PATH
+fi
+
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:$HOME/.local/bin/
 
 export NUMCPUS=$(nproc)
 export NUMCPUSMINUSTWO=$(( NUMCPUS - 4 ))
