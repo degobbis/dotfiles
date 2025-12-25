@@ -12,6 +12,8 @@ echo -e "${NONE}"
 echo
 if gum confirm "Do you want to install my selection of additional packages?"; then
     source ${SCRIPT_DIR}/_gdg-arch/custom-packages.sh
+    echo
+    echo "Installation for System packages:"
     _installPackages "${systemPackages[@]}"
 fi
 
