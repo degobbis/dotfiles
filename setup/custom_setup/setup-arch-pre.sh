@@ -82,6 +82,13 @@ _isInstalled() {
     return
 }
 
+_isInstalledFlatpak() {
+    local pkg="$1"
+    flatpak list --app | grep "${pkg}" 2>&1 > /dev/null
+    echo $?
+    return
+}
+
 _installYay() {
     if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
         sudo pacman --noconfirm -S yay

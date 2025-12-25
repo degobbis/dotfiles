@@ -11,13 +11,6 @@ declare -A ml4w_flatpak_apps=(
     ["com.ml4w.hyprlandsettings"]="hyprland-settings"
 )
 
-_isInstalledFlatpak() {
-    local pkg="$1"
-    flatpak list --app | grep "${pkg}" 2>&1 > /dev/null
-    echo $?
-    return
-}
-
 echo
 echo ":: Flatpak"
 flatpak update -y
