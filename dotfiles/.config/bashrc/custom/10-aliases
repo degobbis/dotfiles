@@ -191,6 +191,14 @@ alias update-system='~/.config/ml4w/scripts/installupdates.sh'
 ###> compdef update-system=trizen
 ####+END_SRC
 
+function list-installed() {
+	if [ -z "$1" ]; then
+		pacman -Qq
+	else
+		${AUR_HELPER} -Sql $1 | grep -x "`pacman -Qq`"
+	fi
+}
+
 ###
 # Start - docker-lamp commands
 ###

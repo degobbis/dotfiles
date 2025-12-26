@@ -6,7 +6,9 @@
 # Exports
 # -----------------------------------------------------
 
-export EDITOR=nano
+export TERM="xterm-256color"
+export EDITOR="nano"
+export AUR_HELPER="yay"
 #export XCURSOR_PATH=${XCURSOR_PATH}:$HOME/.local/share/icons
 
 if [ -d "$HOME/.nvm" ]; then
@@ -30,5 +32,3 @@ export EMERGE_DEFAULT_OPTS="--jobs=1 --load-average=4 --autounmask=n"
 export GTK_PATH=/usr/lib/gtk-3.0
 export GTK_PATH=$GTK_PATH:/usr/lib/gtk-4.0
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
-
-export TERM="xterm-256color"
