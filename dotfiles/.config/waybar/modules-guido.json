@@ -134,8 +134,10 @@
     "on-click": "~/.config/ml4w/settings/ai.sh",
     //"on-click-middle": "brave --app=https://chat.openai.com",
     "on-click-middle": "brave --app=https://gemini.google.com/?hl=de",
-    "on-click-right": "brave --app=https://www.perplexity.ai",
-    "tooltip-format": "AI Support\nLeft-Click = Jan.ai (local)\nMiddle-Click = Google Gemini\nRight-Click = Perplexity"
+    //"on-click-right": "brave --app=https://www.perplexity.ai",
+    "on-click-right": "brave --app=https://chat.openai.com",
+    //"tooltip-format": "AI Support\nLeft-Click = LM Studio (local)\nMiddle-Click = Google Gemini\nRight-Click = Perplexity"
+    "tooltip-format": "AI Support\nLeft-Click = LM Studio (local)\nMiddle-Click = Google Gemini\nRight-Click = ChatGPT"
   },
 
   // Calculator
@@ -344,11 +346,11 @@
   // Battery
   "battery": {
     "states": {
-      // "good": 95,
+      "good": 70,
       "warning": 30,
       "critical": 15
     },
-    "full-at": 85,
+    //"full-at": 85,
     "format": "{icon} {capacity}%",
     "format-charging": "  {capacity}%",
     "format-plugged": "  {capacity}%",
@@ -406,7 +408,7 @@
   // Bluetooth
   "bluetooth": {
     "format": " {status}",
-    "format-disabled": "",
+    "format-disabled": " off",
     "format-off": "",
     "interval": 30,
     "on-click": "sleep 0.1 && ~/.config/ml4w/settings/bluetooth.sh",
