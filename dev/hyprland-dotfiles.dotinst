@@ -7,7 +7,6 @@
   "homepage": "",
   "dependencies": "https://mylinuxforwork.github.io/dotfiles/getting-started/dependencies",
   "source": "../../srv/git/dotfiles",
-  "branches":"gdg-fork,gdg-test",
   "subfolder": "dotfiles",
   "setupscript": "setup/setup.sh",
   "restore": [
