@@ -81,7 +81,8 @@
              "type": "memory",
             "key": "  ﬙  Memory",
             "keyColor": "magenta"
-        },      
+        },
+        {
           "type": "command",
           "key": "│ {#33}󱦟 os age  {#keys}|",
           "keyColor": "magenta",
@@ -102,6 +103,6 @@
             "symbol": "circle"
         },
         "break"
-        
+
     ]
 }
