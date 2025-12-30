@@ -232,11 +232,11 @@
   // Clock
   "clock": {
     "interval": 1,
-    "format": " {:L%H:%M:%S} |",
+    "format": " {:L%a %Od.  %H:%M}",
     //"locale": "fr_CA.UTF-8",
     "on-click": "flatpak run com.ml4w.calendar",
     "timezone": "Europe/Berlin",
-    "tooltip-format": "  {:L%A, %Od.%Om.%Y}"
+    "tooltip-format": "  {:L%H:%M:%S\n  %A, %Od.%Om.%Y}"
   },
 
   // System
