@@ -61,7 +61,7 @@ declare -a extraFontsPackages=(
     "ttf-fira-code"
     "ttf-hack"
     "ttf-jetbrains-mono"
-    "ttf-jetbrains-mono-nerd"
+#    "ttf-jetbrains-mono-nerd"
     "ttf-material-icons"
     "ttf-roboto"
     "ttf-ubuntu-font-family"

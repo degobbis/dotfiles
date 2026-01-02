@@ -49,7 +49,9 @@ declare -a packages=(
     # Fonts
     "otf-font-awesome"
     "ttf-firacode-nerd"
+    "ttf-jetbrains-mono-nerd"
     "tty-clock"
+    "swww"
 )
 
 _isInstalled() {
@@ -70,13 +72,13 @@ _installYay() {
     if [[ ! $(_isInstalled "git") == 0 ]]; then
         sudo pacman --noconfirm -S "git"
     fi
-    if [ -d $HOME/Downloads/yay ]; then
-        rm -rf $HOME/Downloads/yay
+    if [ -d $HOME/Downloads/yay-bin ]; then
+        rm -rf $HOME/Downloads/yay-bin
     fi
     SCRIPT=$(realpath "$0")
     temp_path=$(dirname "$SCRIPT")
-    git clone https://aur.archlinux.org/yay-bin.git $HOME/Downloads/yay
-    cd $HOME/Downloads/yay
+    git clone https://aur.archlinux.org/yay-bin.git $HOME/Downloads/yay-bin
+    cd $HOME/Downloads/yay-bin
     makepkg -si
     cd $temp_path
     echo ":: yay has been installed successfully."
@@ -261,6 +263,12 @@ source $SCRIPT_DIR/_fonts.sh
 # --------------------------------------------------------------
 
 source $SCRIPT_DIR/_icons.sh
+
+# --------------------------------------------------------------
+# Create XDG Directories
+# --------------------------------------------------------------
+
+xdg-user-dirs-update
 
 # --------------------------------------------------------------
 # Load custom post installation script

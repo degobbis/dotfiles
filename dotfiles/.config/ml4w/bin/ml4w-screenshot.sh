@@ -24,7 +24,7 @@ eval filename="$SAVE_FILENAME"
 path="$screenshot_folder/$filename"
 
 # Create Screenshot folder
-mkdir -p "$screenshot_folder"
+mkdir -p "$SAVE_DIR"
 
 # Handle the screenshot
 take_screenshot() {
