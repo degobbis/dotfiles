@@ -17,12 +17,11 @@
 # Screenshot Folder
 SAVE_DIR=$(cat ~/.config/ml4w/settings/screenshot-folder)
 eval screenshot_folder="$SAVE_DIR"
+mkdir -p "${screenshot_folder}"
 
 # Screenshot Filename
 SAVE_FILENAME=$(cat ~/.config/ml4w/settings/screenshot-filename)
 eval NAME="$SAVE_FILENAME"
-
-mkdir -p "${screenshot_folder}"
 
 # Screenshot Editor
 export GRIMBLAST_EDITOR="$(cat ~/.config/ml4w/settings/screenshot-editor)"
