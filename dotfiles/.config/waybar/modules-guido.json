@@ -82,7 +82,9 @@
     "on-click": "sleep 0.1 && ~/.config/ml4w/scripts/cliphist.sh",
     "on-click-right": "sleep 0.1 && ~/.config/ml4w/scripts/cliphist.sh d",
     "on-click-middle": "sleep 0.1 && ~/.config/ml4w/scripts/cliphist.sh w",
-    "tooltip-format": "Left-Click: Open clipboard Manager\nRight-Click: Delete an entry\nMiddle-Click: Clear list"
+    "tooltip-format": "Left-Click: Open clipboard Manager\nRight-Click: Delete an entry\nMiddle-Click: Clear list",
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   // Updates Count
@@ -209,7 +211,9 @@
     "exec-on-event": true,
     "interval": 60,
     "exec": "~/.config/hypr/scripts/hypridle.sh status",
-    "on-click": "~/.config/hypr/scripts/hypridle.sh toggle"
+    "on-click": "~/.config/hypr/scripts/hypridle.sh toggle",
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   // Keyboard State
@@ -220,7 +224,9 @@
     "format-icons": {
       "locked": "",
       "unlocked": ""
-    }
+    },
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   // System tray
@@ -242,21 +248,27 @@
   // System
   "custom/system": {
     "format": "",
-    "tooltip": false
+    "tooltip": false,
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   // CPU
   "cpu": {
     "format": "/ C {usage}% {avg_frequency}GHz ",
     "on-click": "~/.config/ml4w/settings/systeminfo.sh",
-    "on-click-right": "~/.config/ml4w/settings/system-monitor.sh"
+    "on-click-right": "~/.config/ml4w/settings/system-monitor.sh",
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   // Memory
   "memory": {
     "format": "/ M {}% ",
     "on-click": "~/.config/ml4w/settings/systeminfo.sh",
-    "on-click-right": "~/.config/ml4w/settings/system-monitor.sh"
+    "on-click-right": "~/.config/ml4w/settings/system-monitor.sh",
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   // Harddisc space used
@@ -265,11 +277,15 @@
     "format": "D {percentage_used}% ",
     "path": "/",
     "on-click": "~/.config/ml4w/settings/systeminfo.sh",
-    "on-click-right": "~/.config/ml4w/settings/system-monitor.sh"
+    "on-click-right": "~/.config/ml4w/settings/system-monitor.sh",
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   "hyprland/language": {
-    "format": "/ K {short}"
+    "format": "/ K {short}",
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   // Group Hardware
@@ -376,7 +392,9 @@
       "performance": "",
       "balanced": "",
       "power-saver": ""
-    }
+    },
+    "on-scroll-up": "true",
+    "on-scroll-down": "true"
   },
 
   // Pulseaudio

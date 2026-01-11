@@ -150,6 +150,8 @@ declare -a applicationPackages=(
     "solaar"
     "teams-for-linux-bin"
 #    "teamviewer"
+    "tesseract-data-deu"
+    "tesseract-data-ita"
 #    "thunderbird" "thunderbird-i18n-de"
     "vlc" "phonon-qt6-vlc" "vlc-plugins-all"
     "x264" "x265"

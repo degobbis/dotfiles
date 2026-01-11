@@ -46,6 +46,7 @@ declare -a packages=(
     # Tools
     "eza"
     "python-pywalfox"
+    "tesseract-data-eng"
     # Fonts
     "otf-font-awesome"
     "ttf-firacode-nerd"
