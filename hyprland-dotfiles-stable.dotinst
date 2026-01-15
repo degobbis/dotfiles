@@ -7,7 +7,7 @@
 	"homepage":"",
 	"dependencies":"https://mylinuxforwork.github.io/dotfiles/getting-started/dependencies",
 	"source":"https://github.com/degobbis/dotfiles.git",
-	"tag":"2.9.9.4-1",
+	"tag":"2.9.9.5-1",
 	"subfolder":"dotfiles",
 	"setupscript":"setup/setup.sh",
 	"restore":[

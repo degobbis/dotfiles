@@ -21,7 +21,7 @@ source $SCRIPT_DIR/pkgs.sh
 # Distro related packages
 # --------------------------------------------------------------
 
-declare -a packages=(
+packages=(
     # Hyprland
     "hyprland"
     "libnotify"

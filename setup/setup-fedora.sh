@@ -26,7 +26,7 @@ packages=(
     "qt5-qtwayland"
     "qt6-qtwayland"
     "uwsm"
-    "python-pip"
+    "python3-pip"
     "python3-gobject"
     "nm-connection-editor"
     "network-manager-applet"
@@ -45,7 +45,7 @@ packages=(
 
 _isInstalled() {
     package="$1"
-    check=$(dnf list --installed | grep $package)
+    check=$(dnf list --installed | grep -w "$package")
     if [ -z "$check" ]; then
         echo 1
         return #false
@@ -96,7 +96,6 @@ sudo dnf copr remove --assumeyes solopasha/hyprland
 sudo dnf copr enable --assumeyes sdegler/hyprland
 sudo dnf copr enable --assumeyes peterwu/rendezvous
 sudo dnf copr enable --assumeyes wef/cliphist
-sudo dnf copr enable --assumeyes wef/swww
 sudo dnf copr enable --assumeyes tofik/nwg-shell
 sudo dnf copr enable --assumeyes che/nerd-fonts
 sudo dnf copr enable --assumeyes erikreider/SwayNotificationCenter
@@ -162,7 +161,6 @@ sudo cp $SCRIPT_DIR/packages/eza /usr/bin
 echo ":: Installing packages with pip"
 sudo pip install hyprshade
 sudo pip install pywalfox
-sudo pywalfox install
 sudo pip install screeninfo
 sudo pip install waypaper
 
