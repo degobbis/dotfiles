@@ -275,7 +275,7 @@ declare -a systemPackages=(
     "numlockx"
 #    "nut-monitor"
     "nvme-cli"
-    "nwg-displays"
+#    "nwg-displays"
     "openbsd-netcat"
     "openssh"
 #    "openssh-askpass"
