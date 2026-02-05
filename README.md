@@ -1,14 +1,24 @@
-# ML4W Dotfiles for Hyprland
+# ML4W OS - Dotfiles for Hyprland
 
 An advanced configuration of Hyprland for Arch Linux based distributions. Full featured desktop environment based on the dynamic tiling window manager Hyprland with adaptive material color themes based on the selected wallpaper for all components. Including a comprehensive selection of apps with the ability to customize the configuration to your personal needs.
 
-![dotfiles2995](https://github.com/user-attachments/assets/fb3e92ee-ea5a-4950-b1aa-b074698b17fe)
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/230d9fde-3876-40c4-a830-4788dffccb44" />
 
 ## Installation and Documentation
 
-You can find the installation guide and the documentation of the ML4W Dotfiles for Hyprland here:<br><b>https://mylinuxforwork.github.io/dotfiles/</b>
+You can find all installation options in the documentation of the ML4W OS for Hyprland here:<br><b>https://mylinuxforwork.github.io/dotfiles/</b>
 
-You can install the ML4W Dotfiles for Hyprland with the Dotfiles Installer (Available on Flathub).<br>Click on the badge below to install the app.
+### Test and install with the ML4W OS Live ISO
+
+Test the ML4W OS without risk on your computer or in a Virtual Machine with the ML4W Live ISO.
+
+<a href="https://ml4w.com/iso/ml4w-os/ml4w-os-2.10.0-x86_64.iso">Download the ML4W ISO</a>
+
+You can install the ML4W OS on your hard drive with the command `sudo install-ml4w-os` (BETA).
+
+### Install the ML4W OS on your distribution
+
+Install the ML4W OS on top of your current distro with the Dotfiles Installer (Available on Flathub).<br>Click on the badge below to install the app.
 
 <a href="https://mylinuxforwork.github.io/dotfiles-installer/" target="_blank"><img src="https://mylinuxforwork.github.io/dotfiles-installer/dotfiles-installer-badge.png" style="border:0;margin-bottom:10px"></a>
 
@@ -30,7 +40,7 @@ For other distros, please install <a href="https://mylinuxforwork.github.io/dotf
 
 ## Special Thanks
 
-I want to say thank you to all contributors of the ML4W Dotfiles and all other Developers who are creating awesome configurations for our favorite Tiling Window Manager Hyprland. Your support, the testing of every version and all your valuable Pull Requests with improvements and bug fixes have repeatedly improved the overall project and increased its relevance and quality.
+I want to say thank you to all contributors of the ML4W OS and all other Developers who are creating awesome configurations for our favorite Tiling Window Manager Hyprland. Your support, the testing of every version and all your valuable Pull Requests with improvements and bug fixes have repeatedly improved the overall project and increased its relevance and quality.
 
 Special Thanks do to...
 

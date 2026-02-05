@@ -120,7 +120,7 @@
     "format": "",
     "on-click": "sleep 0.1 && flatpak run com.ml4w.settings",
     "on-click-right": "sleep 0.1 && flatpak run com.ml4w.dotfilesinstaller",
-    "tooltip-format": "Left-Click: ML4W Dotfiles Settings\nRight-Click: Dotfiles-Installer"
+    "tooltip-format": "Left-Click: ML4W Settings\nRight-Click: Dotfiles-Installer"
   },
 
   // Keybindings
