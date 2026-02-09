@@ -1,8 +1,8 @@
 {
 	"name":"GDG Hyprland Dotfiles (ROLING RELEASE)",
 	"id":"com.gdg.dotfiles",
-	"description":"Modified fork from Stephan Raabe (ML4W)",
-	"version":"2.10.0-dev",
+	"description":"Modified fork from Stephan Raabe (ML4W OS)",
+	"version":"2.10.1-dev",
 	"author":"Guido De Gobbis",
 	"homepage":"",
 	"dependencies":"https://mylinuxforwork.github.io/dotfiles/getting-started/dependencies",

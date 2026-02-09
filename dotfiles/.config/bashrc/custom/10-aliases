@@ -6,6 +6,7 @@
 # General
 # -----------------------------------------------------
 alias fd="fd -HlL"
+alias ..='cd ..'
 alias c='clear'
 alias nf='fastfetch'
 alias pf='fastfetch'
@@ -58,7 +59,7 @@ alias gcredential="git config credential.helper store"
 # -----------------------------------------------------
 # Scripts
 # -----------------------------------------------------
-alias ascii='~/.config/ml4w/scripts/figlet.sh'
+alias ascii='~/.config/ml4w/scripts/ml4w-ascii-header'
 alias search-font='~/.config/ml4w/scripts/fontsearch.sh'
 
 # -----------------------------------------------------

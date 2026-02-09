@@ -1,7 +1,7 @@
 {
 	"name":"GDG Hyprland Dotfiles (STABLE RELEASE)",
 	"id":"com.gdg.dotfiles.stable",
-	"description":"Modified fork from Stephan Raabe (ML4W)",
+	"description":"Modified fork from Stephan Raabe (ML4W OS)",
 	"version":"2.10.0-1",
 	"author":"Guido De Gobbis",
 	"homepage":"",

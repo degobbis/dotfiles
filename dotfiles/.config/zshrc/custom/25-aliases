@@ -7,6 +7,7 @@
 # -----------------------------------------------------
 alias fd="fd -HlL -j 10"
 alias nano='$EDITOR --rcfile=$HOME/.config/nano/nanorc'
+alias ..='cd ..'
 alias c='clear'
 alias nf='fastfetch'
 alias pf='fastfetch'
@@ -44,7 +45,7 @@ alias ml4w-hyprland='flatpak run com.ml4w.hyprlandsettings'
 # -----------------------------------------------------
 # Scripts
 # -----------------------------------------------------
-alias ascii='~/.config/ml4w/scripts/figlet.sh'
+alias ascii='~/.config/ml4w/scripts/ml4w-ascii-header'
 alias search-font='~/.config/ml4w/scripts/fontsearch.sh'
 
 # -----------------------------------------------------

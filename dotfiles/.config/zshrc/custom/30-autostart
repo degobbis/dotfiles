@@ -25,7 +25,9 @@ finder() {
 # Fastfetch
 # -----------------------------------------------------
 if [[ $(tty) == *"pts"* ]]; then
-    #fastfetch
-    sh ~/.config/ml4w/scripts/dynamic-logo.sh
-    fastfetch --config ~/.config/fastfetch/guido.jsonc
+    if [ ! -f $HOME/.config/ml4w/settings/hide-fastfetch ]; then
+        #fastfetch
+        sh ~/.config/ml4w/scripts/dynamic-logo.sh
+        fastfetch --config ~/.config/fastfetch/guido.jsonc
+    fi
 fi
