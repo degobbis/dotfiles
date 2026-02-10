@@ -298,7 +298,7 @@ declare -a systemPackages=(
 #    "python-screeninfo"
     "qt5-graphicaleffects"
     "qt5-quickcontrols2"
-    "qt6-multimedia-ffmpeg"
+#    "qt6-multimedia-ffmpeg"
 #    "qt6-virtualkeyboard"
     "reflector"
     "seahorse"
