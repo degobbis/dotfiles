@@ -113,6 +113,7 @@ declare -a applicationPackages=(
     "easyeffects" "lsp-plugins-lv2" "mda.lv2"
 #    "filezilla"
     "firefox-developer-edition" "firefox-developer-edition-i18n-de"
+    "freetube-bin"
     "geany" "geany-plugins" "geany-plugin-jsonprettifier"
     "gitkraken"
     "gnome-calculator"
