@@ -8,17 +8,16 @@ declare -A flatpak_apps=(
 )
 
 echo
-echo ":: Installing other Flatpak Apps"
-echo
+_title "Installing other Flatpak Apps"
 
 for flatpak_app in "${!flatpak_apps[@]}"
 do
     if [[ $(_isInstalledFlatpak "${flatpak_app}") == 0 ]]; then
-        echo -e "${GREEN}:: ${flatpak_apps[${flatpak_app}]} is already installed.${NONE}"
+        _success "${flatpak_apps[${flatpak_app}]} is already installed."
         continue
     fi
 
-    echo ":: Installing ${flatpak_apps[${flatpak_app}]} ..."
+    _info "Installing ${flatpak_apps[${flatpak_app}]} ..."
     flatpak install -y flathub "${flatpak_app}"
     echo
 done

@@ -221,8 +221,8 @@ _downloadFileToTmp(){
 }
 
 _isInstalled() {
-    local package="$1"
-    pacman -Q "${package}" 2>&1 > /dev/null
+    local pkg="$1"
+    pacman -Q "${pkg}" 2>&1 > /dev/null
     echo $?
     return
 }
@@ -283,6 +283,7 @@ _installParu() {
 }
 
 _installAllPackages() {
+    local pkg
     $aur_helper --noconfirm -S "${pkgsToInstall[@]}"
 
     for pkg in "${pkgsToInstall[@]}"; do
@@ -298,6 +299,7 @@ _installAllPackages() {
 }
 
 _installErrorPackagesAgain() {
+    local pkg
     $aur_helper -S "${pkgsToInstall[@]}"
 
     for pkg in "${pkgsToInstall[@]}"; do
@@ -313,6 +315,7 @@ _installErrorPackagesAgain() {
 }
 
 _installPackages() {
+    local pkg
     for pkg; do
         if [[ $(_isInstalled "${pkg}") == 0 ]]; then
             _success "${pkg} is already installed"
@@ -324,48 +327,57 @@ _installPackages() {
 }
 
 _installChaoticRepository(){
+    _headline "Chaotic-Aur"
+
     if [[ -f "/etc/pacman.d/chaotic-mirrorlist" ]]; then
         _success "[chaotic-aur] repository is already installed"
         return 0
     fi
 
-    _title "Installing [chaotic-aur] repository for a lot of precompiled AUR Packages"
-    _info "sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com"
-    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-    _info "sudo pacman-key --lsign-key 3056513887B78AEB"
-    sudo pacman-key --lsign-key 3056513887B78AEB
+    _title "The [chaotic-aur] repository offers a large number of precompiled Git packages from the AUR"
+    echo
 
-    _downloadFileToTmp \
-        --download-url='https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' \
-        --target-dir='ml4w/chaotic-aur' \
-        --download-sig
+    if gum confirm "INSTALL THE '[chaotic-aur]' REPOSITORY: "; then
+        _title "Installing [chaotic-aur] repository"
+        _info "sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com"
+        sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+        _info "sudo pacman-key --lsign-key 3056513887B78AEB"
+        sudo pacman-key --lsign-key 3056513887B78AEB
 
-    if [[ $? -eq 0 ]]; then
-        _info "sudo pacman -U $downloadedFileToTmp"
-        sudo pacman -U $downloadedFileToTmp
-    else
-        return 1
+        _downloadFileToTmp \
+            --download-url='https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' \
+            --target-dir='ml4w/chaotic-aur' \
+            --download-sig
+
+        if [[ $? -eq 0 ]]; then
+            _info "sudo pacman -U $downloadedFileToTmp"
+            sudo pacman -U $downloadedFileToTmp
+        else
+            return 1
+        fi
+        unset downloadedFileToTmp
+
+        _downloadFileToTmp \
+            --download-url='https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' \
+            --target-dir='ml4w/chaotic-aur' \
+            --download-sig
+
+        if [[ $? -eq 0 ]]; then
+            _info "sudo pacman -U $downloadedFileToTmp"
+            sudo pacman -U $downloadedFileToTmp
+        else
+            return 1
+        fi
+        unset downloadedFileToTmp
+
+        cat $SCRIPT_DIR/_gdg-arch/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
+        _success "[chaotic-aur] repository is now installed"
+        _info "Syncing the mirrorlist and update the system packages"
+        _info "sudo pacman --noconfirm --disable-download-timeout -Syu"
+        sudo pacman --noconfirm --disable-download-timeout -Syu
+
+        return 0
     fi
-
-    _downloadFileToTmp \
-        --download-url='https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' \
-        --target-dir='ml4w/chaotic-aur' \
-        --download-sig
-
-    if [[ $? -eq 0 ]]; then
-        _info "sudo pacman -U $downloadedFileToTmp"
-        sudo pacman -U $downloadedFileToTmp
-    else
-        return 1
-    fi
-
-    cat $SCRIPT_DIR/_gdg-arch/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
-    _success "[chaotic-aur] repository is now installed"
-    _info "Syncing the mirrorlist and update the system packages"
-    _info "sudo pacman --noconfirm --disable-download-timeout -Syu"
-    sudo pacman --noconfirm --disable-download-timeout -Syu
-
-    return 0
 }
 
 _selectAURHelper() {
@@ -385,7 +397,33 @@ _selectAURHelper() {
     _success "Using $aur_helper as AUR Helper"
 }
 
-_installPackages "figlet"
+_checkAURHelper() {
+    if [[ $(_checkCommandExists "yay") == 0 ]]; then
+        echo ":: yay is installed"
+        yay_installed="true"
+    fi
+    if [[ $(_checkCommandExists "paru") == 0 ]]; then
+        echo ":: paru is installed"
+        paru_installed="true"
+    fi
+    if [[ $yay_installed == "true" ]] && [[ $paru_installed == "false" ]]; then
+        echo ":: Using AUR Helper yay"
+        aur_helper="yay"
+    elif [[ $yay_installed == "false" ]] && [[ $paru_installed == "true" ]]; then
+        echo ":: Using AUR Helper paru"
+        aur_helper="paru"
+    elif [[ $yay_installed == "false" ]] && [[ $paru_installed == "false" ]]; then
+        echo ":: No AUR Helper installed"
+        _selectAURHelper
+        if [[ $aur_helper == "yay" ]]; then
+            _installYay
+        else
+            _installParu
+        fi
+    #else
+        #_selectAURHelper
+    fi
+}
 
 # Install chaotic-aur repository for a lot of precompiled AUR Packages
 _installChaoticRepository
@@ -397,4 +435,4 @@ fi
 _selectAURHelper
 
 echo
-_title -e "Prepare packages list to install"
+_title "Prepare packages list to install"

@@ -6,7 +6,7 @@ declare -a hyprlandPluginsDependency=(
     "cpio"
     "gcc"
 )
-echo "Installing Dependencies (cmake, meson, cpio, gcc)"
+_title "Installing Dependencies (cmake, meson, cpio, gcc)"
 _installPackages "${hyprlandPluginsDependency[@]}"
 _installAllPackages
 

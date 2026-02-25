@@ -143,8 +143,8 @@ _checkAURHelper() {
         else
             _installParu
         fi
-    #else
-        #_selectAURHelper
+    else
+        _selectAURHelper
     fi
 }
 
@@ -159,15 +159,11 @@ _installPackages() {
 }
 
 # --------------------------------------------------------------
-# Install Gum
+# Install needed packages
 # --------------------------------------------------------------
 
-if [[ $(_checkCommandExists "gum") == 0 ]]; then
-    echo ":: gum is already installed"
-else
-    echo ":: The installer requires gum. gum will be installed now"
-    sudo pacman --noconfirm -S gum
-fi
+echo ":: I make sure that some base packages required for the installation script are installed ::"
+sudo pacman -Sy --needed --noconfirm base-devel git curl gum figlet
 
 # --------------------------------------------------------------
 # Header
@@ -234,6 +230,8 @@ if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
 else
     curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 fi
+
+_installAllPackages
 
 # --------------------------------------------------------------
 # Prebuilt Packages

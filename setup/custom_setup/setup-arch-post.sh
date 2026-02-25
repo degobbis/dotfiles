@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
-_installAllPackages
-
 # --------------------------------------------------------------
 # GDG Custom Packages
 # --------------------------------------------------------------
 
-echo -e "${GREEN}"
-figlet -p "Additional packages"
-echo -e "${NONE}"
+_header "Additional packages"
 echo
 if gum confirm "Do you want to install my selection of additional packages?"; then
     source ${SCRIPT_DIR}/_gdg-arch/custom-packages.sh
     echo
-    echo "Installation for System packages:"
+    _title "Installation for System packages"
     _installPackages "${systemPackages[@]}"
 fi
 

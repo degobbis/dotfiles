@@ -137,7 +137,7 @@ declare -a applicationPackages=(
     "nextcloud-client"
     "obs-studio"
     "openfortigui-git"
-#    "phpstorm" "phpstorm-jre" "wmname"
+    "wmname" # "phpstorm" "phpstorm-jre"
 #    "pinta"
     "qalculate-gtk"
     "qpdfview"
@@ -400,7 +400,7 @@ declare -a systemPackages=(
 POST_configureLoginManager=0
 _configureLoginManager() {
     if [[ ! -f /usr/share/nwg-hello/current_wallpaper.jpg ]]; then
-       echo ":: Configure login manager (greetd)"
+       _title "Configure login manager (greetd)"
        sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/nwg-hello* /etc/nwg-hello/
        sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/greetd.conf /etc/greetd/
        sudo cp -f /etc/pam.d/greetd /etc/pam.d/greetd.bkp
@@ -413,11 +413,11 @@ _configureLoginManager() {
         sudo systemctl disable ${lm_service_name}
         sudo systemctl enable greetd.service
         if [[ $? -eq 0 ]]; then
-            echo -e "${GREEN}:: The DisplayManager 'greetd' with 'nwg-hello' as theme is now enabled.${NONE}"
-            echo -e "${GREEN}:: It will take effect on the next Login.${NONE}"
+            _success "The DisplayManager 'greetd' with 'nwg-hello' as theme is now enabled."
+            _info "It will take effect on the next Login."
         else
-            echo -e "${RED}!! Something went wrong. Please enable 'greetd' manualy by using this command:${NONE}"
-            echo -e "${GREEN}sudo systemctl enable greetd.service${NONE}"
+            _error "Something went wrong. Please enable 'greetd' manualy by using this command:"
+            _info "sudo systemctl enable greetd.service"
         fi
     fi
 }
@@ -425,7 +425,7 @@ _configureLoginManager() {
 POST_configureFramework16KbdBacklight=0
 _configureFramework16KbdBacklight() {
     if [[ ! -f /etc/udev/rules.d/99-framework16-kbd-backlight.rules ]]; then
-        echo ":: Add udev rule for Framework KDB Backlight"
+        _title "Add udev rule for Framework KDB Backlight"
         sudo cp -f ${SCRIPT_DIR}/_gdg-arch/framework16/99-framework16-kbd-backlight.rules /etc/udev/rules.d/99-framework16-kbd-backlight.rules
         sudo udevadm control --reload-rules && sudo udevadm trigger
     fi
@@ -438,13 +438,13 @@ read -d '' -a selectedKeys < <(gum choose --no-limit --height 20 --cursor-prefix
 IFS=$' \t\n'
 
 echo
-echo -e "${GREEN}:: Prepare additional packages list to install ...${NONE}"
+_title "Prepare additional packages list to install"
 
 for key in "${selectedKeys[@]}"; do
     value="${additionalPackages[$key]}"
     readarray -t packages_to_install < <(eval "printf '%s\n' \"\${${value}[@]}\"")
     echo
-    echo "Installation for ${key}:"
+    _info "Installation for ${key}."
     _installPackages "${packages_to_install[@]}"
     _installAllPackages
     case $value in
