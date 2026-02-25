@@ -436,3 +436,5 @@ _selectAURHelper
 
 echo
 _title "Prepare packages list to install"
+
+_installPackages "pinta"

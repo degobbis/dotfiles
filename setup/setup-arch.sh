@@ -249,7 +249,7 @@ source $SCRIPT_DIR/_ml4w-apps.sh
 # Flatpaks
 # --------------------------------------------------------------
 
-source $SCRIPT_DIR/_flatpaks.sh
+#source $SCRIPT_DIR/_flatpaks.sh
 
 # --------------------------------------------------------------
 # Cursors
