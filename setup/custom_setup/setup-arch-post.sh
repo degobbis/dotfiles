@@ -4,7 +4,7 @@
 # GDG Custom Packages
 # --------------------------------------------------------------
 
-_header "Additional packages"
+_headline "Additional packages"
 echo
 if gum confirm "Do you want to install my selection of additional packages?"; then
     source ${SCRIPT_DIR}/_gdg-arch/custom-packages.sh
