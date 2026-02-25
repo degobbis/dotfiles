@@ -1,48 +1,62 @@
 #!/usr/bin/env bash
 
-# The basic wayland copy/paste mechanisms will now persist even when the source window is closed.
-exec-once = wl-clip-persist --clipboard regular
-
-#pgrep -x easyeffects > /dev/null || easyeffects --gapplication-service &
-#sleep 1
-
-#FW_FANCTRL_PID=$(pgrep -f '/usr/bin/python3 fw-fanctrl-ui.py')
-#if  [ ! -z "${FW_FANCTRL_PID}" ]; then
-#	kill $FW_FANCTRL_PID
-#	sleep 1
-#fi
-#gtk-launch fw-fanctrl-ui.desktop &
-
-#pgrep -x solaar > /dev/null && killall -9 solaar
-#sleep 1
-#solaar --window=hide &
-
-#pgrep -x solaar > /dev/null || solaar --window=hide &
-#sleep 1
+if ! env | grep -i uwsm; then
+	pgrep -x solaar >/dev/null && killall -9 solaar
+	echo "Start Solaar"
+	sleep 1
+	solaar show >/dev/null 2>&1
+	solaar --window=hide >/dev/null 2>&1 &
+	sleep 1
 
 
-#pgrep -x signal-desktop > /dev/null && killall -9 signal-desktop
-#sleep 1
-#signal-desktop --start-in-tray &
-
-#pgrep -x signal-desktop > /dev/null || signal-desktop --start-in-tray &
-#sleep 1
-
-
-#pgrep -x nextcloud > /dev/null && killall -9 nextcloud
-#sleep 1
-#nextcloud --background &
-
-#pgrep -x nextcloud > /dev/null || nextcloud --background &
-#sleep 1
+	pgrep -x signal-desktop >/dev/null && killall -9 signal-desktop 
+	echo "Start Signal"
+	sleep 1
+	signal-desktop --start-in-tray >/dev/null 2>&1 &
+	sleep 1
 
 
-#sleep 1
-#pgrep -x rambox > /dev/null && pkill rambox
+	pgrep -x keepassxc > /dev/null && killall -9 keepassxc 
+	echo "Start KeepassXC"
+	sleep 1
+	keepassxc >/dev/null 2>&1 &
+	sleep 1
 
-#sleep 1
-#pgrep -x rambox > /dev/null || rambox --no-sandbox %U
 
+	pgrep -x nextcloud > /dev/null && killall -9 nextcloud 
+	echo "Start Nextcloud"
+	sleep 1
+	nextcloud --background >/dev/null 2>&1 &
+	sleep 1
+
+
+	pgrep -x nm-applet > /dev/null && killall -9 nm-applet
+	echo "Start NetworkManager Applet"
+	sleep 1
+	nm-applet >/dev/null 2>&1 &
+	sleep 1
+
+
+	pgrep -x blueman-applet > /dev/null && killall -9 blueman-applet
+	echo "Start Bluetooth Applet"
+	sleep 1
+	blueman-applet >/dev/null 2>&1 &
+	sleep 1
+
+
+	pgrep -x easyeffects >/dev/null && killall -9 easyeffects
+	echo "Start EasyEfects"
+	sleep 1
+	#easyeffects --hide-window --service-mode --gapplication-service >/dev/null 2>&1 &
+	easyeffects --hide-window --gapplication-service >/dev/null 2>&1 &
+	sleep 1
+
+
+	pgrep -x rambox > /dev/null && killall -9 rambox
+	echo "Start Rambox"
+	sleep 1
+	/opt/rambox/rambox --no-sandbox %U >/dev/null 2>&1 &
+fi
 # Please note:
 # xdg-desktop-portal-gtk is required to get dark theme on GTK apps.
 #

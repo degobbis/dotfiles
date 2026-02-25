@@ -2,7 +2,7 @@
 	"name":"GDG Hyprland Dotfiles (STABLE RELEASE)",
 	"id":"com.gdg.dotfiles.stable",
 	"description":"Modified fork from Stephan Raabe (ML4W OS)",
-	"version":"2.10.1-1",
+	"version":"2.11.0-1",
 	"author":"Guido De Gobbis",
 	"homepage":"",
 	"dependencies":"https://mylinuxforwork.github.io/dotfiles/getting-started/dependencies",
@@ -24,6 +24,11 @@
 		{
 			"title":"Monitor",
 			"source":".config/hypr/conf/monitor.conf",
+			"value":true
+		},
+		{
+			"title":"NWG-Displays",
+			"source":".config/hypr/monitors.conf",
 			"value":true
 		},
 		{

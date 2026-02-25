@@ -32,8 +32,10 @@ declare -a dockerPackages=(
 declare -a amdPackages=(
     "amd-debug-tools"
     "amdguid-wayland-bin"
+    "amdgpu_top"
     "amf-amdgpu-pro"
     "ffmpeg-amd-full"
+    "lact"
     "vulkan-amdgpu-pro"
     "vulkan-headers-git"
     "vulkan-radeon"
