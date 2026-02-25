@@ -1,0 +1,4 @@
+program_options:
+  tray: auto                               # Tray-Icon
+  file_manager: thunar                     # Programm für den Dateimanager-Menüpunkt
+  terminal: kitty --working-directory  # Programm für den Terminal-Menüpunkt
