@@ -96,7 +96,7 @@
     "interval": 1800,
     "signal": 1,
     "hide-empty-text": false,
-    "on-click": "~/.config/ml4w/settings/software.sh",
+    "on-click": "~/.config/ml4w/settings/software.sh && pkill -RTMIN+1 waybar",
     "on-click-right": "~/.config/ml4w/settings/installupdates.sh"
   },
 

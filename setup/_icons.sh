@@ -3,25 +3,25 @@
 # Icons
 # --------------------------------------------------------------
 
-if [ -d ~/.local/share/icons/Colloid ]; then
-    rm -rf ~/.local/share/icons/Colloid
+TEMP_DIR=$(mktemp -d -t ml4w-icons-XXXXXX)
+ICON_DIR="$HOME/.local/share/icons/"
+mkdir -p $ICON_DIR
+
+if [ -d "$ICON_DIR/kora" ]; then
+    rm -rf $ICON_DIR/kora
 fi
 
-if [ -d ~/.local/share/icons/Colloid-Dark ]; then
-    rm -rf ~/.local/share/icons/Colloid-Dark
+if [ -d "$ICON_DIR/kora-pgrey" ]; then
+    rm -rf $ICON_DIR/kora-pgrey
 fi
 
-if [ -d ~/.local/share/icons/Colloid-Light ]; then
-    rm -rf ~/.local/share/icons/Colloid-Light
-fi
+git clone --depth 1 https://github.com/bikass/kora.git $TEMP_DIR
+echo ":: kora icon theme cloned into $TEMP_DIR"
 
-tar -xf $SCRIPT_DIR/icons/01-Colloid.tar.xz -C ~/.local/share/icons/
+# copy icon folders
+cp -rf $TEMP_DIR/kora $ICON_DIR
+cp -rf $TEMP_DIR/kora-pgrey $ICON_DIR
+echo ":: kora icon theme installed in $ICON_DIR"
 
-if [ -d ~/.local/share/icons/Colloid/actions ]; then
-    rm -rf ~/.local/share/icons/Colloid/actions
-fi
-
-if [ -f ~/.local/share/icons/Colloid/actions@2x ]; then
-    rm ~/.local/share/icons/Colloid/actions@2x
-fi
-
+# clean up
+rm -rf $TEMP_DIR

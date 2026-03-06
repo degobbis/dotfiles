@@ -2,10 +2,10 @@
 	"name":"GDG Hyprland Dotfiles (ROLING RELEASE)",
 	"id":"com.gdg.dotfiles",
 	"description":"Modified fork from Stephan Raabe (ML4W OS)",
-	"version":"2.11.1-dev",
+	"version":"2.11.1-1",
 	"author":"Guido De Gobbis",
-	"homepage":"",
-	"dependencies":"https://mylinuxforwork.github.io/dotfiles/getting-started/dependencies",
+	"homepage":"https://ml4w.com/os/",
+	"dependencies":"https://ml4w.com/os/getting-started/dependencies",
 	"source":"https://github.com/degobbis/dotfiles.git",
 	"subfolder":"dotfiles",
 	"setupscript":"setup/setup.sh",
@@ -28,6 +28,11 @@
 		{
 			"title":"NWG-Displays",
 			"source":".config/hypr/monitors.conf",
+			"value":true
+		},
+		{
+			"title":"Hyprsunset",
+			"source":".config/hypr/hyprsunset.conf",
 			"value":true
 		},
 		{
@@ -155,7 +160,7 @@
 			"checkpoint":"Check",
 			"search":"source = ~/.config/hypr/conf/keybindings/",
 			"value":"default",
-			"template":"source = ~/.config/hypr/conf/keybindings/guido-[VALUE].conf"
+			"template":"source = ~/.config/hypr/conf/keybindings/override-[VALUE].conf"
 		},
 		{
 			"type":"text",

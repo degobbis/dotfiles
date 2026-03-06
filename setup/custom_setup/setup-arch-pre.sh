@@ -31,15 +31,15 @@ declare -a pkgsToInstall
 # 6    cyan
 # 7    white
 
-_error() { tput setaf 1; tput bold; echo "[X]" "$@"; tput sgr 0; tput bel; }
-_headline_error() { tput setaf 1; figlet -p "$@"; tput sgr 0; }
-_warn() { tput setaf 3; tput bold; echo "[!]" "$@"; tput sgr 0; }
-_headline_warn() { tput setaf 3; figlet -p "$@"; tput sgr 0; }
-_success() { tput setaf 2; tput bold; echo "[✓]" "$@"; tput sgr 0; }
-_headline_success() { tput setaf 2; figlet -p "$@"; tput sgr 0; }
-_headline() { tput setaf 6; figlet -p "$@"; tput sgr 0; }
-_title() { tput setaf 6; tput bold; echo "::" "$@" "::"; tput sgr 0; }
-_info() { tput setaf 7; echo "->" "$@"; tput sgr 0; }
+_error() { tput setaf 1; tput bold; echo "[X]" "$@"; tput sgr0; tput bel; }
+_headline_error() { tput setaf 1; figlet -p "$@"; tput sgr0; }
+_warn() { tput setaf 3; tput bold; echo "[!]" "$@"; tput sgr0; }
+_headline_warn() { tput setaf 3; figlet -p "$@"; tput sgr0; }
+_success() { tput setaf 2; tput bold; echo "[✓]" "$@"; tput sgr0; }
+_headline_success() { tput setaf 2; figlet -p "$@"; tput sgr0; }
+_headline() { tput setaf 6; figlet -p "$@"; tput sgr0; }
+_title() { tput setaf 6; tput bold; echo "::" "$@" "::"; tput sgr0; }
+_info() { tput setaf 7; echo "->" "$@"; tput sgr0; }
 
 
 # --------------------------------------------------------------

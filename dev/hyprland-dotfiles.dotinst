@@ -2,10 +2,10 @@
 	"name":"GDG Hyprland Dotfiles (DEV)",
 	"id":"com.gdg.dotfiles.dev",
 	"description":"Modified fork from Stephan Raabe (ML4W OS)",
-	"version":"2.11.1-dev",
+	"version":"2.11.1-1",
 	"author":"Guido De Gobbis",
-	"homepage":"https://mylinuxforwork.github.io/dotfiles/",
-	"dependencies":"https://mylinuxforwork.github.io/dotfiles/getting-started/dependencies",
+	"homepage":"https://ml4w.com/os/",
+	"dependencies":"https://ml4w.com/os/getting-started/dependencies",
 	"source":"/srv/git/dotfiles",
 	"subfolder":"dotfiles",
 	"setupscript":"setup/setup.sh",
@@ -28,6 +28,11 @@
 		{
 			"title":"NWG-Displays",
 			"source":".config/hypr/monitors.conf",
+			"value":true
+		},
+		{
+			"title":"Hyprsunset",
+			"source":".config/hypr/hyprsunset.conf",
 			"value":true
 		},
 		{

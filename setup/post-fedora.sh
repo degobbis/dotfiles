@@ -23,7 +23,6 @@ sudo cp $SCRIPT_DIR/packages/eza /usr/bin
 # --------------------------------------------------------------
 
 echo ":: Installing packages with pip"
-sudo pip install hyprshade
 sudo pip install pywalfox
 sudo pip install screeninfo
 sudo pip install waypaper
@@ -74,6 +73,12 @@ source $SCRIPT_DIR/_fonts.sh
 # --------------------------------------------------------------
 
 source $SCRIPT_DIR/_icons.sh
+
+# --------------------------------------------------------------
+# Migrate
+# --------------------------------------------------------------
+
+source $SCRIPT_DIR/migrate.sh
 
 # --------------------------------------------------------------
 # Create XDG Directories

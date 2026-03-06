@@ -35,11 +35,11 @@ packages=(
     "network-manager-applet"
     "imagemagick"
     "polkit-gnome"
-    "hyprshade"
     "grimblast-git"
     "pacman-contrib"
     "loupe"
     "power-profiles-daemon"
+    "hyprsunset"
     # Apps
     "waypaper"
     "swaync"
@@ -249,7 +249,7 @@ source $SCRIPT_DIR/_ml4w-apps.sh
 # Flatpaks
 # --------------------------------------------------------------
 
-#source $SCRIPT_DIR/_flatpaks.sh
+source $SCRIPT_DIR/_flatpaks.sh
 
 # --------------------------------------------------------------
 # Cursors
