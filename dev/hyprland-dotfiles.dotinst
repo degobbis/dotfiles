@@ -2,7 +2,7 @@
 	"name":"GDG Hyprland Dotfiles (DEV)",
 	"id":"com.gdg.dotfiles.dev",
 	"description":"Modified fork from Stephan Raabe (ML4W OS)",
-	"version":"2.11.1-1",
+	"version":"2.11.2-dev",
 	"author":"Guido De Gobbis",
 	"homepage":"https://ml4w.com/os/",
 	"dependencies":"https://ml4w.com/os/getting-started/dependencies",
