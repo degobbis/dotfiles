@@ -102,6 +102,22 @@ _checkAURHelper() {
     fi
 }
 
+
+# --------------------------------------------------------------
+# Install needed packages
+# --------------------------------------------------------------
+
+echo ":: I make sure that some base packages required for the installation script are installed ::"
+sudo pacman -Sy --needed --noconfirm base-devel git curl gum figlet
+
+# --------------------------------------------------------------
+# Load custom pre installation script
+# --------------------------------------------------------------
+
+source $SCRIPT_DIR/custom_setup/setup-arch-pre.sh
+_installAllPackages
+_finishMessage
+
 # --------------------------------------------------------------
 # AUR Helper
 # --------------------------------------------------------------

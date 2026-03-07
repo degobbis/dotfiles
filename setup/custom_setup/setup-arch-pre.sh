@@ -326,6 +326,19 @@ _installPackages() {
     done
 }
 
+install_package() {
+    _installPackages "$1"
+}
+
+process_package_file() {
+    local pkg
+    local file=$1; [ ! -f "$file" ] && return 0
+    while IFS= read -r pkg || [ -n "$pkg" ]; do
+        pkg=$(echo "$pkg" | sed 's/#.*//' | xargs); [[ -z "$pkg" ]] && continue
+        _installPackages "$pkg"
+    done < "$file"
+}
+
 _installChaoticRepository(){
     _headline "Chaotic-Aur"
 
@@ -426,10 +439,8 @@ _checkAURHelper() {
 }
 
 # Install chaotic-aur repository for a lot of precompiled AUR Packages
-_installChaoticRepository
-
-if [[ $? -eq 0 ]];then
-    CHAOTIC_AUR_INSTALLED=1
+if _installChaoticRepository; then
+    export CHAOTIC_AUR_INSTALLED=1
 fi
 
 _selectAURHelper

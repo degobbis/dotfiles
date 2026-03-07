@@ -44,10 +44,10 @@ testvercomp() {
 get_latest_release() {
     local repo="${1:-mylinuxforwork/dotfiles}" # Defaults to the CORRECT repo
     local url="https://api.github.com/repos/$repo/releases/latest"
-    
+
     # Fetch data
     local response=$(curl -s "$url")
-    
+
     # Extract tag (e.g., "v2.9.8")
     local tag=$(echo "$response" | jq -r .tag_name)
 
@@ -58,6 +58,6 @@ get_latest_release() {
     echo "$tag"
 }
 
-REMOTE_TAG=$(get_latest_release "mylinuxforwork/dotfiles")
+REMOTE_TAG=$(get_latest_release "degobbis/dotfiles")
 version=$(jq -r '.Version' ~/.config/ml4w/version/version.json)
 testvercomp $version $REMOTE_TAG "<"

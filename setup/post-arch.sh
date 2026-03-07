@@ -5,7 +5,14 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # --------------------------------------------------------------
 # Oh My Posh
 # --------------------------------------------------------------
-curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
+
+if [[ "${CHAOTIC_AUR_INSTALLED}" -eq 1 ]]; then
+        _installPackages "oh-my-posh-bin"
+else
+    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
+fi
+
+_installAllPackages
 
 # --------------------------------------------------------------
 # Prebuilt Packages
@@ -54,3 +61,15 @@ source $SCRIPT_DIR/migrate.sh
 # --------------------------------------------------------------
 
 xdg-user-dirs-update
+
+# --------------------------------------------------------------
+# Load custom post installation script
+# --------------------------------------------------------------
+
+source $SCRIPT_DIR/custom_setup/setup-arch-post.sh
+
+# --------------------------------------------------------------
+# Finish
+# --------------------------------------------------------------
+
+_finishMessage

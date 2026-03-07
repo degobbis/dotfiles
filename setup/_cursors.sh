@@ -13,11 +13,32 @@ bibata_url="https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7"
 if [ -d $download_folder ]; then
     rm -rf $download_folder
 fi
-mkdir -p $download_folder
 
-wget -P $download_folder $bibata_url/Bibata-Modern-Amber.tar.xz
-wget -P $download_folder $bibata_url/Bibata-Modern-Classic.tar.xz
-wget -P $download_folder $bibata_url/Bibata-Modern-Ice.tar.xz
+bibataUrls=(
+	"$bibata_url/Bibata-Modern-Amber.tar.xz"
+	"$bibata_url/Bibata-Modern-Classic.tar.xz"
+	"$bibata_url/Bibata-Modern-Ice.tar.xz"
+)
+
+_installBibataCursors() {
+    local cursor
+    local fileName
+    for cursor in "${bibataUrls[@]}"; do
+		fileName=$(basename "$cursor")
+		_downloadFileToTmp \
+			--download-url="$cursor" \
+			--target-dir='ml4w/bibata-cursors'
+
+		if [[ $? -eq 0 ]]; then
+			_info "Cursor $fileName downloaded"
+			tar -xf $downloadedFileToTmp -C ~/.local/share/icons/
+			_info "Cursor $fileName installed into ~/.local/share/icons"
+		else
+			_error "Error downloading cursor $fileName"
+		fi
+		unset downloadedFileToTmp
+	done
+}
 
 if [ ! -d ~/.local/share/icons/ ]; then
     mkdir -p ~/.local/share/icons/
@@ -33,13 +54,7 @@ if [ -d ~/.local/share/icons/Bibata-Modern-Amber ]; then
     rm -rf ~/.local/share/icons/Bibata-Modern-Ice
 fi
 
-tar -xf $download_folder/Bibata-Modern-Amber.tar.xz -C ~/.local/share/icons/
-tar -xf $download_folder/Bibata-Modern-Classic.tar.xz -C ~/.local/share/icons/
-tar -xf $download_folder/Bibata-Modern-Ice.tar.xz -C ~/.local/share/icons/
-
-if [ -d $download_folder ]; then
-    rm -rf $download_folder
-fi
+_installBibataCursors
 
 # --------------------------------------------------------------
 # Arc Cursors
