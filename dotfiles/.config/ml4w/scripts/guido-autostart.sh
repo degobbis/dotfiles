@@ -52,6 +52,12 @@ if ! env | grep -i uwsm; then
 	sleep 1
 
 
+	pgrep -x udiskie > /dev/null && killall -9 udiskie
+	echo "Start Udiskie"
+	sleep 1
+	udiskie >/dev/null 2>&1 &
+
+
 	pgrep -x rambox > /dev/null && killall -9 rambox
 	echo "Start Rambox"
 	sleep 1

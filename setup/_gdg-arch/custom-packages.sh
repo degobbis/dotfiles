@@ -156,6 +156,7 @@ declare -a applicationPackages=(
     "tesseract-data-deu"
     "tesseract-data-ita"
 #    "thunderbird" "thunderbird-i18n-de"
+    "udiskie"
     "vlc" "phonon-qt6-vlc" "vlc-plugins-all"
     "x264" "x265"
 )

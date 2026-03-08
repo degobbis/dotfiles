@@ -40,8 +40,7 @@ check_sddm_installed() {
 }
 
 check_sddm_active() {
-    # Checks if a display manager is active
-    systemctl is-active --quiet display-manager
+    systemctl is-active --quiet sddm
 }
 
 install_sddm() {

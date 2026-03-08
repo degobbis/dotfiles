@@ -42,7 +42,7 @@ testvercomp() {
 
 # Get latest tag from GitHub
 get_latest_release() {
-    local repo="${1:-mylinuxforwork/dotfiles}" # Defaults to the CORRECT repo
+    local repo="${1:-degobbis/dotfiles}" # Defaults to the CORRECT repo
     local url="https://api.github.com/repos/$repo/releases/latest"
 
     # Fetch data
