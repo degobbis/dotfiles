@@ -160,7 +160,7 @@
 			"checkpoint":"Check",
 			"search":"source = ~/.config/hypr/conf/keybindings/",
 			"value":"multiscreen",
-			"template":"source = ~/.config/hypr/conf/keybindings/guido-[VALUE].conf"
+			"template":"source = ~/.config/hypr/conf/keybindings/override-[VALUE].conf"
 		},
 		{
 			"type":"text",
