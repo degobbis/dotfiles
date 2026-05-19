@@ -329,7 +329,7 @@ declare -a systemPackages=(
 #    "ufw"
 #    "uglify-js"
     "usbutils"
-    "vscodium-insiders-bin"
+    "vscodium-bin"
 #    "weston"
     "wireguard-tools"
     "wl-clip-persist"
