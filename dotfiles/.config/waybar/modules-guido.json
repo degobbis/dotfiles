@@ -59,10 +59,10 @@
 
   // ML4W Welcome App
   "custom/ml4w-welcome": {
-    "on-click": "flatpak run com.ml4w.sidebar",
-    "on-click-right": "flatpak run com.ml4w.welcome",
+    "on-click": "qs ipc call sidebar toggle",
+    "on-click-right": "qs ipc call welcome toggle",
     "format": " ",
-    "tooltip-format": "Left-Click: Open ML4W Sidebar App\nRight-Click: Open ML4W Welcome App"
+    "tooltip-format": "Left: Open ML4W Sidebar\nRight: Open ML4W Welcome App"
   },
 
   // Empty
@@ -177,7 +177,8 @@
   // Power Menu
   "custom/exit": {
     "format": "",
-    "on-click": "~/.config/ml4w/scripts/ml4w-wlogout",
+    "on-click": "qs ipc call power toggle",
+    // "on-click": "~/.config/ml4w/scripts/ml4w-wlogout",
     "on-click-right": "hyprlock",
     "tooltip-format": "Left-Click: Power menu\nRight-Click: Lock screen"
   },
@@ -240,7 +241,8 @@
     "interval": 1,
     "format": " {:L%a %Od.  %H:%M}",
     //"locale": "fr_CA.UTF-8",
-    "on-click": "flatpak run com.ml4w.calendar",
+    "on-click": "qs ipc call calendar toggle",
+    //"on-click": "flatpak run com.ml4w.calendar",
     "timezone": "Europe/Berlin",
     "tooltip-format": "  {:L%H:%M:%S\n  %A, %Od.%Om.%Y}"
   },

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # --------------------------------------------------------------
 # Icons
 # --------------------------------------------------------------
@@ -6,15 +7,6 @@
 TEMP_DIR=$(mktemp -d -t ml4w-icons-XXXXXX)
 ICON_DIR="$HOME/.local/share/icons/"
 mkdir -p $ICON_DIR
-
-if [ -d "$ICON_DIR/kora" ]; then
-    rm -rf $ICON_DIR/kora
-fi
-
-if [ -d "$ICON_DIR/kora-pgrey" ]; then
-    rm -rf $ICON_DIR/kora-pgrey
-fi
-
 git clone --depth 1 https://github.com/bikass/kora.git $TEMP_DIR
 echo ":: kora icon theme cloned into $TEMP_DIR"
 

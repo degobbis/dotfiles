@@ -6,42 +6,42 @@ if ! env | grep -i uwsm; then
 	sleep 1
 	solaar show >/dev/null 2>&1
 	solaar --window=hide >/dev/null 2>&1 &
-	sleep 1
+	sleep 0.5
 
 
 	pgrep -x signal-desktop >/dev/null && killall -9 signal-desktop 
 	echo "Start Signal"
 	sleep 1
 	signal-desktop --start-in-tray >/dev/null 2>&1 &
-	sleep 1
+	sleep 0.5
 
 
 	pgrep -x keepassxc > /dev/null && killall -9 keepassxc 
 	echo "Start KeepassXC"
 	sleep 1
 	keepassxc >/dev/null 2>&1 &
-	sleep 1
+	sleep 0.5
 
 
 	pgrep -x nextcloud > /dev/null && killall -9 nextcloud 
 	echo "Start Nextcloud"
 	sleep 1
 	nextcloud --background >/dev/null 2>&1 &
-	sleep 1
+	sleep 0.5
 
 
 	pgrep -x nm-applet > /dev/null && killall -9 nm-applet
 	echo "Start NetworkManager Applet"
 	sleep 1
 	nm-applet >/dev/null 2>&1 &
-	sleep 1
+	sleep 0.5
 
 
 	pgrep -x blueman-applet > /dev/null && killall -9 blueman-applet
 	echo "Start Bluetooth Applet"
 	sleep 1
 	blueman-applet >/dev/null 2>&1 &
-	sleep 1
+	sleep 0.5
 
 
 	pgrep -x easyeffects >/dev/null && killall -9 easyeffects
@@ -49,13 +49,14 @@ if ! env | grep -i uwsm; then
 	sleep 1
 	#easyeffects --hide-window --service-mode --gapplication-service >/dev/null 2>&1 &
 	easyeffects --hide-window --gapplication-service >/dev/null 2>&1 &
-	sleep 1
+	sleep 0.5
 
 
 	pgrep -x udiskie > /dev/null && killall -9 udiskie
 	echo "Start Udiskie"
 	sleep 1
 	udiskie >/dev/null 2>&1 &
+	sleep 0.5
 
 
 	pgrep -x rambox > /dev/null && killall -9 rambox
@@ -84,6 +85,6 @@ fi
 # Reload Waybar
 # -----------------------------------------------------
 
-#sleep 2
+#sleep 1
 #killall -SIGUSR2 waybar
 #$HOME/.config/waybar/launch.sh &

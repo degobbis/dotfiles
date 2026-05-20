@@ -8,13 +8,12 @@ jq
 flatpak
 vim
 inotify-tools
-gnome-themes-extra
 udisks2
 gvfs
 udiskie
 hyprpaper
 hyprlock
-hypridle
+hypridle-git
 hyprpicker
 xdg-desktop-portal-hyprland
 kitty
@@ -50,3 +49,6 @@ breeze
 tesseract
 wl-clipboard
 btop
+cargo
+eza
+libsecret
