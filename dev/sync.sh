@@ -37,7 +37,7 @@ if [ -z "$project_subfolder" ]; then
 else
     SOURCE_DIR=$(echo "$project_source/$project_subfolder" | envsubst)
 fi
-TARGET_DIR="$HOME/.mydotfiles/$project_id"
+TARGET_DIR="$HOME/dotfiles/$project_id"
 EVENTS="modify,create,delete,move"
 EXCLUDE_FILE="$SCRIPT_DIR/protected"
 

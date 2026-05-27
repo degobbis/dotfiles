@@ -1,0 +1,32 @@
+-- -----------------------------------------------------
+-- Input
+-- -----------------------------------------------------
+
+hl.config({
+    input = {
+        kb_layout  = "de",
+        kb_variant = "nodeadkeys",
+        kb_model   = "pc105",
+        kb_options = "shift:breaks_caps",
+        kb_rules   = "evdev",
+        numlock_by_default = true,
+
+        follow_mouse = 1,
+        mouse_refocus = false,
+        follow_mouse = 1,
+
+        sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+
+        touchpad = {
+            -- for desktop
+            -- natural_scroll = false,
+
+            -- for laptop
+            natural_scroll = true,
+            scroll_factor = 1.0,  -- Touchpad scroll factor
+            middle_button_emulation = false,
+            clickfinger_behavior = true,
+            disable_while_typing = true,
+        },
+    },
+})
