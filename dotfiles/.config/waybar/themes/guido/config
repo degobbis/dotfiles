@@ -14,7 +14,7 @@
     "margin-top": 0,
     "margin-bottom": 0,
     "margin-left": 0,
-    "margin-right": 0,    
+    "margin-right": 0,
     "spacing": 0,
 
     // Load Modules
@@ -38,7 +38,8 @@
     // Modules Center
     "modules-center": [
         //"hyprland/workspaces"
-        "network"
+        "network",
+        "custom/empty"
     ],
 
     // Modules Right    
@@ -51,11 +52,12 @@
         "power-profiles-daemon",
         "battery",
         "group/hardware",
-        "group/tools",
+        //"group/tools",
         "tray",
         "custom/notification",
         "custom/exit",
         "custom/ml4w-welcome",
+        "custom/hypridle",
         "clock"
     ]
 }

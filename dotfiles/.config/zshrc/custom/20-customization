@@ -48,6 +48,7 @@ zi wait silent lucid for \
       if"[[ $+commands[nmap] ]]" OMZ::plugins/nmap \
       if"[[ $+commands[rsync] ]]" OMZ::plugins/rsync \
       if"[[ $+commands[npm] ]]" OMZ::plugins/npm \
+      if"[[ $+commands[gh] ]]" OMZ::plugins/gh \
       OMZ::plugins/sudo \
       OMZ::plugins/systemd \
       OMZ::plugins/ssh-agent \

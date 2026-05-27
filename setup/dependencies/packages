@@ -13,7 +13,7 @@ gvfs
 udiskie
 hyprpaper
 hyprlock
-hypridle-git
+hypridle
 hyprpicker
 xdg-desktop-portal-hyprland
 kitty
@@ -46,7 +46,7 @@ cliphist
 gvfs
 grim
 breeze
-tesseract
+tesseract-data-eng
 wl-clipboard
 btop
 cargo

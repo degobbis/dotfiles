@@ -39,10 +39,6 @@ output_path = '~/.config/gtk-4.0/colors.css'
 input_path = '~/.config/matugen/templates/pywalfox-colors.json'
 output_path = '~/.cache/wal/colors.json'
 
-[templates.wlogout]
-input_path = '~/.config/matugen/templates/colors.css'
-output_path = '~/.config/wlogout/colors.css'
-
 [templates.swaync]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/swaync/colors.css'
@@ -89,6 +85,10 @@ output_path = '~/.config/ohmyposh/colors.json'
 post_hook = "jq --slurpfile palette ~/.config/ohmyposh/colors.json '. + $palette[0]' ~/.config/ohmyposh/EDM115-newline.omp.json > /tmp/new_theme.json && mv /tmp/new_theme.json ~/.config/ohmyposh/EDM115-newline.omp.json"
 
 # Custom schemes
+[templates.wlogout]
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/wlogout/colors.css'
+
 [templates.all]
 input_path = '~/.config/matugen/templates/all.json'
 output_path = '~/.config/matugen/colors/all-colors.json'
