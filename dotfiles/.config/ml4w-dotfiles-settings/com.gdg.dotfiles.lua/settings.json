@@ -108,7 +108,7 @@
         "folder": "~/.config/hypr/conf/animations",
         "mode": "replace",
         "match": "local name = \".*\"",
-        "default": "default.lua",
+        "default": "animations-end4.lua",
         "filetypes": ".lua"
     },{
         "name": "Decoration Variants",
@@ -164,7 +164,7 @@
       "file": "~/.config/ml4w/settings/wallpaper-app",
       "type": "choose",
       "mode": "overwrite",
-      "default": "waypaper",
+      "default": "quickshell",
       "options": ["quickshell", "waypaper"]
     },{
       "name": "Default Terminal",

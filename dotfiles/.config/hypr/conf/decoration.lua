@@ -1,2 +1,2 @@
-local name = "default.lua"
+local name = "guido.lua"
 load_variant(name,"decorations")
