@@ -4,7 +4,7 @@ hl.monitor({
     position = "auto",
     scale = 1
 })
-
+hl.bind("ALT + Q", hl.dsp.window.close())
 hl.config({
     misc = {
         disable_hyprland_logo = true,
@@ -39,11 +39,6 @@ hl.config({
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
     },
 })
-
 hl.on("hyprland.start", function()
     hl.exec_cmd("nwg-hello; hyprctl dispatch exit")
 end)
-
-hl.bind("ALT + Q", killactive)
-
-
