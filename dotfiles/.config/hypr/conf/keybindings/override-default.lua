@@ -59,7 +59,7 @@ hl.bind(mainMod .. " + CTRL + B", hl.dsp.exec_cmd("~/.config/waybar/launch.sh"),
 
 hl.unbind(mainMod .. " + SHIFT + B")
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("~/.config/waybar/toggle.sh"), { description = "Toggle waybar (on/off)" })
-hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd(var_SCRIPTS .. "/ml4w-cliphist"), { description = "Open clipboard manager" })
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd(SCRIPTS .. "/ml4w-cliphist"), { description = "Open clipboard manager" })
 
 hl.bind(mainMod .. " + ALT + U", hl.dsp.exec_cmd(HYPRSCRIPTS .. "/gdg-update-hyprland-plugins.sh"), { description = "Update Hyprland-Plugins" })
 
