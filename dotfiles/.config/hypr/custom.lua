@@ -239,20 +239,20 @@ if hl.plugin.hyprbars ~= nil then
     })
 
     -- Button zum schließen
-    hl.plugin.hyprbars.add_button({
-        bg_color = "rgb(ff4040)",
-        fg_color = "rgb(ffffff)",
-        size = 20,
-        icon = "󰖭",
-        action = "hyprctl dispatch killactive",
-    })
+--    hl.plugin.hyprbars.add_button({
+--        bg_color = "rgb(ff4040)",
+--        fg_color = "rgb(ffffff)",
+--        size = 20,
+--        icon = "󰖭",
+--        action = "hyprctl dispatch killactive",
+--    })
 
     -- Button zum maximieren
-    hl.plugin.hyprbars.add_button({
-        bg_color = "rgb(eeee11)",
-        fg_color = "rgb(000000)",
-        size = 20,
-        icon = "",
-        action = "hyprctl dispatch fullscreen 1",
-    })
+--    hl.plugin.hyprbars.add_button({
+--        bg_color = "rgb(eeee11)",
+--        fg_color = "rgb(000000)",
+--        size = 20,
+--        icon = "",
+--        action = "hyprctl dispatch fullscreen 1",
+--    })
 end
