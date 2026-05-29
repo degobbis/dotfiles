@@ -19,8 +19,8 @@
 
     // Load Modules
     "include": [
-        "~/.config/waybar/waybar-quicklinks-guido.json",
-        "~/.config/waybar/modules-guido.json"
+        "~/.config/waybar/waybar-quicklinks-guido.jsonc",
+        "~/.config/waybar/modules-guido.jsonc"
     ],
 
     // Modules Left
