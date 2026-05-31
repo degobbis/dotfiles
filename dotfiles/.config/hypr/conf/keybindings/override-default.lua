@@ -80,12 +80,3 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + CTRL + " .. key, hl.dsp.window.move({ workspace = i, silent = true }), { description = "Move active window silent to workspace " .. i })
 end
 
--- Fix window resize
-hl.unbind(mainMod .. " + SHIFT + right")
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true }, { description = "Increase window width with keyboard" })
-hl.unbind(mainMod .. " + SHIFT + left")
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true }, { description = "Reduce window width with keyboard" })
-hl.unbind(mainMod .. " + SHIFT + down")
-hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true }, { description = "Increase window height with keyboard" })
-hl.unbind(mainMod .. " + SHIFT + up")
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true }, { description = "Reduce window height with keyboard" })
