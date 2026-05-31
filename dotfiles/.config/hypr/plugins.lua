@@ -1,3 +1,6 @@
+-- Colors
+require("plugin-hyprbar-colors")
+
 -- Hyprland Plugins laden
 hl.exec_cmd("hyprpm reload -n")
 
@@ -28,10 +31,14 @@ if hl.plugin.hyprbars ~= nil then
         plugin = {
             hyprbars = {
                 -- example config
+                bar_color = hyprbar_bg,
+                col = {
+                  text = hyprbar_title_text,
+                },
                 bar_height = 30,
-                bar_text_size = 12,
-                on_double_click = "hyprctl dispatch fullscreen 1",
-
+                bar_text_size = 18,
+                bar_part_of_window = true,
+                bar_precedence_over_border = true,
             },
         },
     })

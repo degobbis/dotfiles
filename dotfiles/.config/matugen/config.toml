@@ -111,3 +111,7 @@ post_hook = "jq --slurpfile palette ~/.config/matugen/colors/guido-omp-colors.js
 input_path = "~/.config/matugen/templates/kitty-guido-colors-override.conf"
 output_path = "~/.config/kitty/guido-colors-override.conf"
 post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.hyprland-plugin-hyprbar-lua]
+input_path = '~/.config/matugen/templates/hyprland-plugin-hyprbar-colors.lua'
+output_path = '~/.config/hypr/plugin-hyprbar-colors.lua'
