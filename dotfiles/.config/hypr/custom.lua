@@ -10,10 +10,6 @@ hl.config({
         disable_time = false,
     },
 
-    ecosystem = {
-        enforce_permissions = true,
-    },
-
     general = {
         layout = "master",
     },
@@ -78,12 +74,6 @@ hl.config({
     },
 })
 
-hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
-hl.permission("/usr/(bin|local/bin)/hyprpicker", "screencopy", "allow")
-hl.permission("/usr/(bin|local/bin)/hyprlock", "screencopy", "allow")
-hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
-hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
-
 -- qt5ct or qt6ct environment variable
 --hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 --hl.env("QT_QPA_PLATFORMTHEME", "qt6ct") -- Defined in ml4w.lua
@@ -102,9 +92,7 @@ hl.env("HYPRCURSOR_SIZE", "32") -- Defined with 24 in ml4w.lua
 -- Disable appimage launcher by default
 hl.env("APPIMAGELAUNCHER_DISABLE", "1")
 
--- Hyprland Plugins laden
-hl.exec_cmd("hyprpm reload -n")
-
+-- Start once
 hl.on("hyprland.start", function()
     hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 32")
     -- Jetbrains IDE Fix for rendering
@@ -204,55 +192,3 @@ hl.window_rule({
     size = "(monitor_w*0.85) (monitor_h*0.85)",
 })
 
---
--- Plugin configuration
---
-
--- Prüfe und lade 'split_monitor_workspaces' Einstellungen
-if hl.plugin.split_monitor_workspaces ~= nil then
-    hl.config({
-        plugin = {
-            split_monitor_workspaces = {
-                count                        = 10,
-                keep_focused                 = 0,
-                enable_notifications         = 0,
-                --enable_persistent_workspaces = 1,
-                --enable_wrapping              = 1,
-                --link_monitors                = 0,
-            },
-        },
-    })
-end
-
--- Prüfe und lade 'hyprbars' Einstellungen
-if hl.plugin.hyprbars ~= nil then
-    hl.config({
-        plugin = {
-            hyprbars = {
-                -- example config
-                bar_height = 30,
-                bar_text_size = 12,
-                on_double_click = "hyprctl dispatch fullscreen 1",
-
-            },
-        },
-    })
-
-    -- Button zum schließen
---    hl.plugin.hyprbars.add_button({
---        bg_color = "rgb(ff4040)",
---        fg_color = "rgb(ffffff)",
---        size = 20,
---        icon = "󰖭",
---        action = "hyprctl dispatch killactive",
---    })
-
-    -- Button zum maximieren
---    hl.plugin.hyprbars.add_button({
---        bg_color = "rgb(eeee11)",
---        fg_color = "rgb(000000)",
---        size = 20,
---        icon = "",
---        action = "hyprctl dispatch fullscreen 1",
---    })
-end
