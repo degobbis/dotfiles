@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 sleep 1
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 # 1. Repo Preflight
 preflight="$repo_path/setup/preflight-$distro.sh"
 if [ -f "$preflight" ]; then

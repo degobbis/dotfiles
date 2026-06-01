@@ -7,7 +7,10 @@
 #
 
 sleep 1
-install_platform="$(cat ~/.config/ml4w/settings/platform.sh)"
+install_platform="arch"
+if [ -f "~/.config/ml4w/settings/platform.sh" ]; then
+    install_platform="$(cat ~/.config/ml4w/settings/platform.sh)"
+fi
 
 # Check if command exists
 _checkCommandExists() {

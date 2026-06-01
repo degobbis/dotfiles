@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 # Paths
-platform=$(cat ~/.config/ml4w/settings/platform.sh)
-logo_path="$HOME/.config/fastfetch/${platform}.png"
+platform="arch"
+if [ -f "~/.config/ml4w/settings/platform.sh" ]; then
+    platform="$(cat ~/.config/ml4w/settings/platform.sh)"
+fi
+
+logo_path="$HOME/.config/fastfetch/arch.png"
+if [ -f "$HOME/.config/fastfetch/${platform}.png" ]; then
+    logo_path="$HOME/.config/fastfetch/${platform}.png"
+fi
+
 output_path="/tmp/arch-colored.png"
 cache_dir="$HOME/.cache/fastfetch"
 
