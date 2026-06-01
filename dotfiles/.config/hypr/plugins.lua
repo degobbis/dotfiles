@@ -39,6 +39,7 @@ if hl.plugin.hyprbars ~= nil then
                 bar_text_size = 18,
                 bar_part_of_window = true,
                 bar_precedence_over_border = true,
+                on_double_click = "hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = \"maximized\", action = \"toggle\" })'",
             },
         },
     })
@@ -49,7 +50,7 @@ if hl.plugin.hyprbars ~= nil then
 --        fg_color = "rgb(ffffff)",
 --        size = 20,
 --        icon = "󰖭",
---        action = "hyprctl dispatch killactive",
+--        action = "hl.dispatch(hl.dsp.killactive())",
 --    })
 
     -- Button zum maximieren
@@ -58,6 +59,6 @@ if hl.plugin.hyprbars ~= nil then
 --        fg_color = "rgb(000000)",
 --        size = 20,
 --        icon = "",
---        action = "hyprctl dispatch fullscreen 1",
+--        action = "hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = \"maximized\", action = \"toggle\" })'",
 --    })
 end

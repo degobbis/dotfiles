@@ -1,13 +1,13 @@
 {
 	"name":"GDG Hyprland Dotfiles (ROLING RELEASE)",
-	"id":"com.gdg.dotfiles.lua",
+	"id":"com.gdg.dotfiles.dev",
 	"description":"Modified fork from Stephan Raabe (ML4W OS)",
-	"version":"2.13.0-dev",
+	"version":"2.13.1-dev",
 	"author":"Guido De Gobbis",
 	"homepage":"https://ml4w.com/os/",
 	"dependencies":"https://ml4w.com/os/getting-started/dependencies",
 	"source":"https://github.com/degobbis/dotfiles.git",
-	"branch":"gdg-fork-lua",
+	"branch":"gdg-fork",
 	"subfolder":"dotfiles",
 	"restore":[
 		{
