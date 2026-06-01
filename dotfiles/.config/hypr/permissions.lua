@@ -1,15 +1,16 @@
--- Add your additional Hyprland configurations here
+-- Add your Hyprland permission configurations here
 --
--- This is an additional key binding
---
+-- You need 'hyprland-guiutils' installed to use ist
+-- See: https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
 
--- Example for xwayland
+-- Global permission
 hl.config({
     ecosystem = {
         enforce_permissions = true,
     },
 })
 
+-- Allow use without prompting for sudo permissions
 hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
 hl.permission("/usr/(bin|local/bin)/hyprpicker", "screencopy", "allow")
 hl.permission("/usr/(bin|local/bin)/hyprlock", "screencopy", "allow")
