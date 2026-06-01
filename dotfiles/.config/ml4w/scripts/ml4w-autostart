@@ -36,7 +36,7 @@ qs &
 sleep 0.5
 
 # Start ML4W Settings App
-PROFILE="com.gdg.dotfiles.lua" qs -p $HOME/.local/share/ml4w-dotfiles-settings/quickshell &
+PROFILE="com.gdg.dotfiles.dev" qs -p $HOME/.local/share/ml4w-dotfiles-settings/quickshell &
 info "ML4W Dotfiles Settings started"
 
 # Start Quickshell Overview
