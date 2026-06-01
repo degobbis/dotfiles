@@ -129,7 +129,7 @@ Item {
                                 text: workspaceValue
                                 font {
                                     pixelSize: root.workspaceNumberSize * root.scale
-                                    weight: Font.DemiBold
+                                    weight: Font.SemiBold
                                     family: Appearance.font.family.expressive
                                 }
                                 color: ColorUtils.transparentize(Appearance.colors.colOnLayer1, 0.8)
