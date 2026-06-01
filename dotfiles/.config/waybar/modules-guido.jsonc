@@ -137,9 +137,11 @@
     //"on-click-middle": "brave --app=https://chat.openai.com",
     "on-click-middle": "brave --app=https://gemini.google.com/?hl=de",
     //"on-click-right": "brave --app=https://www.perplexity.ai",
-    "on-click-right": "brave --app=https://chat.openai.com",
+    //"on-click-right": "brave --app=https://chat.openai.com",
+    "on-click-right": "gtk-launch mammouth-ai.desktop",
     //"tooltip-format": "AI Support\nLeft-Click = LM Studio (local)\nMiddle-Click = Google Gemini\nRight-Click = Perplexity"
-    "tooltip-format": "AI Support\nLeft-Click = LM Studio (local)\nMiddle-Click = Google Gemini\nRight-Click = ChatGPT"
+    //"tooltip-format": "AI Support\nLeft-Click = LM Studio (local)\nMiddle-Click = Google Gemini\nRight-Click = ChatGPT"
+    "tooltip-format": "AI Support\nLeft-Click = LM Studio (local)\nMiddle-Click = Google Gemini\nRight-Click = Mammouth.ai"
   },
 
   // Calculator

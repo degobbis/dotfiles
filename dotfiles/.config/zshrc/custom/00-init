@@ -24,6 +24,12 @@ fi
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export PATH=$PATH:$HOME/.cargo/bin
 
+# Mammouth Code
+export PATH="$HOME/.mammouth/bin:$PATH"
+
+# LMStudio CLI
+export PATH="$HOME/.lmstudio/bin:$PATH"
+
 export NUMCPUS=$(nproc)
 export NUMCPUSMINUSTWO=$(( NUMCPUS - 4 ))
 export MAKEOPTS="-j$NUMCPUSMINUSTWO -l4"
