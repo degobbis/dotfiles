@@ -90,7 +90,7 @@ declare -a framework16Packages=(
     "framework-sensors-git"
     "framework-system"
     "sof-firmware"
-    "qmk-hid" "qmk-udev-rules-git"
+    "fw16-kbd-uleds-git"
 )
 
 declare -a firmwarePackages=(
