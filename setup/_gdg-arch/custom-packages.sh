@@ -400,20 +400,20 @@ declare -a systemPackages=(
 
 POST_configureLoginManager=0
 _configureLoginManager() {
-    if [[ ! -f /usr/share/nwg-hello/current_wallpaper.jpg ]]; then
+    if [[ ! -f "/usr/share/nwg-hello/current_wallpaper.jpg" ]]; then
        _title "Configure login manager (greetd)"
-       sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/nwg-hello* /etc/nwg-hello/
-       sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/greetd.conf /etc/greetd/
+       sudo cp -f "$SCRIPT_DIR"/_gdg-arch/nwg-hello/nwg-hello* /etc/nwg-hello/
+       sudo cp -f "$SCRIPT_DIR"/_gdg-arch/nwg-hello/greetd.conf /etc/greetd/
        sudo cp -f /etc/pam.d/greetd /etc/pam.d/greetd.bkp
-       sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/greetd.pam.file /etc/pam.d/greetd
-       sudo cp -f ${SCRIPT_DIR}/_gdg-arch/nwg-hello/background.jpg /usr/share/nwg-hello/background.jpg
+       sudo cp -f "$SCRIPT_DIR"/_gdg-arch/nwg-hello/greetd.pam.file /etc/pam.d/greetd
+       sudo cp -f "$SCRIPT_DIR"/_gdg-arch/nwg-hello/background.jpg /usr/share/nwg-hello/background.jpg
     fi
     echo
-    if [[ "$(systemctl is-enabled greetd.service)" == "disabled" ]]; then
+    if ! systemctl is-enabled greetd.service >/dev/null 2>&1; then
         local lm_service_name="$(systemctl status display-manager.service | head -n 1 | cut -d ' ' -f 2)"
-        sudo systemctl disable ${lm_service_name}
+        sudo systemctl disable "$lm_service_name"
         sudo systemctl enable greetd.service
-        if [[ $? -eq 0 ]]; then
+        if systemctl is-enabled greetd.service >/dev/null 2>&1; then
             _success "The DisplayManager 'greetd' with 'nwg-hello' as theme is now enabled."
             _info "It will take effect on the next Login."
         else
@@ -423,11 +423,11 @@ _configureLoginManager() {
     fi
 }
 
-POST_configureFramework16KbdBacklight=0
+export POST_configureFramework16KbdBacklight=0
 _configureFramework16KbdBacklight() {
-    if [[ ! -f /etc/udev/rules.d/99-framework16-kbd-backlight.rules ]]; then
+    if [[ ! -f "/etc/udev/rules.d/99-framework16-kbd-backlight.rules" ]]; then
         _title "Add udev rule for Framework KDB Backlight"
-        sudo cp -f ${SCRIPT_DIR}/_gdg-arch/framework16/99-framework16-kbd-backlight.rules /etc/udev/rules.d/99-framework16-kbd-backlight.rules
+        sudo cp -f "${SCRIPT_DIR}/_gdg-arch/framework16/99-framework16-kbd-backlight.rules" "/etc/udev/rules.d/99-framework16-kbd-backlight.rules"
         sudo udevadm control --reload-rules && sudo udevadm trigger
     fi
 }
@@ -450,11 +450,11 @@ for key in "${selectedKeys[@]}"; do
     _installAllPackages
     case $value in
         loginManager)
-            POST_configureLoginManager=1
+            export POST_configureLoginManager=1
 #            break
             ;;
         framework16Packages)
-            POST_configureFramework16KbdBacklight=1
+            export POST_configureFramework16KbdBacklight=1
 #            break
             ;;
     esac

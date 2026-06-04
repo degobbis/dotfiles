@@ -7,7 +7,7 @@
 _headline "Additional packages"
 echo
 if gum confirm "Do you want to install my selection of additional packages?"; then
-    source ${SCRIPT_DIR}/_gdg-arch/custom-packages.sh
+    source "$SCRIPT_DIR"/_gdg-arch/custom-packages.sh
     echo
     _title "Installation for System packages"
     _installPackages "${systemPackages[@]}"
@@ -18,18 +18,18 @@ _installAllPackages
 echo
 
 
-if [[ ${POST_configureFramework16KbdBacklight} -eq 1 ]]; then
+if [[ "$POST_configureFramework16KbdBacklight" -eq 1 ]]; then
     _configureFramework16KbdBacklight
 fi
 
 echo
 
-if [[ ${POST_configureLoginManager} -eq 1 ]]; then
+if [[ "$POST_configureLoginManager" -eq 1 ]]; then
     _configureLoginManager
 fi
 
 echo
 
 if gum confirm "Do you want to install Hyprland plugins?"; then
-    source ${SCRIPT_DIR}/_gdg-arch/hyprland-plugins.sh
+    source "$SCRIPT_DIR"/_gdg-arch/hyprland-plugins.sh
 fi

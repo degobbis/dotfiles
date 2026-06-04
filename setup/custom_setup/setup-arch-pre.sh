@@ -142,15 +142,15 @@ _downloadFileToTmp(){
     while [[ $# -gt 0 ]]; do
         case $1 in
         --download-url=*)
-            downloadURL="$(echo $1 | cut -d '=' -f 2)"
+            downloadURL="$(echo "$1" | cut -d '=' -f 2)"
             shift
             ;;
         --target-dir=*)
-            savePath="$(echo $1 | cut -d '=' -f 2)"
+            savePath="$(echo "$1" | cut -d '=' -f 2)"
             shift
             ;;
         --checksum=*)
-            checksum="$(echo $1 | cut -d '=' -f 2)"
+            checksum="$(echo "$1" | cut -d '=' -f 2)"
             shift
             ;;
         --download-sig)
@@ -170,15 +170,15 @@ _downloadFileToTmp(){
 
     savePath="/tmp/${savePath#/}"
     savePath="${savePath%/}"
-    filename="$(basename $downloadURL)"
+    filename="$(basename "$downloadURL")"
     file="$savePath/$filename"
 
     if [[ ! -d "$savePath" ]]; then
-        mkdir -p $savePath
+        mkdir -p "$savePath"
     fi
 
     _info "Start download for $downloadURL"
-    if ! curl --progress-bar=dot --retry 3 --connect-timeout 15 -fLOC - $downloadURL --output-dir $savePath; then
+    if ! curl --progress-bar=dot --retry 3 --connect-timeout 15 -fLOC - "$downloadURL" --output-dir "$savePath"; then
         _error "Download for $downloadURL"
         return 1
     fi
@@ -196,8 +196,8 @@ _downloadFileToTmp(){
     fi
 
     if [[ -z "$sumcheck" ]]; then
-        downloadSize="$(curl --retry 3 --connect-timeout 15 -sL $downloadURL --output /dev/null --write-out '%{size_download}\n')"
-        localSize="$(stat -c %s $file)"
+        downloadSize="$(curl --retry 3 --connect-timeout 15 -sL "$downloadURL" --output /dev/null --write-out '%{size_download}\n')"
+        localSize="$(stat -c %s "$file")"
 
         if [[ ! "$localSize" -eq "$downloadSize" ]]; then
             _error "Filesize validation for $file"
@@ -209,7 +209,7 @@ _downloadFileToTmp(){
 
     if [[ "$downloadSig" -eq 1 ]]; then
         _info "Start download for ${downloadURL}.sig"
-        if ! curl --progress-bar=dot --retry 3 --connect-timeout 15 -fLOC - ${downloadURL}.sig --output-dir $savePath; then
+        if ! curl --progress-bar=dot --retry 3 --connect-timeout 15 -fLOC - "${downloadURL}.sig" --output-dir "$savePath"; then
             _error "Download for ${downloadURL}.sig"
         else
         _success "Download for ${downloadURL}.sig"
@@ -222,14 +222,14 @@ _downloadFileToTmp(){
 
 _isInstalled() {
     local pkg="$1"
-    pacman -Q "${pkg}" 2>&1 > /dev/null
+    pacman -Q "${pkg}" > /dev/null 2>&1
     echo $?
     return
 }
 
 _isInstalledFlatpak() {
     local pkg="$1"
-    flatpak list --app | grep "${pkg}" 2>&1 > /dev/null
+    flatpak list --app | grep "${pkg}" > /dev/null 2>&1
     echo $?
     return
 }
@@ -240,20 +240,20 @@ _installYay() {
         sudo pacman --noconfirm -S yay
     else
         if [[ ! $(_isInstalled "base-devel") == 0 ]]; then
-            sudo pacman --noconfirm -S "base-devel"
+            sudo pacman --noconfirm -S base-devel
         fi
         if [[ ! $(_isInstalled "git") == 0 ]]; then
-            sudo pacman --noconfirm -S "git"
+            sudo pacman --noconfirm -S git
         fi
         local install_path="/tmp/ml4w/yay"
-        local temp_path=$(pwd)
+        local temp_path="$(pwd)"
         if [[ -d "$install_path" ]]; then
-            rm -rf $install_path
+            rm -rf "$install_path"
         fi
-        git clone https://aur.archlinux.org/yay.git $install_path
-        cd $install_path
+        git clone https://aur.archlinux.org/yay.git "$install_path"
+        cd "$install_path"
         makepkg -si
-        cd $temp_path
+        cd "$temp_path"
     fi
     _success "Yay has been installed"
 }
@@ -264,20 +264,20 @@ _installParu() {
         sudo pacman --noconfirm -S paru
     else
         if [[ ! $(_isInstalled "base-devel") == 0 ]]; then
-            sudo pacman --noconfirm -S "base-devel"
+            sudo pacman --noconfirm -S base-devel
         fi
         if [[ ! $(_isInstalled "git") == 0 ]]; then
-            sudo pacman --noconfirm -S "git"
+            sudo pacman --noconfirm -S git
         fi
         local install_path="/tmp/ml4w/paru"
-        local temp_path=$(pwd)
+        local temp_path="$(pwd)"
         if [[ -d "$install_path" ]]; then
-            rm -rf $install_path
+            rm -rf "$install_path"
         fi
-        git clone https://aur.archlinux.org/paru.git $install_path
-        cd $install_path
+        git clone https://aur.archlinux.org/paru.git "$install_path"
+        cd "$install_path"
         makepkg -si
-        cd $temp_path
+        cd "$temp_path"
     fi
     _success "Paru has been installed"
 }
@@ -377,13 +377,13 @@ _installChaoticRepository(){
 
         if [[ $? -eq 0 ]]; then
             _info "sudo pacman -U $downloadedFileToTmp"
-            sudo pacman -U $downloadedFileToTmp
+            sudo pacman -U "$downloadedFileToTmp"
         else
             return 1
         fi
         unset downloadedFileToTmp
 
-        cat $SCRIPT_DIR/_gdg-arch/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
+        cat "$SCRIPT_DIR"/_gdg-arch/chaotic-aur/repository | sudo tee -a /etc/pacman.conf > /dev/null
         _success "[chaotic-aur] repository is now installed"
         _info "Syncing the mirrorlist and update the system packages"
         _info "sudo pacman --noconfirm --disable-download-timeout -Syu"
@@ -397,11 +397,11 @@ _selectAURHelper() {
     _title "Please select your preferred AUR Helper"
     echo
     aur_helper=$(gum choose "yay" "paru")
-    if [ -z ${aur_helper} ]; then
+    if [ -z "$aur_helper" ]; then
         _selectAURHelper
     fi
-    if [[ ! $(_isInstalled "${aur_helper}") == 0 ]]; then
-        if [[ ${aur_helper} == "yay" ]]; then
+    if [[ ! $(_isInstalled "$aur_helper") == 0 ]]; then
+        if [[ "$aur_helper" == "yay" ]]; then
             _installYay
         else
             _installParu
@@ -419,16 +419,16 @@ _checkAURHelper() {
         echo ":: paru is installed"
         paru_installed="true"
     fi
-    if [[ $yay_installed == "true" ]] && [[ $paru_installed == "false" ]]; then
+    if [[ "$yay_installed" == "true" ]] && [[ "$paru_installed" == "false" ]]; then
         echo ":: Using AUR Helper yay"
         aur_helper="yay"
-    elif [[ $yay_installed == "false" ]] && [[ $paru_installed == "true" ]]; then
+    elif [[ "$yay_installed" == "false" ]] && [[ "$paru_installed" == "true" ]]; then
         echo ":: Using AUR Helper paru"
         aur_helper="paru"
-    elif [[ $yay_installed == "false" ]] && [[ $paru_installed == "false" ]]; then
+    elif [[ "$yay_installed" == "false" ]] && [[ "$paru_installed" == "false" ]]; then
         echo ":: No AUR Helper installed"
         _selectAURHelper
-        if [[ $aur_helper == "yay" ]]; then
+        if [[ "$aur_helper" == "yay" ]]; then
             _installYay
         else
             _installParu
@@ -438,11 +438,37 @@ _checkAURHelper() {
     fi
 }
 
+_disableMakeDebugPkg() {
+    grep -v '^#' /etc/makepkg.conf | grep -w '!debug' >/dev/null 2>&1
+    [ $? -eq 0 ] && return 0
+
+    _title "Disable the creation of 'debug' packages for AUR installations"
+    local makepkgConfig="/etc/makepkg.conf"
+    local makepkgConfigBackup="${makepkgConfig}.bkp-$(date +%Y%m%d)"
+
+    
+    if sudo cp "$makepkgConfig" "$makepkgConfigBackup"; then
+        _info "Backup of '$makepkgConfig' created as '$makepkgConfigBackup'."
+
+        if sudo sed -i 's/\(OPTIONS=([^)]*\) debug\b/\1 !debug/' "$makepkgConfig"; then
+            _success "The creation of 'debug' packages is disabled."
+            return 0
+        else
+            _error "The 'debug' value in '$makepkgConfig' could not be disabled; operation aborted."
+            return 1
+        fi
+    else
+        _error "The backup file '$makepkgConfigBackup' could not be created; operation aborted."
+        return 1
+    fi
+}
+
 # Install chaotic-aur repository for a lot of precompiled AUR Packages
 if _installChaoticRepository; then
     export CHAOTIC_AUR_INSTALLED=1
 fi
 
+_disableMakeDebugPkg
 _selectAURHelper
 
 echo
